@@ -1,0 +1,127 @@
+@use '../variables' as *;
+
+.projects-hero {
+  background: var(--color-ink);
+  border-bottom: 2px solid var(--color-ink);
+  position: relative;
+  overflow: hidden;
+
+  // Subtle crosshatch texture (diagonal lines, not horizontal — allowed by design rules)
+  &::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg width='32' height='32' viewBox='0 0 32 32' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M0 32L32 0M-8 8L8 -8M24 40L40 24' stroke='%23ffffff' stroke-width='0.5' stroke-opacity='0.04'/%3E%3C/svg%3E");
+    pointer-events: none;
+  }
+
+  &__inner {
+    padding: 5rem $spacing-page-x 3.5rem;
+    max-width: 820px;
+    position: relative;
+    z-index: 1;
+  }
+
+  &__eyebrow {
+    font-family: $font-mono;
+    font-size: 0.8rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--color-olive-light);
+    margin-bottom: 1.5rem;
+  }
+
+  &__heading {
+    font-family: $font-serif;
+    font-size: 5rem;
+    font-weight: 600;
+    line-height: 1.1;
+    color: var(--color-paper);
+    margin-bottom: 1.5rem;
+
+    em {
+      font-style: italic;
+      color: var(--color-olive-light);
+    }
+  }
+
+  &__word {
+    display: inline-block;
+    animation: wordReveal 0.55s cubic-bezier(0.22, 1, 0.36, 1) both;
+
+    &:nth-child(2) { animation-delay: 0.1s; }
+    &:nth-child(3) { animation-delay: 0.2s; }
+
+    @media (prefers-reduced-motion: reduce) { animation: none; }
+  }
+
+  &__sub {
+    font-family: $font-sans;
+    font-size: 1.05rem;
+    line-height: 1.8;
+    color: rgba(255, 255, 255, 0.55);
+    max-width: 560px;
+  }
+
+  // Stats strip along the bottom
+  &__stats {
+    display: flex;
+    border-top: 1px solid rgba(255, 255, 255, 0.08);
+    position: relative;
+    z-index: 1;
+  }
+
+  &__stat {
+    flex: 1;
+    padding: 1.5rem $spacing-page-x;
+    border-right: 1px solid rgba(255, 255, 255, 0.08);
+    animation: statFade 0.5s ease both;
+
+    &:last-child { border-right: none; }
+    &:nth-child(2) { animation-delay: 0.12s; }
+    &:nth-child(3) { animation-delay: 0.24s; }
+
+    @media (prefers-reduced-motion: reduce) { animation: none; }
+  }
+
+  &__stat-value {
+    font-family: $font-serif;
+    font-size: 2.8rem;
+    font-weight: 600;
+    color: var(--color-paper);
+    line-height: 1;
+    display: block;
+    margin-bottom: 0.3rem;
+  }
+
+  &__stat-label {
+    font-family: $font-mono;
+    font-size: 0.72rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: rgba(255, 255, 255, 0.4);
+    display: block;
+  }
+
+  @media (max-width: $bp-tablet) {
+    &__heading { font-size: 3.5rem; }
+    &__inner { padding: 3.5rem $spacing-page-x 2.5rem; }
+    &__stat-value { font-size: 2rem; }
+  }
+
+  @media (max-width: $bp-mobile) {
+    &__heading { font-size: 2.6rem; }
+    &__stats { flex-direction: column; }
+    &__stat { border-right: none; border-bottom: 1px solid rgba(255, 255, 255, 0.08); }
+  }
+}
+
+@keyframes wordReveal {
+  from { opacity: 0; transform: translateY(14px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes statFade {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}

@@ -1,0 +1,16 @@
+@use '../variables' as *;
+
+.discipline-tag {
+  font-family: $font-mono;
+  font-size:  0.75rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  padding: 0.2rem 0.6rem;
+  border: 1px solid currentColor;
+  display: inline-block;
+
+  &--environmental { color: var(--color-red); }
+  &--hygiene       { color: var(--color-olive); }
+  &--geotechnical  { color: var(--color-stone); }
+  &--general       { color: var(--color-ink-light); }
+}

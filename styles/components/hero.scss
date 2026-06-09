@@ -1,0 +1,146 @@
+@use '../variables' as *;
+
+.hero {
+  display: grid;
+  grid-template-columns: 1.1fr 0.9fr;
+  min-height: 560px;
+  border-bottom: 2px solid var(--color-ink);
+
+  &__left {
+    padding: 4rem $spacing-page-x;
+    border-right: 2px solid var(--color-ink);
+    background: var(--color-paper);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+
+  &__content {
+    flex: 1;
+  }
+
+  &__eyebrow {
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+    margin-bottom: 2rem;
+  }
+
+  &__eyebrow-line {
+    width: 32px;
+    height: 2px;
+    background: var(--color-olive);
+    flex-shrink: 0;
+  }
+
+  &__eyebrow-text {
+    font-family: $font-mono;
+    font-size:  1rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--color-olive);
+    font-weight: 500;
+  }
+
+  &__heading {
+    font-family: $font-serif;
+    font-size: 5rem;
+    line-height: 1.1;
+    color: var(--color-ink);
+    font-weight: 600;
+    margin-bottom: 1.5rem;
+
+    em {
+      font-style: italic;
+      color: var(--color-olive);
+    }
+  }
+
+  // Clip-reveal wrappers for GSAP heading line animation
+  &__heading-line-wrap {
+    display: block;
+    overflow: hidden;
+  }
+
+  &__heading-line {
+    display: block;
+  }
+
+  &__body {
+    font-family: $font-sans;
+    font-size:  1.05rem;
+    font-weight: 400;
+    line-height: 1.85;
+    color: var(--color-ink-mid);
+    max-width: 420px;
+    margin-bottom: 2rem;
+  }
+
+  &__buttons {
+    display: flex;
+    gap: 1rem;
+    margin-bottom: 2rem;
+  }
+
+  &__certs {
+    border-top: 1px solid var(--color-rule);
+    padding-top: 1.2rem;
+    display: flex;
+    gap: 2rem;
+    list-style: none;
+  }
+
+  &__cert {
+    font-family: $font-mono;
+    font-size:  0.8rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--color-ink-light);
+  }
+
+  // Right column
+  &__right {
+    position: relative;
+    overflow: hidden;
+  }
+
+  &__image-wrap {
+    position: absolute;
+    inset: 0;
+
+    &::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(
+        to top,
+        rgba(26, 26, 20, 0.88) 0%,
+        rgba(26, 26, 20, 0.35) 45%,
+        transparent 100%
+      );
+      pointer-events: none;
+    }
+  }
+
+  &__image {
+    object-fit: cover;
+  }
+
+  &__tagline {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    padding: 2.5rem $spacing-page-x;
+    z-index: 1;
+  }
+
+  &__tagline-text {
+    font-family: $font-serif;
+    font-size: 1.35rem;
+    font-weight: 600;
+    font-style: italic;
+    color: var(--color-paper);
+    line-height: 1.6;
+  }
+}

@@ -1,0 +1,225 @@
+@use '../variables' as *;
+
+.about-band {
+  display: grid;
+  grid-template-columns: 1.1fr 0.9fr;
+  border-bottom: 2px solid var(--color-ink);
+
+  // ── Left panel ───────────────────────────────────────────────
+  &__left {
+    background: var(--color-paper);
+    padding: $spacing-section-y $spacing-page-x;
+    border-right: 2px solid var(--color-ink);
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    overflow: hidden;
+
+    &::before {
+      content: 'A';
+      position: absolute;
+      bottom: -4rem;
+      right: -1.5rem;
+      font-family: $font-serif;
+      font-style: italic;
+      font-weight: 700;
+      font-size: 28rem;
+      line-height: 1;
+      color: rgba(26, 26, 20, 0.04);
+      pointer-events: none;
+      user-select: none;
+    }
+  }
+
+  &__label {
+    margin-bottom: 1.4rem;
+  }
+
+  &__heading {
+    font-family: $font-serif;
+    font-size: 3.2rem;
+    font-weight: 600;
+    color: var(--color-ink);
+    line-height: 1.2;
+    margin-bottom: 1.6rem;
+    padding-bottom: 1.6rem;
+    border-bottom: 1px solid var(--color-rule);
+
+    em {
+      font-style: italic;
+      color: var(--color-olive);
+    }
+  }
+
+  // Pull quote
+  &__quote {
+    border-left: 3px solid var(--color-olive);
+    padding-left: 1.25rem;
+    margin: 0 0 1.4rem;
+    position: relative;
+    z-index: 1;
+
+    p {
+      font-family: $font-serif;
+      font-size: 1.4rem;
+      font-style: italic;
+      font-weight: 600;
+      color: var(--color-ink);
+      line-height: 1.55;
+    }
+  }
+
+  &__body {
+    font-family: $font-sans;
+    font-size: 1rem;
+    font-weight: 400;
+    line-height: 1.85;
+    color: var(--color-ink-mid);
+    max-width: 520px;
+    position: relative;
+    z-index: 1;
+  }
+
+  // Outlined CTA button
+  &__btn {
+    font-family: $font-mono;
+    font-size: 0.8rem;
+    font-weight: 500;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--color-ink);
+    text-decoration: none;
+    border: 1px solid var(--color-ink);
+    padding: 0.75rem 1.4rem;
+    display: inline-block;
+    align-self: flex-start;
+    margin-top: auto;
+    padding-top: 0.75rem; // reset (no longer needs push padding)
+    position: relative;
+    z-index: 1;
+    transition: background 0.15s ease, color 0.15s ease;
+
+    &:hover {
+      background: var(--color-ink);
+      color: var(--color-paper);
+    }
+
+    &:focus-visible {
+      outline: 3px solid var(--color-olive);
+      outline-offset: 3px;
+    }
+
+    @media (prefers-reduced-motion: reduce) { transition: none; }
+  }
+
+  // ── Right panel: 2×2 differentiator cards ────────────────────
+  &__right {
+    background: var(--color-rule);
+  }
+
+  &__differentiators {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr 1fr;
+    height: 100%;
+    gap: 1px;
+    background: var(--color-rule);
+    list-style: none;
+  }
+
+  &__differentiator {
+    background: var(--color-paper-dark);
+    padding: 2rem $spacing-page-x;
+    display: flex;
+    flex-direction: column;
+    gap: 0.4rem;
+    border-left: 3px solid transparent;
+    transition: background 0.2s ease;
+
+    &:nth-child(1) { border-left-color: var(--color-olive); }
+    &:nth-child(2) { border-left-color: var(--color-red); }
+    &:nth-child(3) { border-left-color: var(--color-stone); }
+    &:nth-child(4) { border-left-color: var(--color-olive); }
+
+    &:hover {
+      background: var(--color-ink);
+
+      .about-band__diff-number { color: rgba(255, 255, 255, 0.35); }
+      .about-band__diff-heading { color: var(--color-paper); }
+      .about-band__diff-desc { color: rgba(255, 255, 255, 0.65); }
+      .about-band__diff-body { color: rgba(255, 255, 255, 0.45); }
+    }
+
+    @media (prefers-reduced-motion: reduce) { transition: none; }
+  }
+
+  &__diff-number {
+    font-family: $font-mono;
+    font-size: 0.68rem;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--color-ink-light);
+    margin-bottom: 0.2rem;
+    transition: color 0.2s ease;
+
+    @media (prefers-reduced-motion: reduce) { transition: none; }
+  }
+
+  &__diff-heading {
+    font-family: $font-serif;
+    font-size: 1.3rem;
+    font-weight: 600;
+    color: var(--color-ink);
+    line-height: 1.2;
+    transition: color 0.2s ease;
+
+    @media (prefers-reduced-motion: reduce) { transition: none; }
+  }
+
+  &__diff-desc {
+    font-family: $font-mono;
+    font-size: 0.78rem;
+    letter-spacing: 0.04em;
+    color: var(--color-ink-mid);
+    line-height: 1.4;
+    transition: color 0.2s ease;
+
+    @media (prefers-reduced-motion: reduce) { transition: none; }
+  }
+
+  &__diff-body {
+    font-family: $font-sans;
+    font-size: 0.85rem;
+    line-height: 1.65;
+    color: var(--color-ink-light);
+    margin-top: 0.35rem;
+    transition: color 0.2s ease;
+
+    @media (prefers-reduced-motion: reduce) { transition: none; }
+  }
+
+  // ── Responsive ───────────────────────────────────────────────
+  @media (max-width: $bp-tablet) {
+    grid-template-columns: 1fr;
+
+    &__left {
+      border-right: none;
+      border-bottom: 2px solid var(--color-ink);
+    }
+
+    &__heading { font-size: 2.4rem; }
+
+    &__btn { margin-top: 1.8rem; }
+
+    &__differentiators {
+      grid-template-rows: auto;
+      height: auto;
+    }
+
+    &__differentiator { padding: 1.8rem $spacing-page-x; }
+  }
+
+  @media (max-width: $bp-mobile) {
+    &__differentiators { grid-template-columns: 1fr; }
+  }
+}

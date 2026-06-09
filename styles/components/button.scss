@@ -1,0 +1,39 @@
+@use '../variables' as *;
+
+.button {
+  font-family: $font-mono;
+  font-size: 0.82rem;
+  font-weight: 500;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  padding: 0.8rem 1.7rem;
+  text-decoration: none;
+  display: inline-block;
+  cursor: pointer;
+  border: 2px solid var(--color-ink);
+  transition: background 0.15s ease, color 0.15s ease;
+
+  @media (prefers-reduced-motion: reduce) {
+    transition: none;
+  }
+
+  &--primary {
+    background: var(--color-ink);
+    color: var(--color-paper);
+
+    &:hover {
+      background: var(--color-ink-mid);
+      border-color: var(--color-ink-mid);
+    }
+  }
+
+  &--outline {
+    background: transparent;
+    color: var(--color-ink);
+
+    &:hover {
+      background: var(--color-ink);
+      color: var(--color-paper);
+    }
+  }
+}

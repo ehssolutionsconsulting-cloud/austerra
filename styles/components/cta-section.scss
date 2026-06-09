@@ -1,0 +1,154 @@
+@use '../variables' as *;
+
+@keyframes cta-bg-pulse {
+  0%, 100% { opacity: 0.35; transform: scale(0.85); }
+  50%       { opacity: 0.85; transform: scale(1.2); }
+}
+
+.cta-section {
+  background: var(--color-ink);
+  border-bottom: 2px solid var(--color-ink);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+
+  // Radial gradient pulse centred on the section
+  &::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(circle at 50% 50%, rgba(10, 61, 130, 0.65) 0%, transparent 62%);
+    animation: cta-bg-pulse 4s ease-in-out infinite;
+    pointer-events: none;
+
+    @media (prefers-reduced-motion: reduce) { animation: none; }
+  }
+
+  // ── Main content block ───────────────────────────────────────
+  &__inner {
+    width: 100%;
+    max-width: 700px;
+    padding: 6rem $spacing-page-x 4.5rem;
+    position: relative;
+    z-index: 1;
+  }
+
+  &__eyebrow {
+    font-family: $font-mono;
+    font-size: 0.8rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--color-olive-light);
+    margin-bottom: 1.5rem;
+  }
+
+  &__heading {
+    font-family: $font-serif;
+    font-size: 3.5rem;
+    font-weight: 600;
+    line-height: 1.15;
+    color: var(--color-paper);
+    margin-bottom: 1.5rem;
+
+    em {
+      font-style: italic;
+      color: var(--color-olive-light);
+    }
+  }
+
+  &__body {
+    font-family: $font-sans;
+    font-size: 1.05rem;
+    line-height: 1.8;
+    color: rgba(255, 255, 255, 0.6);
+    max-width: 480px;
+    margin: 0 auto 2.5rem;
+  }
+
+  // ── Buttons ──────────────────────────────────────────────────
+  &__actions {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+
+  &__btn {
+    font-family: $font-mono;
+    font-size: 0.82rem;
+    font-weight: 500;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    padding: 0.85rem 2rem;
+    text-decoration: none;
+    display: inline-block;
+    transition: background 0.15s ease, color 0.15s ease, border-color 0.15s ease;
+
+    @media (prefers-reduced-motion: reduce) { transition: none; }
+
+    &--primary {
+      background: var(--color-olive);
+      color: var(--color-paper);
+      border: 2px solid var(--color-olive);
+
+      &:hover {
+        background: var(--color-olive-light);
+        border-color: var(--color-olive-light);
+      }
+    }
+
+    &--ghost {
+      background: transparent;
+      color: var(--color-paper);
+      border: 2px solid rgba(255, 255, 255, 0.3);
+
+      &:hover {
+        border-color: var(--color-paper);
+      }
+    }
+
+    &:focus-visible {
+      outline: 3px solid var(--color-olive);
+      outline-offset: 3px;
+    }
+  }
+
+  // ── Cert trust strip at the bottom ───────────────────────────
+  &__meta {
+    width: 100%;
+    position: relative;
+    z-index: 1;
+    padding: 1.25rem $spacing-page-x;
+    border-top: 1px solid rgba(255, 255, 255, 0.08);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+    flex-wrap: wrap;
+  }
+
+  &__meta-item {
+    font-family: $font-mono;
+    font-size: 0.75rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: rgba(255, 255, 255, 0.3);
+  }
+
+  &__meta-sep {
+    color: rgba(255, 255, 255, 0.15);
+  }
+
+  @media (max-width: $bp-tablet) {
+    &__heading { font-size: 2.6rem; }
+    &__inner { padding: 4rem $spacing-page-x 3rem; }
+  }
+
+  @media (max-width: $bp-mobile) {
+    &__heading { font-size: 2rem; }
+    &__actions { flex-direction: column; align-items: center; }
+  }
+}

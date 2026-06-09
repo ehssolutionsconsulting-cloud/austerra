@@ -1,0 +1,199 @@
+@use '../variables' as *;
+
+.navbar {
+  background: var(--color-ink);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem $spacing-page-x;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+
+  // Border draw via ::after — scaleX(0)→scaleX(1) when --scrolled is added
+  &::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background: rgba(255, 255, 255, 0.12);
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.4s ease;
+
+    @media (prefers-reduced-motion: reduce) { transition: none; }
+  }
+
+  &--scrolled::after { transform: scaleX(1); }
+
+  &__brand {
+    text-decoration: none;
+    display: block;
+  }
+
+  &__logo {
+    font-family: $font-mono;
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: #ffffff;
+    letter-spacing: 0.05em;
+    display: block;
+    transition: font-size 0.3s ease;
+
+    @media (prefers-reduced-motion: reduce) { transition: none; }
+  }
+
+  &__tagline {
+    font-family: $font-mono;
+    display: block;
+    font-size: 0.8rem;
+    font-weight: 400;
+    color: var(--color-pencil);
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    margin-top: 3px;
+    overflow: hidden;
+    max-height: 2rem;
+    opacity: 1;
+    transition: opacity 0.25s ease, max-height 0.3s ease, margin-top 0.3s ease;
+
+    @media (prefers-reduced-motion: reduce) { transition: none; }
+  }
+
+  // Scrolled state — tagline hidden, logo slightly smaller
+  &--scrolled &__logo { font-size: 1.05rem; }
+  &--scrolled &__tagline {
+    opacity: 0;
+    max-height: 0;
+    margin-top: 0;
+    pointer-events: none;
+  }
+
+  &__links {
+    display: flex;
+    list-style: none;
+    border-left: 1px solid rgba(255, 255, 255, 0.12);
+  }
+
+  &__link {
+    color: rgba(255, 255, 255, 0.75);
+    text-decoration: none;
+    font-family: $font-mono;
+    font-size: 0.92rem;
+    font-weight: 500;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    padding: 0.6rem 1.4rem;
+    border-right: 1px solid rgba(255, 255, 255, 0.12);
+    display: flex;
+    align-items: center;
+    transition: color 0.15s;
+
+    &:hover {
+      color: #ffffff;
+    }
+
+    // Active page link
+    &--active {
+      color: #ffffff;
+      background: rgba(255, 255, 255, 0.1);
+      border-bottom: 2px solid var(--color-pencil);
+    }
+
+    // Contact CTA — ice blue bg + navy text for maximum contrast
+    &--cta {
+      background: var(--color-paper);
+      color: var(--color-ink);
+      font-weight: 500;
+
+      &:hover {
+        background: #ffffff;
+        color: var(--color-ink);
+      }
+    }
+  }
+
+  // Mobile hamburger — hidden on desktop
+  &__hamburger {
+    display: none;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 5px;
+    width: 2.5rem;
+    height: 2.5rem;
+    background: none;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    cursor: pointer;
+    padding: 0.4rem;
+
+    &-bar {
+      display: block;
+      width: 1.1rem;
+      height: 1px;
+      background: #ffffff;
+      transition: transform 0.2s, opacity 0.2s;
+    }
+
+    &--open {
+      .navbar__hamburger-bar:nth-child(1) { transform: translateY(6px) rotate(45deg); }
+      .navbar__hamburger-bar:nth-child(2) { opacity: 0; }
+      .navbar__hamburger-bar:nth-child(3) { transform: translateY(-6px) rotate(-45deg); }
+    }
+  }
+
+  // Mobile menu — full-screen overlay
+  &__mobile-menu {
+    display: none;
+    position: fixed;
+    inset: 0;
+    top: 0;
+    background: var(--color-ink);
+    z-index: 99;
+    padding-top: 5rem;
+    overflow-y: auto;
+
+    &--open { display: block; }
+  }
+
+  &__mobile-links {
+    list-style: none;
+    border-top: 1px solid rgba(255, 255, 255, 0.12);
+  }
+
+  &__mobile-link {
+    display: block;
+    font-family: $font-mono;
+    font-size: 1.2rem;
+    font-weight: 500;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: rgba(255, 255, 255, 0.8);
+    text-decoration: none;
+    padding: 1.25rem $spacing-page-x;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+
+    &:hover { color: #ffffff; }
+
+    &--active {
+      color: #ffffff;
+      border-left: 3px solid var(--color-pencil);
+      padding-left: calc(#{$spacing-page-x} - 3px);
+    }
+
+    &--cta {
+      color: var(--color-ink);
+      background: var(--color-paper);
+      border-bottom: none;
+    }
+  }
+}
+
+@media (max-width: 768px) {
+  .navbar {
+    &__links { display: none; }
+    &__hamburger { display: flex; }
+  }
+}

@@ -1,0 +1,36 @@
+@use '../variables' as *;
+
+.service-related {
+  padding: $spacing-section-y $spacing-page-x;
+  border-bottom: 2px solid var(--color-ink);
+
+  &__header {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    margin-bottom: 2rem;
+  }
+
+  &__all-link {
+    font-family: $font-mono;
+    font-size:  0.84rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--color-olive);
+    text-decoration: none;
+
+    &:hover { color: var(--color-olive-light); }
+  }
+
+  &__grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1px;
+    background: var(--color-rule);
+    list-style: none;
+  }
+
+  @media (max-width: 900px) {
+    &__grid { grid-template-columns: 1fr; }
+  }
+}

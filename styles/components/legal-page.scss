@@ -1,0 +1,89 @@
+@use '../variables' as *;
+
+.legal {
+  display: grid;
+  grid-template-columns: 0.35fr 1fr;
+  border-bottom: 2px solid var(--color-ink);
+
+  &__sidebar {
+    padding: $spacing-section-y $spacing-page-x;
+    border-right: 2px solid var(--color-ink);
+    background: var(--color-paper-dark);
+  }
+
+  &__toc-label {
+    font-family: $font-mono;
+    font-size:  0.8rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--color-ink-light);
+    margin-bottom: 1rem;
+    display: block;
+  }
+
+  &__toc {
+    list-style: none;
+  }
+
+  &__toc-item {
+    border-bottom: 1px solid var(--color-rule);
+  }
+
+  &__toc-link {
+    font-family: $font-mono;
+    font-size:  0.82rem;
+    letter-spacing: 0.06em;
+    color: var(--color-ink-mid);
+    text-decoration: none;
+    padding: 0.5rem 0;
+    display: block;
+
+    &:hover { color: var(--color-olive); }
+  }
+
+  &__content {
+    padding: $spacing-section-y $spacing-page-x;
+  }
+
+  &__section {
+    margin-bottom: 2.5rem;
+
+    &:last-child { margin-bottom: 0; }
+  }
+
+  &__section-title {
+    font-family: $font-serif;
+    font-size:  1.3rem;
+    font-weight: 600;
+    color: var(--color-ink);
+    margin-bottom: 0.8rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 1px solid var(--color-rule);
+  }
+
+  &__section-body {
+    font-family: $font-sans;
+    font-size:  1rem;
+    font-weight: 400;
+    line-height: 1.85;
+    color: var(--color-ink-mid);
+
+    p { margin-bottom: 0.8rem; }
+
+    ul {
+      list-style: none;
+      margin-bottom: 0.8rem;
+
+      li {
+        padding: 0.2rem 0;
+        padding-left: 1rem;
+
+        &::before {
+          content: "— ";
+          color: var(--color-ink-light);
+          margin-left: -1rem;
+        }
+      }
+    }
+  }
+}

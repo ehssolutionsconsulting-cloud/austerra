@@ -1,0 +1,109 @@
+@use '../variables' as *;
+
+.services-overview {
+  border-bottom: 2px solid var(--color-ink);
+
+  &__discipline {
+    display: grid;
+    grid-template-columns: 0.4fr 1fr;
+    border-bottom: 1px solid var(--color-rule);
+
+    &:last-child { border-bottom: none; }
+  }
+
+  &__discipline-sidebar {
+    padding: $spacing-section-y $spacing-page-x;
+    border-right: 2px solid var(--color-ink);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+
+  &__discipline-number {
+    font-family: $font-mono;
+    font-size:  0.78rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--color-ink-light);
+    margin-bottom: 0.5rem;
+    display: block;
+  }
+
+  &__discipline-title {
+    font-family: $font-serif;
+    font-size: 2rem;
+    font-weight: 600;
+    color: var(--color-ink);
+    line-height: 1.2;
+    margin-bottom: 1rem;
+  }
+
+  &__discipline-link {
+    font-family: $font-mono;
+    font-size:  0.8rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--color-olive);
+    text-decoration: none;
+    border-bottom: 1px solid var(--color-olive);
+    padding-bottom: 1px;
+    display: inline-block;
+    align-self: flex-start;
+
+    &:hover { color: var(--color-olive-light); border-bottom-color: var(--color-olive-light); }
+  }
+
+  &__discipline-body {
+    padding: $spacing-section-y $spacing-page-x;
+  }
+
+  &__discipline-desc {
+    font-family: $font-sans;
+    font-size:  1.05rem;
+    font-weight: 400;
+    line-height: 1.85;
+    color: var(--color-ink-mid);
+    margin-bottom: 1.5rem;
+    max-width: 620px;
+  }
+
+  &__services-label {
+    font-family: $font-mono;
+    font-size:  0.8rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--color-ink-light);
+    margin-bottom: 0.8rem;
+    display: block;
+  }
+
+  &__services-list {
+    list-style: none;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0 2rem;
+  }
+
+  &__service-item {
+    font-family: $font-sans;
+    font-size:  0.98rem;
+    font-weight: 400;
+    color: var(--color-ink-mid);
+    padding: 0.35rem 0;
+    border-bottom: 1px solid var(--color-rule);
+
+    &::before {
+      content: "— ";
+      color: var(--color-ink-light);
+    }
+  }
+
+  &__accent-bar {
+    height: 2px;
+    width: 100%;
+
+    &--01 { background: var(--color-red); }
+    &--02 { background: var(--color-olive); }
+    &--03 { background: var(--color-stone); }
+  }
+}

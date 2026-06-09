@@ -1,0 +1,411 @@
+@use '../variables' as *;
+
+// ── Filter bar ───────────────────────────────────────────────────────────────
+.projects-filter {
+  background: var(--color-ink);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  overflow-x: auto;
+
+  &__options {
+    display: flex;
+    list-style: none;
+  }
+
+  &__option {
+    display: flex;
+    align-items: center;
+    gap: 0.55rem;
+    padding: 1.1rem 1.6rem;
+    background: none;
+    border: none;
+    border-right: 1px solid rgba(255, 255, 255, 0.07);
+    border-bottom: 2px solid transparent;
+    cursor: pointer;
+    font-family: $font-mono;
+    font-size: 0.82rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: rgba(255, 255, 255, 0.42);
+    white-space: nowrap;
+    transition: color 0.15s ease, background 0.15s ease;
+
+    &:hover { color: var(--color-paper); }
+
+    &--active {
+      color: var(--color-paper);
+      background: rgba(255, 255, 255, 0.05);
+      border-bottom-color: var(--color-olive);
+    }
+
+    &:focus-visible {
+      outline: 3px solid var(--color-olive);
+      outline-offset: -3px;
+    }
+
+    @media (prefers-reduced-motion: reduce) { transition: none; }
+  }
+
+  &__badge {
+    font-family: $font-mono;
+    font-size: 0.68rem;
+    letter-spacing: 0.05em;
+    color: var(--color-olive-light);
+    background: rgba(90, 107, 58, 0.2);
+    padding: 0.1rem 0.38rem;
+
+    .projects-filter__option--active & {
+      color: var(--color-paper);
+      background: rgba(255, 255, 255, 0.12);
+    }
+  }
+}
+
+// ── Grid wrapper ─────────────────────────────────────────────────────────────
+.projects-grid {
+  border-bottom: 2px solid var(--color-ink);
+
+  &__header {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    padding: 1.5rem $spacing-page-x;
+    border-bottom: 1px solid var(--color-rule);
+  }
+
+  &__count {
+    font-family: $font-mono;
+    font-size: 0.8rem;
+    letter-spacing: 0.08em;
+    color: var(--color-ink-light);
+  }
+
+  // Bento grid: every 4n+1 card is large (2col × 2row), rest are compact
+  // CSS auto-placement alternates the big card left → right naturally
+  &__grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-auto-rows: minmax(300px, auto);
+    gap: 2px;
+    background: var(--color-rule);
+    list-style: none;
+
+    li {
+      display: flex;
+      min-height: 0;
+    }
+
+    // ── Big bento card ────────────────────────────────────────────
+    li:nth-child(4n+1) {
+      grid-column: span 2;
+      grid-row: span 2;
+
+      .project-card {
+        position: relative;
+        overflow: hidden;
+        height: 100%;
+      }
+
+      // Full-bleed image fills the entire card
+      .project-card__image {
+        position: absolute;
+        inset: 0;
+        height: auto;
+
+        &::after {
+          content: '';
+          position: absolute;
+          inset: 0;
+          background: linear-gradient(
+            to top,
+            rgba(26, 26, 20, 0.97) 0%,
+            rgba(26, 26, 20, 0.55) 42%,
+            transparent 72%
+          );
+          z-index: 1;
+        }
+      }
+
+      // Text content pinned above the CTA strip
+      .project-card__content {
+        position: absolute;
+        bottom: 52px;
+        left: 0;
+        right: 0;
+        z-index: 2;
+        flex: none;
+        padding-bottom: 0.25rem;
+      }
+
+      // CTA strip docked at the very bottom
+      .project-card__cta {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        z-index: 2;
+        background: rgba(26, 26, 20, 0.88);
+      }
+
+      .project-card__title { font-size: 2rem; }
+      .project-card__body  { display: block; }
+    }
+
+    // ── Compact cards ─────────────────────────────────────────────
+    li:not(:nth-child(4n+1)) {
+      .project-card__image { height: 150px; }
+      .project-card__body  { display: none; }
+    }
+  }
+}
+
+// ── Project card ─────────────────────────────────────────────────────────────
+.project-card {
+  background: var(--color-ink);
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  position: relative;
+
+  // Discipline left border — fills height:0→100% on hover via ::before
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 3px;
+    height: 0;
+    transition: height 0.35s cubic-bezier(0.22, 1, 0.36, 1);
+    z-index: 2;
+
+    @media (prefers-reduced-motion: reduce) { transition: none; }
+  }
+
+  &--environmental::before { background: var(--color-olive); }
+  &--hygiene::before       { background: var(--color-red); }
+  &--geotechnical::before  { background: var(--color-stone); }
+
+  &:hover::before { height: 100%; }
+
+  // Image scale on card hover
+  &:hover .project-card__img { transform: scale(1.04); }
+
+  &__image {
+    position: relative;
+    height: 160px;
+    flex-shrink: 0;
+    overflow: hidden;
+    background: #242420;
+  }
+
+  &__img {
+    object-fit: cover;
+    object-position: center;
+    transition: transform 0.45s ease;
+
+    @media (prefers-reduced-motion: reduce) { transition: none; }
+  }
+
+  &__content {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    padding: 1.5rem $spacing-card;
+  }
+
+  &__meta {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 0.6rem;
+  }
+
+  &__id {
+    font-family: $font-mono;
+    font-size: 0.7rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: rgba(255, 255, 255, 0.32);
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+  }
+
+  &__id-dot {
+    width: 5px;
+    height: 5px;
+    background: var(--color-olive-light);
+    flex-shrink: 0;
+    animation: blink 2.5s ease-in-out infinite;
+
+    @media (prefers-reduced-motion: reduce) { animation: none; opacity: 1; }
+  }
+
+  &__year {
+    font-family: $font-mono;
+    font-size: 0.7rem;
+    color: rgba(255, 255, 255, 0.28);
+  }
+
+  &__client {
+    font-family: $font-mono;
+    font-size: 0.75rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: rgba(255, 255, 255, 0.42);
+    margin-bottom: 0.5rem;
+  }
+
+  &__title {
+    font-family: $font-serif;
+    font-size: 1.3rem;
+    font-weight: 600;
+    line-height: 1.25;
+    color: var(--color-paper);
+    margin-bottom: 0.8rem;
+    flex: 1;
+  }
+
+  &__link {
+    color: inherit;
+    text-decoration: none;
+
+    &:hover { color: var(--color-pencil); }
+
+    &:focus-visible {
+      outline: 3px solid var(--color-olive);
+      outline-offset: 3px;
+    }
+  }
+
+  &__body {
+    font-family: $font-sans;
+    font-size: 0.9rem;
+    line-height: 1.72;
+    color: rgba(255, 255, 255, 0.5);
+    margin-bottom: 1rem;
+  }
+
+  &__tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.35rem;
+    list-style: none;
+    margin-bottom: 0.8rem;
+  }
+
+  &__tag {
+    font-family: $font-mono;
+    font-size: 0.67rem;
+    letter-spacing: 0.07em;
+    text-transform: uppercase;
+    color: rgba(255, 255, 255, 0.38);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    padding: 0.15rem 0.42rem;
+  }
+
+  &__location {
+    display: flex;
+    align-items: center;
+    gap: 0.35rem;
+    font-family: $font-mono;
+    font-size: 0.7rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: rgba(255, 255, 255, 0.32);
+    margin-top: auto;
+    padding-top: 0.5rem;
+  }
+
+  &__pin-icon {
+    flex-shrink: 0;
+    color: rgba(255, 255, 255, 0.28);
+  }
+
+  // Full-width CTA strip at bottom
+  &__cta {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0.9rem $spacing-card;
+    border-top: 1px solid rgba(255, 255, 255, 0.07);
+    font-family: $font-mono;
+    font-size: 0.75rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--color-olive-light);
+    text-decoration: none;
+    transition: background 0.15s ease, color 0.15s ease;
+
+    &::after { content: '→'; font-size: 1rem; }
+
+    &:hover {
+      background: rgba(255, 255, 255, 0.04);
+      color: var(--color-paper);
+    }
+
+    &:focus-visible {
+      outline: 3px solid var(--color-olive);
+      outline-offset: -3px;
+    }
+
+    @media (prefers-reduced-motion: reduce) { transition: none; }
+  }
+
+  @media (max-width: $bp-tablet) {
+    &__body { display: block !important; }
+  }
+}
+
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50%       { opacity: 0.12; }
+}
+
+// ── Responsive grid ──────────────────────────────────────────────────────────
+@media (max-width: $bp-tablet) {
+  .projects-grid__grid {
+    grid-template-columns: 1fr;
+    grid-auto-rows: auto;
+
+    // Reset bento spans — stack all cards as single-column
+    li:nth-child(4n+1) {
+      grid-column: auto;
+      grid-row: auto;
+
+      .project-card {
+        position: static;
+        overflow: visible;
+        height: auto;
+      }
+
+      .project-card__image {
+        position: relative;
+        inset: auto;
+        height: 240px;
+
+        &::after { display: none; }
+      }
+
+      .project-card__content {
+        position: static;
+        bottom: auto;
+        flex: 1;
+        padding-bottom: 0;
+      }
+
+      .project-card__cta {
+        position: static;
+        bottom: auto;
+        background: transparent;
+      }
+
+      .project-card__title { font-size: 1.5rem; }
+      .project-card__body  { display: block; }
+    }
+
+    li:not(:nth-child(4n+1)) {
+      .project-card__image { height: 200px; }
+      .project-card__body  { display: block; }
+    }
+  }
+}

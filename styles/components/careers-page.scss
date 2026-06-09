@@ -1,0 +1,145 @@
+@use '../variables' as *;
+
+.why-join {
+  border-bottom: 2px solid var(--color-ink);
+
+  &__header {
+    padding: 1.5rem $spacing-page-x;
+    border-bottom: 1px solid var(--color-rule);
+  }
+
+  &__grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1px;
+    background: var(--color-rule);
+  }
+
+  &__card {
+    background: var(--color-paper-dark);
+    padding: $spacing-card;
+    border-top: 2px solid var(--color-olive);
+  }
+
+  &__card-icon {
+    font-family: $font-mono;
+    font-size:  0.82rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--color-olive);
+    margin-bottom: 0.8rem;
+    display: block;
+  }
+
+  &__card-title {
+    font-family: $font-serif;
+    font-size: 1.6rem;
+    font-weight: 600;
+    color: var(--color-ink);
+    margin-bottom: 0.8rem;
+  }
+
+  &__card-body {
+    font-family: $font-sans;
+    font-size:  1rem;
+    font-weight: 400;
+    line-height: 1.8;
+    color: var(--color-ink-mid);
+  }
+}
+
+.job-listings {
+  border-bottom: 2px solid var(--color-ink);
+
+  &__header {
+    padding: 1.5rem $spacing-page-x;
+    border-bottom: 1px solid var(--color-rule);
+  }
+
+  &__list { list-style: none; }
+
+  &__empty {
+    padding: 4rem $spacing-page-x;
+    text-align: center;
+  }
+
+  &__empty-text {
+    font-family: $font-serif;
+    font-size:  1.1rem;
+    font-weight: 600;
+    color: var(--color-ink-light);
+    font-style: italic;
+  }
+}
+
+.job-listing {
+  border-bottom: 1px solid var(--color-rule);
+  display: grid;
+  grid-template-columns: 1fr auto;
+  align-items: start;
+  padding: 1.5rem $spacing-page-x;
+
+  &__left {}
+
+  &__title {
+    font-family: $font-serif;
+    font-size: 1.6rem;
+    font-weight: 600;
+    color: var(--color-ink);
+    margin-bottom: 0.5rem;
+  }
+
+  &__meta {
+    display: flex;
+    gap: 1.5rem;
+    margin-bottom: 0.7rem;
+    flex-wrap: wrap;
+  }
+
+  &__meta-item {
+    font-family: $font-mono;
+    font-size:  0.8rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--color-ink-light);
+  }
+
+  &__description {
+    font-family: $font-sans;
+    font-size:  1rem;
+    font-weight: 400;
+    line-height: 1.75;
+    color: var(--color-ink-mid);
+    max-width: 640px;
+  }
+
+  &__right {
+    padding-top: 0.2rem;
+    text-align: right;
+  }
+
+  &__closing {
+    font-family: $font-mono;
+    font-size:  0.75rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--color-ink-light);
+    display: block;
+    margin-bottom: 0.8rem;
+  }
+
+  &__apply {
+    font-family: $font-mono;
+    font-size:  0.84rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--color-paper);
+    background: var(--color-ink);
+    border: 2px solid var(--color-ink);
+    padding: 0.5rem 1rem;
+    text-decoration: none;
+    display: inline-block;
+
+    &:hover { background: var(--color-ink-mid); border-color: var(--color-ink-mid); }
+  }
+}

@@ -1,0 +1,201 @@
+@use '../variables' as *;
+
+.service-cards {
+  border-bottom: 2px solid var(--color-ink);
+
+  &__header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1.5rem $spacing-page-x;
+    border-bottom: 1px solid var(--color-rule);
+  }
+
+  &__all-link {
+    font-family: $font-mono;
+    font-size: 0.8rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--color-olive);
+    text-decoration: none;
+
+    &:hover { color: var(--color-olive-light); }
+
+    &:focus-visible {
+      outline: 3px solid var(--color-olive);
+      outline-offset: 3px;
+    }
+  }
+
+  &__grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1px;
+    background: var(--color-rule);
+    list-style: none;
+
+    &--two-col { grid-template-columns: repeat(2, 1fr); }
+  }
+
+  // ── Card shell ───────────────────────────────────────────────
+  &__card {
+    background: var(--color-ink);
+    display: flex;
+    flex-direction: column;
+
+    // Image zoom on card hover — upgraded to spring cubic
+    &:hover .service-cards__card-img {
+      transform: scale(1.06);
+    }
+
+    // Top border — draws scaleX(0)→scaleX(1) on card hover
+    &--01:hover .service-cards__card-image::before { background: var(--color-red); }
+    &--02:hover .service-cards__card-image::before { background: var(--color-olive); }
+    &--03:hover .service-cards__card-image::before { background: var(--color-stone); }
+
+    &:hover .service-cards__card-image::before { transform: scaleX(1); }
+
+    // Arrow nudge right on card hover
+    &:hover .service-cards__card-link::after { transform: translateX(6px); }
+  }
+
+  // ── Image zone ───────────────────────────────────────────────
+  &__card-image {
+    position: relative;
+    height: 260px;
+    flex-shrink: 0;
+    overflow: hidden;
+    background: #2a2a22;
+
+    // Discipline border draw pseudo-element
+    &::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 3px;
+      transform: scaleX(0);
+      transform-origin: left;
+      transition: transform 0.4s cubic-bezier(0.22, 1, 0.36, 1), background 0s;
+      z-index: 1;
+      pointer-events: none;
+
+      @media (prefers-reduced-motion: reduce) { transition: none; }
+    }
+  }
+
+  &__card-img {
+    object-fit: cover;
+    object-position: center;
+    transition: transform 0.6s cubic-bezier(0.22, 1, 0.36, 1);
+
+    @media (prefers-reduced-motion: reduce) { transition: none; }
+  }
+
+  // ── Text zone ────────────────────────────────────────────────
+  &__card-content {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    padding: 2rem $spacing-card 1.5rem;
+  }
+
+  &__card-number {
+    font-family: $font-mono;
+    font-size: 0.7rem;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: rgba(255, 255, 255, 0.45);
+    margin-bottom: 0.9rem;
+  }
+
+  &__card-title {
+    font-family: $font-serif;
+    font-size: 1.75rem;
+    font-weight: 600;
+    line-height: 1.2;
+    color: var(--color-paper);
+    margin-bottom: 1rem;
+  }
+
+  &__card-body {
+    font-family: $font-sans;
+    font-size: 0.95rem;
+    font-weight: 400;
+    line-height: 1.82;
+    color: #c8c4ba;
+    margin-bottom: 1.5rem;
+    flex: 1;
+  }
+
+  &__card-services {
+    list-style: none;
+    border-top: 1px solid rgba(255, 255, 255, 0.08);
+    padding-top: 1.1rem;
+  }
+
+  &__card-service {
+    font-family: $font-mono;
+    font-size: 0.75rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: #9e9a94;
+    padding: 0.38rem 0;
+    display: flex;
+    align-items: center;
+    gap: 0.7rem;
+
+    // Dash prefix in accent colour
+    &::before {
+      content: '';
+      width: 14px;
+      height: 1px;
+      flex-shrink: 0;
+      background: var(--color-olive-light);
+    }
+  }
+
+  // ── Full-width CTA strip ─────────────────────────────────────
+  &__card-link {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1.1rem $spacing-card;
+    border-top: 1px solid rgba(255, 255, 255, 0.08);
+    font-family: $font-mono;
+    font-size: 0.78rem;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--color-olive-light);
+    text-decoration: none;
+    transition: background 0.18s ease, color 0.18s ease;
+
+    &::after {
+      content: '→';
+      font-size: 1rem;
+      display: inline-block;
+      transition: transform 0.2s ease;
+
+      @media (prefers-reduced-motion: reduce) { transition: none; }
+    }
+
+    &:hover {
+      background: rgba(255, 255, 255, 0.05);
+      color: var(--color-paper);
+    }
+
+    &:focus-visible {
+      outline: 3px solid var(--color-olive);
+      outline-offset: -3px;
+    }
+
+    @media (prefers-reduced-motion: reduce) { transition: none; }
+  }
+
+  // ── Responsive ───────────────────────────────────────────────
+  @media (max-width: $bp-tablet) {
+    &__grid { grid-template-columns: 1fr; }
+    &__card-image { height: 240px; }
+  }
+}

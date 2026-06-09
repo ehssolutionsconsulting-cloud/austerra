@@ -1,0 +1,96 @@
+@use 'variables' as *;
+
+:root {
+  --color-ink:         #{$color-ink};
+  --color-ink-mid:     #{$color-ink-mid};
+  --color-ink-light:   #{$color-ink-light};
+  --color-paper:       #{$color-paper};
+  --color-paper-dark:  #{$color-paper-dark};
+  --color-rule:        #{$color-rule};
+  --color-red:         #{$color-red};
+  --color-olive:       #{$color-olive};
+  --color-olive-light: #{$color-olive-light};
+  --color-pencil:      #{$color-pencil};
+  --color-stone:       #{$color-stone};
+
+  --font-serif-stack: var(--font-ibm-plex-serif, 'IBM Plex Serif'), serif;
+  --font-mono-stack:  var(--font-ibm-plex-mono, 'IBM Plex Mono'), monospace;
+  --font-sans-stack:  var(--font-ibm-plex-sans, 'IBM Plex Sans'), sans-serif;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  border-radius: 0;
+  box-shadow: none;
+}
+
+html {
+  height: 100%;
+}
+
+body {
+  min-height: 100%;
+  background: var(--color-paper);
+  color: var(--color-ink-mid);
+  font-family: var(--font-sans-stack);
+  font-size: 1rem;
+  font-weight: 400;
+  line-height: 1.65;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+// Focus ring — navy on light bg, steel blue on dark sections
+:focus-visible {
+  outline: 3px solid var(--color-olive);
+  outline-offset: 3px;
+}
+
+.navbar :focus-visible,
+.page-header :focus-visible,
+.footer :focus-visible {
+  outline-color: var(--color-pencil);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+.skip-link {
+  position: absolute;
+  top: -100%;
+  left: 0;
+  background: var(--color-olive);
+  color: var(--color-paper);
+  font-family: $font-mono;
+  font-size: 0.85rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  padding: 0.6rem 1.2rem;
+  text-decoration: none;
+  z-index: 1000;
+
+  &:focus { top: 0; }
+}

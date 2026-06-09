@@ -1,0 +1,383 @@
+@use '../variables' as *;
+
+.project-detail {
+  // ── Discipline accent band (4px strip at very top) ────────────
+  &__band {
+    height: 4px;
+    width: 100%;
+  }
+
+  &--environmental &__band { background: var(--color-olive); }
+  &--hygiene       &__band { background: var(--color-red); }
+  &--geotechnical  &__band { background: var(--color-stone); }
+
+  // ── Back nav ─────────────────────────────────────────────────
+  &__back {
+    padding: 1rem $spacing-page-x;
+    border-bottom: 1px solid var(--color-rule);
+    background: var(--color-paper-dark);
+  }
+
+  &__back-link {
+    font-family: $font-mono;
+    font-size: 0.8rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--color-olive);
+    text-decoration: none;
+
+    &:hover { color: var(--color-olive-light); }
+
+    &:focus-visible {
+      outline: 3px solid var(--color-olive);
+      outline-offset: 3px;
+    }
+  }
+
+  // ── Header ───────────────────────────────────────────────────
+  &__header {
+    display: grid;
+    grid-template-columns: 1fr 0.45fr;
+    border-bottom: 2px solid var(--color-ink);
+    background: var(--color-ink);
+  }
+
+  &__header-main {
+    padding: 3.5rem $spacing-page-x 3rem;
+    border-right: 1px solid rgba(255, 255, 255, 0.08);
+  }
+
+  &__project-id {
+    font-family: $font-mono;
+    font-size: 0.78rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: rgba(255, 255, 255, 0.28);
+    margin-bottom: 1rem;
+    display: block;
+  }
+
+  &__title {
+    font-family: $font-serif;
+    font-size: 3.2rem;
+    font-weight: 600;
+    color: var(--color-paper);
+    line-height: 1.15;
+    margin-bottom: 1rem;
+  }
+
+  &__discipline-tag {
+    font-family: $font-mono;
+    font-size: 0.75rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    display: inline-block;
+    padding: 0.3rem 0.7rem;
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    color: rgba(255, 255, 255, 0.55);
+  }
+
+  &--environmental &__discipline-tag { border-color: var(--color-olive); color: var(--color-olive-light); }
+  &--hygiene       &__discipline-tag { border-color: var(--color-red); color: #e07060; }
+  &--geotechnical  &__discipline-tag { border-color: var(--color-stone); color: #a09080; }
+
+  &__header-meta {
+    padding: 3.5rem $spacing-page-x 3rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1.4rem;
+  }
+
+  &__meta-item { display: flex; flex-direction: column; gap: 0.2rem; }
+
+  &__meta-label {
+    font-family: $font-mono;
+    font-size: 0.7rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: rgba(255, 255, 255, 0.28);
+  }
+
+  &__meta-value {
+    font-family: $font-mono;
+    font-size: 0.88rem;
+    letter-spacing: 0.04em;
+    color: var(--color-pencil);
+  }
+
+  // ── Highlights strip ─────────────────────────────────────────
+  &__highlights {
+    display: flex;
+    background: var(--color-ink);
+    border-bottom: 2px solid var(--color-ink);
+    border-top: 1px solid rgba(255, 255, 255, 0.06);
+  }
+
+  &__highlight {
+    flex: 1;
+    padding: 1.8rem $spacing-page-x;
+    border-right: 1px solid rgba(255, 255, 255, 0.06);
+    display: flex;
+    flex-direction: column;
+    gap: 0.3rem;
+
+    &:last-child { border-right: none; }
+  }
+
+  &__highlight-value {
+    font-family: $font-serif;
+    font-size: 2.2rem;
+    font-weight: 600;
+    color: var(--color-paper);
+    line-height: 1;
+  }
+
+  &__highlight-label {
+    font-family: $font-mono;
+    font-size: 0.7rem;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: rgba(255, 255, 255, 0.38);
+  }
+
+  // ── Body: editorial two-column ───────────────────────────────
+  &__body {
+    display: grid;
+    grid-template-columns: 1fr 0.42fr;
+    border-bottom: 2px solid var(--color-ink);
+    align-items: start;
+  }
+
+  &__content {
+    padding: $spacing-section-y $spacing-page-x;
+    border-right: 2px solid var(--color-ink);
+  }
+
+  &__section-label {
+    font-family: $font-mono;
+    font-size: 0.78rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--color-ink-light);
+    display: block;
+    margin-bottom: 0.9rem;
+    padding-bottom: 0.6rem;
+    border-bottom: 1px solid var(--color-rule);
+  }
+
+  &--environmental &__section-label { border-bottom-color: var(--color-olive); }
+  &--hygiene       &__section-label { border-bottom-color: var(--color-red); }
+  &--geotechnical  &__section-label { border-bottom-color: var(--color-stone); }
+
+  &__description {
+    font-family: $font-sans;
+    font-size: 1.05rem;
+    font-weight: 400;
+    line-height: 1.9;
+    color: var(--color-ink-mid);
+    margin-bottom: 2.5rem;
+
+    &:last-child { margin-bottom: 0; }
+  }
+
+  // ── Sidebar ──────────────────────────────────────────────────
+  &__sidebar {
+    padding: $spacing-section-y $spacing-page-x;
+    background: #deebe1;
+    border: 2px solid var(--color-olive);
+    position: sticky;
+    top: 56px; // nav height
+  }
+
+  &__tags-label {
+    font-family: $font-mono;
+    font-size: 0.75rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--color-ink-light);
+    margin-bottom: 1rem;
+    display: block;
+  }
+
+  &__tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    list-style: none;
+    margin-bottom: 2rem;
+    padding-bottom: 2rem;
+    border-bottom: 1px solid var(--color-rule);
+  }
+
+  &__tag {
+    font-family: $font-mono;
+    font-size: 0.72rem;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--color-ink-mid);
+    background: var(--color-paper);
+    border: 1px solid var(--color-rule);
+    padding: 0.25rem 0.65rem;
+  }
+
+  &__sidebar-meta {
+    display: flex;
+    flex-direction: column;
+    gap: 1.2rem;
+  }
+
+  &__sidebar-item {
+    display: flex;
+    flex-direction: column;
+    gap: 0.2rem;
+  }
+
+  &__sidebar-label {
+    font-family: $font-mono;
+    font-size: 0.7rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--color-ink-light);
+  }
+
+  &__sidebar-value {
+    font-family: $font-mono;
+    font-size: 0.85rem;
+    color: var(--color-ink-mid);
+  }
+
+  @media (max-width: $bp-tablet) {
+    &__header { grid-template-columns: 1fr; }
+    &__header-main { border-right: none; border-bottom: 1px solid rgba(255,255,255,0.08); }
+    &__title { font-size: 2.2rem; }
+    &__highlights { flex-wrap: wrap; }
+    &__highlight { min-width: 50%; }
+    &__body { grid-template-columns: 1fr; }
+    &__content { border-right: none; border-bottom: 2px solid var(--color-ink); }
+    &__sidebar { position: static; }
+  }
+}
+
+// ── Related projects ─────────────────────────────────────────────────────────
+.related-projects {
+  border-bottom: 2px solid var(--color-ink);
+
+  &__header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1.5rem $spacing-page-x;
+    border-bottom: 1px solid var(--color-rule);
+  }
+
+  &__all-link {
+    font-family: $font-mono;
+    font-size: 0.8rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--color-olive);
+    text-decoration: none;
+
+    &:hover { color: var(--color-olive-light); }
+  }
+
+  &__grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1px;
+    background: var(--color-rule);
+    list-style: none;
+
+    li { display: flex; }
+
+    .project-card__body { display: none; }
+  }
+
+  @media (max-width: $bp-tablet) {
+    &__grid { grid-template-columns: 1fr; }
+  }
+}
+
+// ── Next project teaser ──────────────────────────────────────────────────────
+.project-next {
+  background: var(--color-ink);
+  border-bottom: 2px solid var(--color-ink);
+  border-top: 1px solid rgba(255, 255, 255, 0.06);
+
+  &--environmental { border-top-color: var(--color-olive); }
+  &--hygiene       { border-top-color: var(--color-red); }
+  &--geotechnical  { border-top-color: var(--color-stone); }
+
+  &__label {
+    display: block;
+    font-family: $font-mono;
+    font-size: 0.72rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: rgba(255, 255, 255, 0.28);
+    padding: 1.5rem $spacing-page-x 0;
+  }
+
+  &__link {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1.5rem $spacing-page-x 2.5rem;
+    text-decoration: none;
+    transition: background 0.18s ease;
+
+    &:hover { background: rgba(255, 255, 255, 0.03); }
+
+    &:focus-visible {
+      outline: 3px solid var(--color-olive);
+      outline-offset: -3px;
+    }
+
+    @media (prefers-reduced-motion: reduce) { transition: none; }
+  }
+
+  &__inner {
+    display: flex;
+    flex-direction: column;
+    gap: 0.4rem;
+  }
+
+  &__discipline {
+    font-family: $font-mono;
+    font-size: 0.72rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: rgba(255, 255, 255, 0.38);
+  }
+
+  &__title {
+    font-family: $font-serif;
+    font-size: 1.8rem;
+    font-weight: 600;
+    color: var(--color-paper);
+    max-width: 600px;
+    line-height: 1.25;
+  }
+
+  &__arrow {
+    font-size: 2.5rem;
+    color: rgba(255, 255, 255, 0.25);
+    flex-shrink: 0;
+    transition: color 0.18s ease, transform 0.18s ease;
+
+    .project-next__link:hover & {
+      color: var(--color-olive-light);
+      transform: translateX(6px);
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      transition: none;
+      .project-next__link:hover & { transform: none; }
+    }
+  }
+
+  @media (max-width: $bp-tablet) {
+    &__title { font-size: 1.4rem; }
+    &__arrow { font-size: 1.8rem; }
+  }
+}

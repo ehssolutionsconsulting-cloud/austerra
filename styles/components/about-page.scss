@@ -1,0 +1,493 @@
+@use '../variables' as *;
+
+// ─── Our Story (timeline + 2×2 value cards) ───────────────────────────────────
+.founder-story {
+  display: grid;
+  grid-template-columns: 1.1fr 0.9fr;
+  border-bottom: 2px solid var(--color-ink);
+
+  &__left {
+    padding: $spacing-section-y $spacing-page-x;
+    border-right: 2px solid var(--color-ink);
+    position: relative;
+    overflow: hidden;
+  }
+
+  // Large low-opacity watermark behind story text
+  &__watermark {
+    position: absolute;
+    bottom: -1.5rem;
+    left: -0.5rem;
+    font-family: $font-serif;
+    font-size: 9rem;
+    font-weight: 600;
+    font-style: italic;
+    color: rgba(26, 26, 20, 0.04);
+    line-height: 1;
+    white-space: nowrap;
+    pointer-events: none;
+    user-select: none;
+  }
+
+  &__label { margin-bottom: 1rem; }
+
+  // Timeline year marker with horizontal rule prefix
+  &__year {
+    font-family: $font-mono;
+    font-size: 0.7rem;
+    letter-spacing: 0.24em;
+    text-transform: uppercase;
+    color: var(--color-ink-light);
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+    margin-bottom: 0.8rem;
+
+    &::before {
+      content: '';
+      display: block;
+      width: 32px;
+      height: 1px;
+      background: var(--color-olive);
+      flex-shrink: 0;
+    }
+  }
+
+  &__heading {
+    font-family: $font-serif;
+    font-size: 2.2rem;
+    font-weight: 600;
+    color: var(--color-ink);
+    line-height: 1.3;
+    margin-bottom: 1.4rem;
+    position: relative;
+    z-index: 1;
+
+    em {
+      font-style: italic;
+      color: var(--color-olive);
+    }
+  }
+
+  &__body {
+    font-family: $font-sans;
+    font-size: 1rem;
+    font-weight: 400;
+    line-height: 1.85;
+    color: var(--color-ink-mid);
+    margin-bottom: 0.85rem;
+    max-width: 520px;
+    position: relative;
+    z-index: 1;
+  }
+
+  &__right {
+    padding: $spacing-section-y $spacing-page-x;
+    background: var(--color-paper-dark);
+  }
+
+  &__values-label { margin-bottom: 1.4rem; }
+
+  // 2×2 icon card grid
+  &__values {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1px;
+    background: var(--color-rule);
+    list-style: none;
+  }
+
+  &__value {
+    background: var(--color-paper-dark);
+    padding: 1.6rem 1.4rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    border-top: 2px solid transparent;
+    transition: background 0.2s ease;
+
+    &:nth-child(1) { border-top-color: var(--color-olive); }
+    &:nth-child(2) { border-top-color: var(--color-red); }
+    &:nth-child(3) { border-top-color: var(--color-stone); }
+    &:nth-child(4) { border-top-color: var(--color-olive); }
+
+    &:hover { background: var(--color-paper); }
+
+    @media (prefers-reduced-motion: reduce) { transition: none; }
+  }
+
+  &__value-icon {
+    width: 26px;
+    height: 26px;
+    color: var(--color-olive);
+    margin-bottom: 0.3rem;
+    flex-shrink: 0;
+  }
+
+  &__value-title {
+    font-family: $font-mono;
+    font-size: 0.8rem;
+    font-weight: 500;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--color-ink);
+    display: block;
+  }
+
+  &__value-body {
+    font-family: $font-sans;
+    font-size: 0.9rem;
+    line-height: 1.7;
+    color: var(--color-ink-mid);
+  }
+
+  @media (max-width: $bp-tablet) {
+    grid-template-columns: 1fr;
+
+    &__left  { border-right: none; border-bottom: 2px solid var(--color-ink); }
+    &__heading { font-size: 1.9rem; }
+  }
+
+  @media (max-width: $bp-mobile) {
+    &__values { grid-template-columns: 1fr; }
+  }
+}
+
+// ─── Team Grid (Slider) ────────────────────────────────────────────────────────
+.team-grid {
+  border-bottom: 2px solid var(--color-ink);
+
+  &__header {
+    padding: 2rem $spacing-page-x 1.5rem;
+    border-bottom: 1px solid var(--color-rule);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  &__nav {
+    display: flex;
+    gap: 1px;
+  }
+
+  &__nav-btn {
+    background: var(--color-ink);
+    color: var(--color-paper);
+    border: none;
+    width: 44px;
+    height: 44px;
+    font-family: $font-mono;
+    font-size: 1.1rem;
+    line-height: 1;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background 0.15s ease;
+
+    &:hover { background: var(--color-olive); }
+
+    &:focus-visible {
+      outline: 3px solid var(--color-olive);
+      outline-offset: 3px;
+    }
+
+    @media (prefers-reduced-motion: reduce) { transition: none; }
+  }
+
+  &__track {
+    display: flex;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    list-style: none;
+    gap: 1px;
+    background: var(--color-rule);
+    scrollbar-width: none;
+
+    &::-webkit-scrollbar { display: none; }
+  }
+
+  &__card {
+    flex: 0 0 calc(33.333% - 1px);
+    min-width: 260px;
+    height: 440px;
+    position: relative;
+    overflow: hidden;
+    scroll-snap-align: start;
+    cursor: default;
+
+    &--environmental { background: var(--color-olive); }
+    &--hygiene       { background: var(--color-red); }
+    &--geotechnical  { background: var(--color-stone); }
+
+    &:focus-visible {
+      outline: 3px solid var(--color-paper);
+      outline-offset: -3px;
+      z-index: 10;
+    }
+
+    // ::after — sliding background overlay (spec 8)
+    &::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 76px; // clears footer
+      background: rgba(0, 52, 120, 0.9);
+      transform: translateY(100%);
+      transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+      z-index: 1;
+
+      @media (prefers-reduced-motion: reduce) { transition: none; }
+    }
+
+    &:hover::after,
+    &:focus-visible::after { transform: translateY(0); }
+  }
+
+  // Large faded initials — visual centrepiece in the upper card zone
+  &__bg-initials {
+    position: absolute;
+    top: 38%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-family: $font-serif;
+    font-size: 9rem;
+    font-weight: 700;
+    font-style: italic;
+    line-height: 1;
+    color: rgba(255, 255, 255, 0.22);
+    pointer-events: none;
+    user-select: none;
+    transition: opacity 0.4s ease, transform 0.4s ease;
+
+    @media (prefers-reduced-motion: reduce) { transition: none; }
+  }
+
+  &__card:hover &__bg-initials,
+  &__card:focus-visible &__bg-initials {
+    opacity: 0.08;
+    transform: translate(-50%, -58%) scale(1.15);
+  }
+
+  // Overlay text — fades in above the ::after background
+  &__overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 76px; // matches ::after
+    padding: 1.4rem 1.6rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    z-index: 2; // above ::after
+    opacity: 0;
+    transition: opacity 0.22s 0.18s ease; // slight delay so background appears first
+
+    @media (prefers-reduced-motion: reduce) { transition: none; }
+  }
+
+  &__card:hover &__overlay,
+  &__card:focus-visible &__overlay {
+    opacity: 1;
+  }
+
+  &__quals {
+    font-family: $font-mono;
+    font-size: 0.68rem;
+    letter-spacing: 0.08em;
+    color: rgba(255, 255, 255, 0.4);
+    display: block;
+    margin-bottom: 0.85rem;
+  }
+
+  &__bio {
+    font-family: $font-sans;
+    font-size: 0.88rem;
+    line-height: 1.72;
+    color: rgba(255, 255, 255, 0.72);
+  }
+
+  // Footer — always visible, sits above ::after (z-index:1) and overlay (z-index:2)
+  &__footer {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    padding: 1.2rem 1.6rem 1.4rem;
+    background: var(--color-ink);
+    z-index: 3;
+    border-top: 1px solid rgba(255, 255, 255, 0.07);
+  }
+
+  &__name {
+    font-family: $font-serif;
+    font-size: 1.05rem;
+    font-weight: 600;
+    color: var(--color-paper);
+    margin-bottom: 0.25rem;
+  }
+
+  &__role {
+    font-family: $font-mono;
+    font-size: 0.7rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--color-olive-light);
+    display: block;
+  }
+
+  @media (max-width: $bp-tablet) {
+    &__card { flex: 0 0 calc(50% - 1px); }
+  }
+
+  @media (max-width: $bp-mobile) {
+    &__card { flex: 0 0 100%; }
+  }
+}
+
+// ─── Certifications Bar ────────────────────────────────────────────────────────
+.certs-bar {
+  padding: 3.5rem $spacing-page-x;
+  border-bottom: 2px solid var(--color-ink);
+  background: var(--color-paper);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+
+  &__label { margin-bottom: 2.5rem; }
+
+  &__grid {
+    display: flex;
+    gap: 1.5rem;
+    flex-wrap: wrap;
+    justify-content: center;
+    list-style: none;
+  }
+
+  &__item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 164px;
+    padding: 2rem 1rem;
+    border: 2px solid var(--color-ink);
+    text-align: center;
+    position: relative;
+
+    // Corner accent dots (emblem feel)
+    &::before,
+    &::after {
+      content: '';
+      position: absolute;
+      width: 6px;
+      height: 6px;
+      background: var(--color-ink);
+    }
+
+    &::before { top: 7px; left: 7px; }
+    &::after  { bottom: 7px; right: 7px; }
+  }
+
+  &__name {
+    font-family: $font-mono;
+    font-size: 1.05rem;
+    font-weight: 600;
+    color: var(--color-ink);
+    display: block;
+    margin-bottom: 0.5rem;
+  }
+
+  &__sub {
+    font-family: $font-mono;
+    font-size: 0.66rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--color-ink-light);
+    display: block;
+    line-height: 1.4;
+  }
+
+  @media (max-width: $bp-tablet) {
+    &__grid { gap: 1rem; }
+  }
+
+  @media (max-width: $bp-mobile) {
+    &__item { width: 140px; padding: 1.5rem 0.8rem; }
+  }
+}
+
+// ─── About page CTA ────────────────────────────────────────────────────────────
+.about-cta {
+  background: var(--color-ink);
+  border-bottom: 2px solid var(--color-ink);
+  padding: 5.5rem $spacing-page-x;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+
+  &__eyebrow {
+    font-family: $font-mono;
+    font-size: 0.78rem;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--color-olive-light);
+    margin-bottom: 1.5rem;
+  }
+
+  &__heading {
+    font-family: $font-serif;
+    font-size: 3rem;
+    font-weight: 600;
+    line-height: 1.2;
+    color: var(--color-paper);
+    max-width: 580px;
+    margin-bottom: 2.5rem;
+
+    em {
+      font-style: italic;
+      color: var(--color-olive-light);
+    }
+  }
+
+  &__btn {
+    font-family: $font-mono;
+    font-size: 0.82rem;
+    font-weight: 500;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    padding: 0.9rem 2.5rem;
+    text-decoration: none;
+    background: var(--color-olive);
+    color: var(--color-paper);
+    border: 2px solid var(--color-olive);
+    display: inline-block;
+    transition: background 0.15s ease, border-color 0.15s ease;
+
+    &:hover {
+      background: var(--color-olive-light);
+      border-color: var(--color-olive-light);
+    }
+
+    &:focus-visible {
+      outline: 3px solid var(--color-olive);
+      outline-offset: 3px;
+    }
+
+    @media (prefers-reduced-motion: reduce) { transition: none; }
+  }
+
+  @media (max-width: $bp-tablet) {
+    padding: 3.5rem $spacing-page-x;
+    &__heading { font-size: 2.2rem; }
+  }
+
+  @media (max-width: $bp-mobile) {
+    &__heading { font-size: 1.8rem; }
+  }
+}

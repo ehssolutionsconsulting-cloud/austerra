@@ -1,0 +1,52 @@
+@use '../variables' as *;
+
+.page-header {
+  background: var(--color-ink);
+  padding: 3rem $spacing-page-x 2.5rem;
+  border-bottom: 2px solid var(--color-ink);
+
+  &__eyebrow {
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+    margin-bottom: 1.2rem;
+  }
+
+  &__eyebrow-line {
+    width: 24px;
+    height: 1px;
+    background: var(--color-red);
+    flex-shrink: 0;
+  }
+
+  &__eyebrow-text {
+    font-family: $font-mono;
+    font-size:  0.82rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--color-red);
+  }
+
+  &__title {
+    font-family: $font-serif;
+    font-size: 3.8rem;
+    font-weight: 600;
+    color: var(--color-paper);
+    line-height: 1.15;
+    margin-bottom: 1rem;
+
+    em {
+      font-style: italic;
+      color: var(--color-pencil);
+    }
+  }
+
+  &__body {
+    font-family: $font-sans;
+    font-size:  1.05rem;
+    font-weight: 400;
+    line-height: 1.75;
+    color: rgba(153, 178, 221, 0.7);
+    max-width: 560px;
+  }
+}

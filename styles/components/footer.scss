@@ -1,0 +1,67 @@
+@use '../variables' as *;
+
+.footer {
+  background: var(--color-ink);
+
+  &__inner {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1.4rem $spacing-page-x;
+    border-top: 1px solid rgba(255, 255, 255, 0.15);
+  }
+
+  &__brand-name {
+    font-family: $font-mono;
+    font-size: 1.15rem;
+    font-weight: 600;
+    color: #ffffff;
+    letter-spacing: 0.05em;
+    display: block;
+  }
+
+  &__brand-tagline {
+    font-family: $font-mono;
+    font-size: 0.82rem;
+    font-weight: 400;
+    color: var(--color-pencil);
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    display: block;
+    margin-top: 4px;
+  }
+
+  &__meta {
+    text-align: right;
+  }
+
+  &__legal-links {
+    display: flex;
+    gap: 1.5rem;
+    justify-content: flex-end;
+    list-style: none;
+    margin-bottom: 0.5rem;
+  }
+
+  &__legal-link {
+    font-family: $font-mono;
+    font-size: 0.85rem;
+    font-weight: 500;
+    color: rgba(255, 255, 255, 0.75);
+    text-decoration: none;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+
+    &:hover {
+      color: #ffffff;
+    }
+  }
+
+  &__copyright {
+    font-family: $font-mono;
+    font-size: 0.8rem;
+    font-weight: 400;
+    color: rgba(255, 255, 255, 0.6);
+    letter-spacing: 0.08em;
+  }
+}

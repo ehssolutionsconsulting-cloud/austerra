@@ -1,0 +1,15 @@
+@use '../variables' as *;
+
+.section-label {
+  font-family: $font-mono;
+  font-size: 0.82rem;
+  font-weight: 500;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--color-ink-light);
+  display: inline-block;
+
+  &--accent {
+    color: var(--color-ink);
+  }
+}
