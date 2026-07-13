@@ -1,31 +1,18 @@
 import Image from "next/image";
 import Link from "next/link";
 import SectionLabel from "@/components/ui/SectionLabel";
-import { services } from "@/lib/data";
+import { getServices } from "@/lib/payload";
 import "@/styles/components/service-detail.scss";
 import "@/styles/components/service-cards.scss";
 
-const disciplineImages: Record<string, { src: string; alt: string }> = {
-  environmental: {
-    src: "/images/services/environmental.jpg",
-    alt: "Field team conducting environmental site assessment",
-  },
-  "occupational-hygiene": {
-    src: "/images/services/occupational-hygiene.jpg",
-    alt: "Occupational hygienist conducting workplace exposure assessment",
-  },
-  geotechnical: {
-    src: "/images/services/geotechnical.jpg",
-    alt: "Geotechnical engineer reviewing slope stability on site",
-  },
-};
 
 interface OtherDisciplinesProps {
   currentSlug: string;
 }
 
-export default function OtherDisciplines({ currentSlug }: OtherDisciplinesProps) {
-  const others = services.filter((s) => s.slug !== currentSlug);
+export default async function OtherDisciplines({ currentSlug }: OtherDisciplinesProps) {
+  const allServices = await getServices();
+  const others = allServices.filter((s) => s.slug !== currentSlug);
 
   return (
     <section className="other-disciplines" aria-labelledby="other-disciplines-heading">
@@ -40,8 +27,8 @@ export default function OtherDisciplines({ currentSlug }: OtherDisciplinesProps)
         role="list"
       >
         {others.map((service, i) => {
-          const img = disciplineImages[service.slug];
-          const num = `0${service.disciplineNumber}` as "01" | "02" | "03";
+          const imageSrc = service.featuredImage ?? `/images/services/${service.slug}.jpg`;
+          const num = service.disciplineNumber.padStart(2, "0") as "01" | "02" | "03";
           return (
             <li
               key={service.slug}
@@ -51,8 +38,8 @@ export default function OtherDisciplines({ currentSlug }: OtherDisciplinesProps)
             >
               <div className="service-cards__card-image">
                 <Image
-                  src={img.src}
-                  alt={img.alt}
+                  src={imageSrc}
+                  alt={`${service.title} discipline`}
                   fill
                   className="service-cards__card-img"
                   sizes="(max-width: 768px) 100vw, 50vw"

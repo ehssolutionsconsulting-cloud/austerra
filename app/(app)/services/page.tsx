@@ -2,6 +2,8 @@ import type { Metadata } from "next";
 import PageHeader from "@/components/ui/PageHeader";
 import ServiceCards from "@/components/home/ServiceCards";
 
+export const revalidate = 3600;
+
 export const metadata: Metadata = {
   title: "Services | Austerra Group",
   description:

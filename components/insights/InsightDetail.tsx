@@ -1,8 +1,10 @@
 import Link from "next/link";
+import { RichText } from "@payloadcms/richtext-lexical/react";
+import type { SerializedEditorState } from "@payloadcms/richtext-lexical/lexical";
 import SectionLabel from "@/components/ui/SectionLabel";
 import InsightCard from "./InsightCard";
 import ReadingProgressBar from "./ReadingProgressBar";
-import { insights } from "@/lib/data";
+import { getInsights } from "@/lib/payload";
 import "@/styles/components/insights-page.scss";
 
 interface Insight {
@@ -12,10 +14,12 @@ interface Insight {
   title: string;
   author: string;
   readTime: string;
-  bodyParagraphs: string[];
+  body: unknown;
 }
 
-export default function InsightDetail({ insight }: { insight: Insight }) {
+export default async function InsightDetail({ insight }: { insight: Insight }) {
+  const allInsights = await getInsights();
+
   const date = new Date(insight.publishedAt).toLocaleDateString("en-AU", {
     year: "numeric",
     month: "long",
@@ -24,10 +28,8 @@ export default function InsightDetail({ insight }: { insight: Insight }) {
 
   const readMinutes = insight.readTime.replace(/[^0-9]/g, "").padStart(2, "0");
 
-  const related = insights
-    .filter(
-      (i) => i.slug !== insight.slug && i.category === insight.category
-    )
+  const related = allInsights
+    .filter((i) => i.slug !== insight.slug && i.category === insight.category)
     .slice(0, 3);
 
   const moreArticles =
@@ -35,11 +37,11 @@ export default function InsightDetail({ insight }: { insight: Insight }) {
       ? related
       : [
           ...related,
-          ...insights
+          ...allInsights
             .filter(
               (i) =>
                 i.slug !== insight.slug &&
-                !related.find((r) => r.slug === i.slug)
+                !related.find((r) => r.slug === i.slug),
             )
             .slice(0, 3 - related.length),
         ];
@@ -66,23 +68,28 @@ export default function InsightDetail({ insight }: { insight: Insight }) {
           className="insight-detail__header-meta"
           aria-label="Article metadata"
         >
-          <p
-            className="insight-detail__read-number"
-            aria-hidden="true"
-          >
+          <p className="insight-detail__read-number" aria-hidden="true">
             {readMinutes}
           </p>
           <span className="insight-detail__read-label">Min Read</span>
           <hr className="insight-detail__header-rule" aria-hidden="true" />
-          <span className="insight-detail__meta-author">{insight.author}</span>
+          {insight.author && (
+            <span className="insight-detail__meta-author">
+              {insight.author}
+            </span>
+          )}
         </div>
       </header>
 
       <div className="insight-detail__body">
         <div className="insight-detail__content">
-          {insight.bodyParagraphs.map((para, i) => (
-            <p key={i}>{para}</p>
-          ))}
+          {/* eslint-disable-next-line @typescript-eslint/no-explicit-any */}
+          {insight.body ? (
+            <RichText
+              data={insight.body as SerializedEditorState}
+              className="max-w-none"
+            />
+          ) : null}
         </div>
         <aside className="insight-detail__sidebar" aria-label="Article details">
           <div className="insight-detail__sidebar-group">
@@ -91,12 +98,14 @@ export default function InsightDetail({ insight }: { insight: Insight }) {
               {insight.category}
             </span>
           </div>
-          <div className="insight-detail__sidebar-group">
-            <span className="insight-detail__sidebar-label">Author</span>
-            <span className="insight-detail__sidebar-value">
-              {insight.author}
-            </span>
-          </div>
+          {insight.author && (
+            <div className="insight-detail__sidebar-group">
+              <span className="insight-detail__sidebar-label">Author</span>
+              <span className="insight-detail__sidebar-value">
+                {insight.author}
+              </span>
+            </div>
+          )}
           <div className="insight-detail__sidebar-group">
             <span className="insight-detail__sidebar-label">Reading Time</span>
             <span className="insight-detail__sidebar-value">
@@ -114,10 +123,7 @@ export default function InsightDetail({ insight }: { insight: Insight }) {
               <p className="insight-detail__end-cta-text">
                 Want to discuss this topic with our team?
               </p>
-              <Link
-                className="insight-detail__end-cta-link"
-                href="/contact"
-              >
+              <Link className="insight-detail__end-cta-link" href="/contact">
                 Contact Us →
               </Link>
             </div>
@@ -141,7 +147,11 @@ export default function InsightDetail({ insight }: { insight: Insight }) {
               aria-label="More articles"
             >
               {moreArticles.map((article, i) => (
-                <li key={article.slug} data-aos="fade-up" data-aos-delay={i * 100}>
+                <li
+                  key={article.slug}
+                  data-aos="fade-up"
+                  data-aos-delay={i * 100}
+                >
                   <InsightCard insight={article} index={i} dark />
                 </li>
               ))}

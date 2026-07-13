@@ -1,38 +1,31 @@
 import Link from "next/link";
 import SectionLabel from "@/components/ui/SectionLabel";
-import { services } from "@/lib/data";
+import { RichText } from "@payloadcms/richtext-lexical/react";
+import type { SerializedEditorState } from "@payloadcms/richtext-lexical/lexical";
+
 import "@/styles/components/service-detail.scss";
 
-const disciplineStats: Record<string, Array<{ value: string; label: string }>> = {
-  environmental: [
-    { value: "80+", label: "EIA processes" },
-    { value: "15 yrs", label: "Experience" },
-    { value: "QLD · NSW · WA", label: "Key states" },
-  ],
-  "occupational-hygiene": [
-    { value: "500+", label: "Assessments" },
-    { value: "NATA", label: "Accredited" },
-    { value: "Mining + Construction", label: "Sectors" },
-  ],
-  geotechnical: [
-    { value: "200+", label: "Investigations" },
-    { value: "CPEng", label: "Registered" },
-    { value: "All states", label: "Coverage" },
-  ],
-};
-
-interface ServiceDetailProps {
+interface Service {
   slug: string;
+  title: string;
+  fullDescription: unknown;
+  subServices: string[];
+  tags: string[];
+  stats: { value: string; label: string }[];
 }
 
-export default function ServiceDetail({ slug }: ServiceDetailProps) {
-  const service = services.find((s) => s.slug === slug);
-  if (!service) return null;
+interface ServiceDetailProps {
+  service: Service;
+}
 
-  const stats = disciplineStats[slug] ?? [];
+export default function ServiceDetail({ service }: ServiceDetailProps) {
+  const stats = service.stats;
 
   return (
-    <section className="service-detail" aria-labelledby="service-detail-heading">
+    <section
+      className="service-detail"
+      aria-labelledby="service-detail-heading"
+    >
       <div className="service-detail__main" data-aos="fade-right">
         <div className="service-detail__label">
           <SectionLabel>About This Discipline</SectionLabel>
@@ -42,10 +35,22 @@ export default function ServiceDetail({ slug }: ServiceDetailProps) {
           {service.title}
         </h2>
 
-        <p className="service-detail__body">{service.fullDescription}</p>
+        {service.fullDescription ? (
+          <div className="service-detail__body">
+            {/* eslint-disable-next-line @typescript-eslint/no-explicit-any */}
+            <RichText
+              data={service.fullDescription as SerializedEditorState}
+              className="max-w-none"
+            />
+          </div>
+        ) : null}
 
         {stats.length > 0 && (
-          <ul className="service-detail__stats" role="list" aria-label="Key statistics">
+          <ul
+            className="service-detail__stats"
+            role="list"
+            aria-label="Key statistics"
+          >
             {stats.map((stat) => (
               <li key={stat.label} className="service-detail__stat">
                 <span className="service-detail__stat-value">{stat.value}</span>
@@ -55,14 +60,24 @@ export default function ServiceDetail({ slug }: ServiceDetailProps) {
           </ul>
         )}
 
-        <ul className="service-detail__tags" role="list" aria-label="Relevant topics">
+        <ul
+          className="service-detail__tags"
+          role="list"
+          aria-label="Relevant topics"
+        >
           {service.tags.map((tag) => (
-            <li key={tag} className="service-detail__tag">{tag}</li>
+            <li key={tag} className="service-detail__tag">
+              {tag}
+            </li>
           ))}
         </ul>
       </div>
 
-      <div className="service-detail__sidebar" data-aos="fade-left" data-aos-delay="200">
+      <div
+        className="service-detail__sidebar"
+        data-aos="fade-left"
+        data-aos-delay="200"
+      >
         <span className="service-detail__services-label">Services Include</span>
         <ul
           className="service-detail__services-list"

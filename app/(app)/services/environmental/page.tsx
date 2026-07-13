@@ -4,6 +4,9 @@ import DisciplineNav from "@/components/services/DisciplineNav";
 import ServiceDetail from "@/components/services/ServiceDetail";
 import ServiceRelatedProjects from "@/components/services/ServiceRelatedProjects";
 import OtherDisciplines from "@/components/services/OtherDisciplines";
+import { getServiceBySlug, getProjects } from "@/lib/payload";
+
+export const revalidate = 3600;
 
 export const metadata: Metadata = {
   title: "Environmental Services | Austerra Group",
@@ -11,7 +14,12 @@ export const metadata: Metadata = {
     "Comprehensive environmental impact assessments, contamination investigation, remediation management, and regulatory compliance across industrial, infrastructure, and development projects.",
 };
 
-export default function EnvironmentalPage() {
+export default async function EnvironmentalPage() {
+  const [service, relatedProjects] = await Promise.all([
+    getServiceBySlug("environmental"),
+    getProjects({ discipline: "environmental", limit: 3 }),
+  ]);
+
   return (
     <>
       <ServiceHero
@@ -23,8 +31,8 @@ export default function EnvironmentalPage() {
         imageAlt="Field team conducting environmental site assessment"
       />
       <DisciplineNav activeSlug="environmental" />
-      <ServiceDetail slug="environmental" />
-      <ServiceRelatedProjects discipline="environmental" />
+      {service && <ServiceDetail service={service} />}
+      <ServiceRelatedProjects projects={relatedProjects} />
       <OtherDisciplines currentSlug="environmental" />
     </>
   );

@@ -32,7 +32,9 @@ const enquiryTypes = [
 
 export default function ContactForm() {
   const [form, setForm] = useState<FormState>(initialState);
-  const [status, setStatus] = useState<"idle" | "submitting" | "success" | "error">("idle");
+  const [status, setStatus] = useState<
+    "idle" | "submitting" | "success" | "error"
+  >("idle");
   const [errors, setErrors] = useState<Partial<FormState>>({});
 
   function validate(): boolean {
@@ -67,7 +69,9 @@ export default function ContactForm() {
   }
 
   function handleChange(
-    e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>
+    e: React.ChangeEvent<
+      HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement
+    >,
   ) {
     const { name, value } = e.target;
     setForm((prev) => ({ ...prev, [name]: value }));
@@ -80,7 +84,8 @@ export default function ContactForm() {
     return (
       <div className="contact-form">
         <div className="contact-form__success" role="alert">
-          Enquiry received — a principal will be in touch within one business day.
+          Enquiry received — a principal will be in touch within one business
+          day.
         </div>
       </div>
     );
@@ -110,12 +115,18 @@ export default function ContactForm() {
               type="text"
               autoComplete="given-name"
               aria-required="true"
-              aria-describedby={errors.firstName ? "firstName-error" : undefined}
+              aria-describedby={
+                errors.firstName ? "firstName-error" : undefined
+              }
               value={form.firstName}
               onChange={handleChange}
             />
             {errors.firstName && (
-              <span className="contact-form__error-msg" id="firstName-error" role="alert">
+              <span
+                className="contact-form__error-msg"
+                id="firstName-error"
+                role="alert"
+              >
                 {errors.firstName}
               </span>
             )}
@@ -137,7 +148,11 @@ export default function ContactForm() {
               onChange={handleChange}
             />
             {errors.lastName && (
-              <span className="contact-form__error-msg" id="lastName-error" role="alert">
+              <span
+                className="contact-form__error-msg"
+                id="lastName-error"
+                role="alert"
+              >
                 {errors.lastName}
               </span>
             )}
@@ -161,7 +176,11 @@ export default function ContactForm() {
               onChange={handleChange}
             />
             {errors.email && (
-              <span className="contact-form__error-msg" id="email-error" role="alert">
+              <span
+                className="contact-form__error-msg"
+                id="email-error"
+                role="alert"
+              >
                 {errors.email}
               </span>
             )}
@@ -192,17 +211,25 @@ export default function ContactForm() {
             id="enquiryType"
             name="enquiryType"
             aria-required="true"
-            aria-describedby={errors.enquiryType ? "enquiryType-error" : undefined}
+            aria-describedby={
+              errors.enquiryType ? "enquiryType-error" : undefined
+            }
             value={form.enquiryType}
             onChange={handleChange}
           >
             <option value="">Select a discipline</option>
             {enquiryTypes.map((t) => (
-              <option key={t} value={t}>{t}</option>
+              <option key={t} value={t}>
+                {t}
+              </option>
             ))}
           </select>
           {errors.enquiryType && (
-            <span className="contact-form__error-msg" id="enquiryType-error" role="alert">
+            <span
+              className="contact-form__error-msg"
+              id="enquiryType-error"
+              role="alert"
+            >
               {errors.enquiryType}
             </span>
           )}
@@ -223,7 +250,11 @@ export default function ContactForm() {
             onChange={handleChange}
           />
           {errors.message && (
-            <span className="contact-form__error-msg" id="message-error" role="alert">
+            <span
+              className="contact-form__error-msg"
+              id="message-error"
+              role="alert"
+            >
               {errors.message}
             </span>
           )}
@@ -239,7 +270,6 @@ export default function ContactForm() {
           className="contact-form__submit"
           type="submit"
           disabled={status === "submitting"}
-          aria-busy={status === "submitting"}
         >
           {status === "submitting" ? "Sending..." : "Send Enquiry"}
         </button>

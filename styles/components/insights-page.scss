@@ -819,3 +819,9 @@
     }
   }
 }
+
+.insights-empty {
+  padding: 3rem $spacing-page-x;
+  color: var(--color-ink-mid);
+  font-family: $font-mono;
+}

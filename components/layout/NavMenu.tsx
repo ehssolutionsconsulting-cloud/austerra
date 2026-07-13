@@ -14,7 +14,8 @@ const navLinks = [
 export default function NavMenu() {
   const [open, setOpen] = useState(false);
   const pathname = usePathname();
-  const isActive = (href: string) => pathname === href || pathname.startsWith(href + "/");
+  const isActive = (href: string) =>
+    pathname === href || pathname.startsWith(href + "/");
   const menuRef = useRef<HTMLDivElement>(null);
   const buttonRef = useRef<HTMLButtonElement>(null);
 
@@ -31,8 +32,8 @@ export default function NavMenu() {
 
       const focusable = Array.from(
         menuRef.current.querySelectorAll<HTMLElement>(
-          "a[href], button:not([disabled]), [tabindex]:not([tabindex='-1'])"
-        )
+          "a[href], button:not([disabled]), [tabindex]:not([tabindex='-1'])",
+        ),
       );
       const first = focusable[0];
       const last = focusable[focusable.length - 1];
@@ -53,7 +54,9 @@ export default function NavMenu() {
   // Lock body scroll when menu is open
   useEffect(() => {
     document.body.style.overflow = open ? "hidden" : "";
-    return () => { document.body.style.overflow = ""; };
+    return () => {
+      document.body.style.overflow = "";
+    };
   }, [open]);
 
   return (
@@ -62,7 +65,6 @@ export default function NavMenu() {
         ref={buttonRef}
         className={`navbar__hamburger${open ? " navbar__hamburger--open" : ""}`}
         aria-label={open ? "Close menu" : "Open menu"}
-        aria-expanded={open}
         aria-controls="mobile-menu"
         onClick={() => setOpen((v) => !v)}
       >
@@ -75,7 +77,6 @@ export default function NavMenu() {
         id="mobile-menu"
         ref={menuRef}
         className={`navbar__mobile-menu${open ? " navbar__mobile-menu--open" : ""}`}
-        aria-hidden={!open}
         aria-label="Mobile navigation"
       >
         <ul className="navbar__mobile-links" role="list">

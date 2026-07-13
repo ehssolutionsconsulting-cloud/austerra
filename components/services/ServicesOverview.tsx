@@ -1,13 +1,21 @@
 import Link from "next/link";
-import { services } from "@/lib/data";
+import { RichText } from "@payloadcms/richtext-lexical/react";
+import type { SerializedEditorState } from '@payloadcms/richtext-lexical/lexical'
+
+import { getServices } from "@/lib/payload";
 import "@/styles/components/services-overview.scss";
 
-export default function ServicesOverview() {
+export default async function ServicesOverview() {
+  const services = await getServices();
+
   return (
     <section className="services-overview" aria-label="Our disciplines">
       {services.map((service) => (
         <article key={service.slug} className="services-overview__discipline">
-          <div className={`services-overview__accent-bar services-overview__accent-bar--0${service.disciplineNumber}`} aria-hidden="true" />
+          <div
+            className={`services-overview__accent-bar services-overview__accent-bar--0${service.disciplineNumber}`}
+            aria-hidden="true"
+          />
 
           <div className="services-overview__discipline-sidebar">
             <div>
@@ -25,10 +33,19 @@ export default function ServicesOverview() {
           </div>
 
           <div className="services-overview__discipline-body">
-            <p className="services-overview__discipline-desc">{service.fullDescription}</p>
+            {service.fullDescription ? (
+              <div className="services-overview__discipline-desc">
+                {/* eslint-disable-next-line @typescript-eslint/no-explicit-any */}
+                <RichText data={service.fullDescription as SerializedEditorState} className="max-w-none"  />
+              </div>
+            ) : null}
 
             <span className="services-overview__services-label">Services include</span>
-            <ul className="services-overview__services-list" role="list" aria-label={`${service.title} services`}>
+            <ul
+              className="services-overview__services-list"
+              role="list"
+              aria-label={`${service.title} services`}
+            >
               {service.subServices.map((s) => (
                 <li key={s} className="services-overview__service-item">{s}</li>
               ))}

@@ -2,8 +2,9 @@
 
 import { useRef } from 'react';
 import SectionLabel from "@/components/ui/SectionLabel";
-import { teamMembers } from "@/lib/data";
 import "@/styles/components/about-page.scss";
+
+import type { CmsTeamMember } from "@/lib/payload";
 
 type Discipline = "environmental" | "hygiene" | "geotechnical";
 
@@ -14,7 +15,7 @@ function getDiscipline(role: string): Discipline {
   return "geotechnical";
 }
 
-export default function TeamGrid() {
+export default function TeamGrid({ teamMembers }: { teamMembers: CmsTeamMember[] }) {
   const trackRef = useRef<HTMLUListElement>(null);
 
   function scroll(dir: 'prev' | 'next') {
@@ -26,6 +27,8 @@ export default function TeamGrid() {
       behavior: 'smooth',
     });
   }
+
+  if (teamMembers.length === 0) return null;
 
   return (
     <section className="team-grid" aria-labelledby="team-heading">

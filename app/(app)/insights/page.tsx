@@ -3,8 +3,10 @@ import Link from "next/link";
 import PageHeader from "@/components/ui/PageHeader";
 import SectionLabel from "@/components/ui/SectionLabel";
 import InsightsFilterGrid from "@/components/insights/InsightsFilterGrid";
-import { insights } from "@/lib/data";
+import { getInsights } from "@/lib/payload";
 import "@/styles/components/insights-page.scss";
+
+export const revalidate = 3600;
 
 export const metadata: Metadata = {
   title: "Insights | Austerra Group",
@@ -14,14 +16,10 @@ export const metadata: Metadata = {
 
 function categoryAccent(category: string): string {
   switch (category) {
-    case "Environmental":
-      return "insights-featured--environmental";
-    case "Geotechnical":
-      return "insights-featured--geotechnical";
-    case "OccHyg":
-      return "insights-featured--occhyg";
-    default:
-      return "insights-featured--occhyg";
+    case "Environmental":  return "insights-featured--environmental";
+    case "Geotechnical":   return "insights-featured--geotechnical";
+    case "OccHyg":         return "insights-featured--occhyg";
+    default:               return "insights-featured--occhyg";
   }
 }
 
@@ -29,8 +27,23 @@ function extractPullQuote(text: string): string {
   return text.match(/[^.!?]+[.!?]/)?.[0]?.trim() ?? text.slice(0, 140);
 }
 
-export default function InsightsPage() {
-  const [featured, ...rest] = insights;
+export default async function InsightsPage() {
+  const allInsights = await getInsights();
+
+  if (allInsights.length === 0) {
+    return (
+      <>
+        <PageHeader
+          eyebrow="Technical Insights"
+          title={<>From the <em>field.</em></>}
+          body="Practical perspectives from our scientists and engineers — written for project teams, not just specialists."
+        />
+        <p className="insights-empty">No articles published yet — check back soon.</p>
+      </>
+    );
+  }
+
+  const [featured, ...rest] = allInsights;
 
   const date = new Date(featured.publishedAt).toLocaleDateString("en-AU", {
     year: "numeric",
@@ -38,18 +51,14 @@ export default function InsightsPage() {
     day: "numeric",
   });
 
-  const pullQuote = extractPullQuote(featured.bodyParagraphs[0]);
+  const pullQuote = extractPullQuote(featured.excerpt);
   const accentClass = categoryAccent(featured.category);
 
   return (
     <>
       <PageHeader
         eyebrow="Technical Insights"
-        title={
-          <>
-            From the <em>field.</em>
-          </>
-        }
+        title={<>From the <em>field.</em></>}
         body="Practical perspectives from our scientists and engineers — written for project teams, not just specialists."
       />
 
@@ -61,32 +70,22 @@ export default function InsightsPage() {
           <div className="insights-featured__label">
             <SectionLabel>Featured Article</SectionLabel>
           </div>
-          <span className="insights-featured__category">
-            {featured.category}
-          </span>
-          <h2
-            id="featured-insight-heading"
-            className="insights-featured__title"
-          >
+          <span className="insights-featured__category">{featured.category}</span>
+          <h2 id="featured-insight-heading" className="insights-featured__title">
             <Link href={`/insights/${featured.slug}`}>{featured.title}</Link>
           </h2>
           <p className="insights-featured__excerpt">{featured.excerpt}</p>
           <div className="insights-featured__footer">
             <span className="insights-featured__byline">
-              {featured.author} · {date} · {featured.readTime}
+              {featured.author && `${featured.author} · `}{date} · {featured.readTime}
             </span>
-            <Link
-              className="insights-featured__link"
-              href={`/insights/${featured.slug}`}
-            >
+            <Link className="insights-featured__link" href={`/insights/${featured.slug}`}>
               Read Article →
             </Link>
           </div>
         </div>
         <div className="insights-featured__pull" aria-hidden="true">
-          <blockquote className="insights-featured__pull-quote">
-            {pullQuote}
-          </blockquote>
+          <blockquote className="insights-featured__pull-quote">{pullQuote}</blockquote>
         </div>
       </section>
 

@@ -1,4 +1,4 @@
-@use '../variables' as *;
+@use "../variables" as *;
 
 .why-join {
   border-bottom: 2px solid var(--color-ink);
@@ -19,11 +19,12 @@
     background: var(--color-paper-dark);
     padding: $spacing-card;
     border-top: 2px solid var(--color-olive);
+    list-style: none;
   }
 
   &__card-icon {
     font-family: $font-mono;
-    font-size:  0.82rem;
+    font-size: 0.82rem;
     letter-spacing: 0.15em;
     text-transform: uppercase;
     color: var(--color-olive);
@@ -41,7 +42,7 @@
 
   &__card-body {
     font-family: $font-sans;
-    font-size:  1rem;
+    font-size: 1rem;
     font-weight: 400;
     line-height: 1.8;
     color: var(--color-ink-mid);
@@ -56,7 +57,9 @@
     border-bottom: 1px solid var(--color-rule);
   }
 
-  &__list { list-style: none; }
+  &__list {
+    list-style: none;
+  }
 
   &__empty {
     padding: 4rem $spacing-page-x;
@@ -65,7 +68,7 @@
 
   &__empty-text {
     font-family: $font-serif;
-    font-size:  1.1rem;
+    font-size: 1.1rem;
     font-weight: 600;
     color: var(--color-ink-light);
     font-style: italic;
@@ -79,7 +82,8 @@
   align-items: start;
   padding: 1.5rem $spacing-page-x;
 
-  &__left {}
+  &__left {
+  }
 
   &__title {
     font-family: $font-serif;
@@ -98,7 +102,7 @@
 
   &__meta-item {
     font-family: $font-mono;
-    font-size:  0.8rem;
+    font-size: 0.8rem;
     letter-spacing: 0.08em;
     text-transform: uppercase;
     color: var(--color-ink-light);
@@ -106,7 +110,7 @@
 
   &__description {
     font-family: $font-sans;
-    font-size:  1rem;
+    font-size: 1rem;
     font-weight: 400;
     line-height: 1.75;
     color: var(--color-ink-mid);
@@ -120,7 +124,7 @@
 
   &__closing {
     font-family: $font-mono;
-    font-size:  0.75rem;
+    font-size: 0.75rem;
     letter-spacing: 0.08em;
     text-transform: uppercase;
     color: var(--color-ink-light);
@@ -130,7 +134,7 @@
 
   &__apply {
     font-family: $font-mono;
-    font-size:  0.84rem;
+    font-size: 0.84rem;
     letter-spacing: 0.1em;
     text-transform: uppercase;
     color: var(--color-paper);
@@ -140,6 +144,9 @@
     text-decoration: none;
     display: inline-block;
 
-    &:hover { background: var(--color-ink-mid); border-color: var(--color-ink-mid); }
+    &:hover {
+      background: var(--color-ink-mid);
+      border-color: var(--color-ink-mid);
+    }
   }
 }

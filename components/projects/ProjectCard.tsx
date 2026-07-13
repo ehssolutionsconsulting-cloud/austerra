@@ -13,7 +13,7 @@ interface Project {
   shortDescription: string;
   tags: string[];
   featured?: boolean;
-  image?: string;
+  image?: string | null;
 }
 
 function PinIcon() {

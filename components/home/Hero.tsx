@@ -1,8 +1,7 @@
 import Image from "next/image";
 import Button from "@/components/ui/Button";
+import { CERTIFICATIONS } from "@/lib/constants";
 import "@/styles/components/hero.scss";
-
-const certs = ["ISO 9001:2015", "ISO 45001", "NATA Accredited"];
 
 export default function Hero() {
   return (
@@ -47,9 +46,9 @@ export default function Hero() {
         </div>
 
         <ul className="hero__certs" aria-label="Certifications">
-          {certs.map((cert) => (
-            <li key={cert} className="hero__cert">
-              {cert}
+          {CERTIFICATIONS.slice(0, 3).map((cert) => (
+            <li key={cert.name} className="hero__cert">
+              {cert.name}
             </li>
           ))}
         </ul>

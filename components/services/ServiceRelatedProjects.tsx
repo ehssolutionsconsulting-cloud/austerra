@@ -1,18 +1,16 @@
 import Link from "next/link";
 import SectionLabel from "@/components/ui/SectionLabel";
 import ProjectCard from "@/components/projects/ProjectCard";
-import { projects } from "@/lib/data";
 import "@/styles/components/service-related-projects.scss";
 
-type Discipline = "environmental" | "hygiene" | "geotechnical";
+import type { CmsProject } from "@/lib/payload";
 
 interface ServiceRelatedProjectsProps {
-  discipline: Discipline;
+  projects: CmsProject[];
 }
 
-export default function ServiceRelatedProjects({ discipline }: ServiceRelatedProjectsProps) {
-  const related = projects.filter((p) => p.discipline === discipline).slice(0, 3);
-  if (related.length === 0) return null;
+export default function ServiceRelatedProjects({ projects }: ServiceRelatedProjectsProps) {
+  if (projects.length === 0) return null;
 
   return (
     <section className="service-related" aria-labelledby="service-related-heading">
@@ -26,7 +24,7 @@ export default function ServiceRelatedProjects({ discipline }: ServiceRelatedPro
       </div>
 
       <ul className="service-related__grid" role="list" aria-label="Related projects">
-        {related.map((project) => (
+        {projects.map((project) => (
           <li key={project.slug}>
             <ProjectCard project={project} />
           </li>

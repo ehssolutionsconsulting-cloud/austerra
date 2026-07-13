@@ -11,7 +11,7 @@ Australian B2B environmental & engineering consulting firm.
 ## Stack
 - **Framework:** Next.js 14 App Router
 - **CMS:** Payload CMS v3 (self-hosted, runs inside Next.js, admin at `/admin`)
-- **Database:** MongoDB Atlas (free tier)
+- **Database:** Vercel Postgres
 - **Styling:** SASS (SCSS) only
 - **Language:** TypeScript
 - **Hosting:** Vercel
@@ -175,7 +175,7 @@ Page Header → 2-column: Contact Details left + Contact Form right
 
 ## Environment Variables
 ```
-MONGODB_URI=
+POSTGRES_URL=
 PAYLOAD_SECRET=
 NEXT_PUBLIC_SERVER_URL=
 ```
@@ -183,7 +183,7 @@ NEXT_PUBLIC_SERVER_URL=
 ## Getting Started
 ```bash
 npx create-payload-app@latest austerra-group
-# Select: Next.js · MongoDB · TypeScript
+# Select: Next.js · Vercel Postgres · TypeScript
 cd austerra-group
 npm install sass
 npm run dev

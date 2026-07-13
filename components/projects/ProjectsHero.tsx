@@ -1,18 +1,16 @@
-import { projects } from "@/lib/data";
 import "@/styles/components/projects-hero.scss";
 
-function getStateCount(projects: typeof import("@/lib/data").projects) {
-  const states = new Set(
-    projects.map((p) => p.location.split(",").pop()?.trim()).filter(Boolean)
-  );
-  return states.size;
+interface ProjectsHeroProps {
+  count: number;
+  stateCount: number;
+  disciplineCount: number;
 }
 
-export default function ProjectsHero() {
+export default function ProjectsHero({ count, stateCount, disciplineCount }: ProjectsHeroProps) {
   const stats = [
-    { value: String(projects.length), label: "Projects" },
-    { value: "3", label: "Disciplines" },
-    { value: String(getStateCount(projects)), label: "States" },
+    { value: String(count), label: "Projects" },
+    { value: String(disciplineCount), label: "Disciplines" },
+    { value: String(stateCount), label: "States" },
   ];
 
   return (

@@ -69,6 +69,11 @@ export interface Config {
   collections: {
     users: User;
     media: Media;
+    projects: Project;
+    services: Service;
+    insights: Insight;
+    'team-members': TeamMember;
+    'job-listings': JobListing;
     'payload-kv': PayloadKv;
     'payload-locked-documents': PayloadLockedDocument;
     'payload-preferences': PayloadPreference;
@@ -78,6 +83,11 @@ export interface Config {
   collectionsSelect: {
     users: UsersSelect<false> | UsersSelect<true>;
     media: MediaSelect<false> | MediaSelect<true>;
+    projects: ProjectsSelect<false> | ProjectsSelect<true>;
+    services: ServicesSelect<false> | ServicesSelect<true>;
+    insights: InsightsSelect<false> | InsightsSelect<true>;
+    'team-members': TeamMembersSelect<false> | TeamMembersSelect<true>;
+    'job-listings': JobListingsSelect<false> | JobListingsSelect<true>;
     'payload-kv': PayloadKvSelect<false> | PayloadKvSelect<true>;
     'payload-locked-documents': PayloadLockedDocumentsSelect<false> | PayloadLockedDocumentsSelect<true>;
     'payload-preferences': PayloadPreferencesSelect<false> | PayloadPreferencesSelect<true>;
@@ -333,6 +343,101 @@ export interface Auth {
   [k: string]: unknown;
 }
 
+
+export interface Project {
+  id: string;
+  title: string;
+  slug: string;
+  projectId: string;
+  featured?: boolean | null;
+  discipline: 'environmental' | 'hygiene' | 'geotechnical';
+  client: string;
+  year: number;
+  location: string;
+  shortDescription: string;
+  fullDescription?: unknown;
+  tags?: { tag: string; id?: string | null }[] | null;
+  coverImage?: string | Media | null;
+  updatedAt: string;
+  createdAt: string;
+}
+export interface Service {
+  id: string;
+  title: string;
+  slug: string;
+  disciplineNumber: '1' | '2' | '3';
+  accentColor: 'red' | 'olive' | 'stone';
+  shortDescription: string;
+  fullDescription?: unknown;
+  subServices?: { title: string; description?: string | null; id?: string | null }[] | null;
+  tags?: { tag: string; id?: string | null }[] | null;
+  featuredImage?: string | Media | null;
+  stats?: { value: string; label: string; id?: string | null }[] | null;
+  updatedAt: string;
+  createdAt: string;
+}
+export interface TeamMember {
+  id: string;
+  name: string;
+  initials: string;
+  order: number;
+  role: string;
+  qualifications?: string | null;
+  bio?: unknown;
+  photo?: string | Media | null;
+  updatedAt: string;
+  createdAt: string;
+}
+export interface Insight {
+  id: string;
+  title: string;
+  slug: string;
+  status: 'draft' | 'published';
+  publishedAt?: string | null;
+  category: 'Environmental' | 'Geotechnical' | 'OccHyg' | 'General';
+  author?: string | TeamMember | null;
+  excerpt: string;
+  body: unknown;
+  coverImage?: string | Media | null;
+  updatedAt: string;
+  createdAt: string;
+}
+export interface JobListing {
+  id: string;
+  title: string;
+  active?: boolean | null;
+  location: string;
+  type: 'Full-time' | 'Part-time' | 'Contract';
+  discipline: 'environmental' | 'hygiene' | 'geotechnical' | 'general';
+  description: unknown;
+  closingDate?: string | null;
+  updatedAt: string;
+  createdAt: string;
+}
+export interface ProjectsSelect<T extends boolean = true> {
+  title?: T; slug?: T; projectId?: T; featured?: T; discipline?: T;
+  client?: T; year?: T; location?: T; shortDescription?: T; fullDescription?: T;
+  tags?: T | { tag?: T; id?: T }; coverImage?: T; updatedAt?: T; createdAt?: T;
+}
+export interface ServicesSelect<T extends boolean = true> {
+  title?: T; slug?: T; disciplineNumber?: T; accentColor?: T;
+  shortDescription?: T; fullDescription?: T;
+  subServices?: T | { title?: T; description?: T; id?: T };
+  tags?: T | { tag?: T; id?: T }; featuredImage?: T;
+  stats?: T | { value?: T; label?: T; id?: T }; updatedAt?: T; createdAt?: T;
+}
+export interface TeamMembersSelect<T extends boolean = true> {
+  name?: T; initials?: T; order?: T; role?: T; qualifications?: T;
+  bio?: T; photo?: T; updatedAt?: T; createdAt?: T;
+}
+export interface InsightsSelect<T extends boolean = true> {
+  title?: T; slug?: T; status?: T; publishedAt?: T; category?: T;
+  author?: T; excerpt?: T; body?: T; coverImage?: T; updatedAt?: T; createdAt?: T;
+}
+export interface JobListingsSelect<T extends boolean = true> {
+  title?: T; active?: T; location?: T; type?: T; discipline?: T;
+  description?: T; closingDate?: T; updatedAt?: T; createdAt?: T;
+}
 
 declare module 'payload' {
   export interface GeneratedTypes extends Config {}

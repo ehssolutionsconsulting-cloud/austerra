@@ -1,7 +1,7 @@
 import Link from "next/link";
 import SectionLabel from "@/components/ui/SectionLabel";
 import ProjectCard from "./ProjectCard";
-import { projects } from "@/lib/data";
+import { getProjects } from "@/lib/payload";
 import "@/styles/components/project-detail.scss";
 
 interface Project {
@@ -12,9 +12,9 @@ interface Project {
   location: string;
   discipline: string;
   title: string;
-  challenge: string;
-  approach: string;
-  outcome: string;
+  challenge: string | null;
+  approach: string | null;
+  outcome: string | null;
   tags: string[];
   highlights?: string[];
 }
@@ -25,11 +25,13 @@ const disciplineLabel: Record<string, string> = {
   geotechnical: "Geotechnical Engineering",
 };
 
-export default function ProjectDetail({ project }: { project: Project }) {
-  const currentIndex = projects.findIndex((p) => p.slug === project.slug);
-  const nextProject = projects[(currentIndex + 1) % projects.length];
+export default async function ProjectDetail({ project }: { project: Project }) {
+  const allProjects = await getProjects();
 
-  const related = projects
+  const currentIndex = allProjects.findIndex((p) => p.slug === project.slug);
+  const nextProject = allProjects[(currentIndex + 1) % allProjects.length] ?? null;
+
+  const related = allProjects
     .filter((p) => p.slug !== project.slug && p.discipline === project.discipline)
     .slice(0, 3);
 
@@ -38,24 +40,21 @@ export default function ProjectDetail({ project }: { project: Project }) {
       ? related
       : [
           ...related,
-          ...projects
+          ...allProjects
             .filter((p) => p.slug !== project.slug && !related.find((r) => r.slug === p.slug))
             .slice(0, 3 - related.length),
         ];
 
   return (
     <div className={`project-detail project-detail--${project.discipline}`}>
-      {/* Discipline accent band */}
       <div className="project-detail__band" aria-hidden="true" />
 
-      {/* Back nav */}
       <div className="project-detail__back">
         <Link className="project-detail__back-link" href="/projects">
           ← Back to Projects
         </Link>
       </div>
 
-      {/* Header */}
       <div className="project-detail__header">
         <div className="project-detail__header-main">
           <span className="project-detail__project-id">{project.projectId}</span>
@@ -87,7 +86,6 @@ export default function ProjectDetail({ project }: { project: Project }) {
         </dl>
       </div>
 
-      {/* Highlights stats strip */}
       {project.highlights && project.highlights.length > 0 && (
         <div className="project-detail__highlights" aria-label="Project highlights">
           {project.highlights.map((h) => {
@@ -102,29 +100,34 @@ export default function ProjectDetail({ project }: { project: Project }) {
         </div>
       )}
 
-      {/* Body */}
       <div className="project-detail__body">
         <div className="project-detail__content">
-          <section aria-labelledby="challenge-heading">
-            <span id="challenge-heading" className="project-detail__section-label">
-              // The Challenge
-            </span>
-            <p className="project-detail__description">{project.challenge}</p>
-          </section>
+          {project.challenge && (
+            <section aria-labelledby="challenge-heading">
+              <span id="challenge-heading" className="project-detail__section-label">
+                // The Challenge
+              </span>
+              <p className="project-detail__description">{project.challenge}</p>
+            </section>
+          )}
 
-          <section aria-labelledby="approach-heading">
-            <span id="approach-heading" className="project-detail__section-label">
-              // Our Approach
-            </span>
-            <p className="project-detail__description">{project.approach}</p>
-          </section>
+          {project.approach && (
+            <section aria-labelledby="approach-heading">
+              <span id="approach-heading" className="project-detail__section-label">
+                // Our Approach
+              </span>
+              <p className="project-detail__description">{project.approach}</p>
+            </section>
+          )}
 
-          <section aria-labelledby="outcome-heading">
-            <span id="outcome-heading" className="project-detail__section-label">
-              // Outcome
-            </span>
-            <p className="project-detail__description">{project.outcome}</p>
-          </section>
+          {project.outcome && (
+            <section aria-labelledby="outcome-heading">
+              <span id="outcome-heading" className="project-detail__section-label">
+                // Outcome
+              </span>
+              <p className="project-detail__description">{project.outcome}</p>
+            </section>
+          )}
         </div>
 
         <aside className="project-detail__sidebar" aria-label="Project details">
@@ -154,7 +157,6 @@ export default function ProjectDetail({ project }: { project: Project }) {
         </aside>
       </div>
 
-      {/* Related projects */}
       {allRelated.length > 0 && (
         <section className="related-projects" aria-labelledby="related-heading">
           <div className="related-projects__header">
@@ -175,7 +177,6 @@ export default function ProjectDetail({ project }: { project: Project }) {
         </section>
       )}
 
-      {/* Next project teaser */}
       {nextProject && (
         <div className={`project-next project-next--${nextProject.discipline}`}>
           <span className="project-next__label" aria-hidden="true">// Next Project</span>

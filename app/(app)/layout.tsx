@@ -3,8 +3,7 @@ import { IBM_Plex_Serif, IBM_Plex_Mono, IBM_Plex_Sans } from "next/font/google";
 import "@/styles/globals.scss";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
-import GsapAnimator from "@/components/ui/GsapAnimator";
-import AosInit from "@/components/ui/AosInit";
+import AnimationProviders from "@/components/ui/AnimationProviders";
 import IntersectionAnimator from "@/components/ui/IntersectionAnimator";
 import NavbarScrollHandler from "@/components/layout/NavbarScrollHandler";
 
@@ -49,8 +48,7 @@ export default function RootLayout({
         </a>
         <Navbar />
         <NavbarScrollHandler />
-        <GsapAnimator />
-        <AosInit />
+        <AnimationProviders />
         <IntersectionAnimator />
         <main id="main-content" tabIndex={-1}>
           {children}
