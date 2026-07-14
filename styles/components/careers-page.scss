@@ -4,15 +4,27 @@
   border-bottom: 2px solid var(--color-ink);
 
   &__header {
-    padding: 1.5rem $spacing-page-x;
+    padding: 1.25rem $spacing-mobile-x;
     border-bottom: 1px solid var(--color-rule);
+
+    @media (min-width: $bp-tablet) {
+      padding: 1.5rem $spacing-page-x;
+    }
   }
 
   &__grid {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: 1fr;
     gap: 1px;
     background: var(--color-rule);
+
+    @media (min-width: $bp-tablet) {
+      grid-template-columns: repeat(2, 1fr);
+    }
+
+    @media (min-width: $bp-desktop) {
+      grid-template-columns: repeat(3, 1fr);
+    }
   }
 
   &__card {
@@ -34,10 +46,14 @@
 
   &__card-title {
     font-family: $font-serif;
-    font-size: 1.6rem;
+    font-size: 1.35rem;
     font-weight: 600;
     color: var(--color-ink);
     margin-bottom: 0.8rem;
+
+    @media (min-width: $bp-tablet) {
+      font-size: 1.6rem;
+    }
   }
 
   &__card-body {
@@ -53,8 +69,12 @@
   border-bottom: 2px solid var(--color-ink);
 
   &__header {
-    padding: 1.5rem $spacing-page-x;
+    padding: 1.25rem $spacing-mobile-x;
     border-bottom: 1px solid var(--color-rule);
+
+    @media (min-width: $bp-tablet) {
+      padding: 1.5rem $spacing-page-x;
+    }
   }
 
   &__list {
@@ -62,8 +82,12 @@
   }
 
   &__empty {
-    padding: 4rem $spacing-page-x;
+    padding: 3rem $spacing-mobile-x;
     text-align: center;
+
+    @media (min-width: $bp-tablet) {
+      padding: 4rem $spacing-page-x;
+    }
   }
 
   &__empty-text {
@@ -77,27 +101,36 @@
 
 .job-listing {
   border-bottom: 1px solid var(--color-rule);
-  display: grid;
-  grid-template-columns: 1fr auto;
-  align-items: start;
-  padding: 1.5rem $spacing-page-x;
+  padding: 1.25rem $spacing-mobile-x;
 
-  &__left {
+  @media (min-width: $bp-tablet) {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    align-items: start;
+    padding: 1.5rem $spacing-page-x;
   }
 
   &__title {
     font-family: $font-serif;
-    font-size: 1.6rem;
+    font-size: 1.4rem;
     font-weight: 600;
     color: var(--color-ink);
     margin-bottom: 0.5rem;
+
+    @media (min-width: $bp-tablet) {
+      font-size: 1.6rem;
+    }
   }
 
   &__meta {
     display: flex;
-    gap: 1.5rem;
+    gap: 1.25rem;
     margin-bottom: 0.7rem;
     flex-wrap: wrap;
+
+    @media (min-width: $bp-tablet) {
+      gap: 1.5rem;
+    }
   }
 
   &__meta-item {
@@ -118,8 +151,12 @@
   }
 
   &__right {
-    padding-top: 0.2rem;
-    text-align: right;
+    padding-top: 1rem;
+
+    @media (min-width: $bp-tablet) {
+      padding-top: 0.2rem;
+      text-align: right;
+    }
   }
 
   &__closing {

@@ -2,9 +2,13 @@ import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { getProjects, getProjectBySlug } from "@/lib/payload";
 import ProjectDetail from "@/components/projects/ProjectDetail";
+import JsonLd from "@/components/seo/JsonLd";
+import { breadcrumbSchema } from "@/lib/schema";
 
 export const revalidate = 3600;
 export const dynamicParams = true;
+
+const BASE = process.env.NEXT_PUBLIC_SERVER_URL ?? "https://austerra.com.au";
 
 interface Props {
   params: Promise<{ slug: string }>;
@@ -22,6 +26,11 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   return {
     title: `${project.title} | Austerra Group`,
     description: project.shortDescription,
+    openGraph: {
+      title: project.title,
+      description: project.shortDescription,
+      type: "article",
+    },
   };
 }
 
@@ -32,6 +41,13 @@ export default async function ProjectDetailPage({ params }: Props) {
 
   return (
     <article>
+      <JsonLd
+        data={breadcrumbSchema([
+          { name: "Home", url: BASE },
+          { name: "Projects", url: `${BASE}/projects` },
+          { name: project.title, url: `${BASE}/projects/${project.slug}` },
+        ])}
+      />
       <ProjectDetail project={project} />
     </article>
   );

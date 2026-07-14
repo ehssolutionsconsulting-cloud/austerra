@@ -1,0 +1,128 @@
+@use '../variables' as *;
+
+.service-faq {
+  border-top: 2px solid var(--color-ink);
+  padding: 2rem $spacing-mobile-x;
+
+  @media (min-width: $bp-mobile) {
+    padding: $spacing-section-y ($spacing-page-x * 0.8);
+  }
+
+  @media (min-width: $bp-tablet) {
+    padding: $spacing-section-y $spacing-page-x;
+  }
+
+  &__inner {
+    max-width: 860px;
+  }
+
+  &__label {
+    font-family: $font-mono;
+    font-size: 0.75rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--color-ink-light);
+    margin: 0 0 0.75rem;
+  }
+
+  &__heading {
+    font-family: $font-serif;
+    font-size: 1.625rem;
+    font-weight: 300;
+    color: var(--color-ink);
+    margin: 0 0 2.5rem;
+
+    @media (min-width: $bp-tablet) {
+      font-size: 2rem;
+    }
+  }
+
+  &__list {
+    border-top: 1px solid var(--color-rule);
+  }
+
+  &__item {
+    border-bottom: 1px solid var(--color-rule);
+  }
+
+  &__details {
+    &[open] {
+      .service-faq__icon::after {
+        content: '−';
+      }
+    }
+  }
+
+  &__question {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 1.5rem;
+    padding: 1.25rem 0;
+    cursor: pointer;
+    list-style: none;
+    outline: none;
+
+    &::-webkit-details-marker {
+      display: none;
+    }
+
+    &:focus-visible {
+      outline: 3px solid var(--color-olive);
+      outline-offset: 3px;
+    }
+
+    &:hover {
+      .service-faq__question-text {
+        color: var(--color-olive);
+      }
+    }
+  }
+
+  &__question-text {
+    font-family: $font-sans;
+    font-size: 1rem;
+    font-weight: 400;
+    color: var(--color-ink);
+    transition: color 0.15s ease;
+
+    @media (min-width: $bp-tablet) {
+      font-size: 1.0625rem;
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      transition: none;
+    }
+  }
+
+  &__icon {
+    flex-shrink: 0;
+    width: 1.5rem;
+    height: 1.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: $font-mono;
+    font-size: 1.125rem;
+    color: var(--color-olive);
+    border: 1px solid var(--color-rule);
+
+    &::after {
+      content: '+';
+    }
+  }
+
+  &__answer {
+    padding: 0 0 1.5rem;
+    margin: 0;
+
+    p {
+      font-family: $font-sans;
+      font-size: 0.9375rem;
+      line-height: 1.75;
+      color: var(--color-ink-mid);
+      max-width: 720px;
+      margin: 0;
+    }
+  }
+}

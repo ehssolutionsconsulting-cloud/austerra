@@ -6,6 +6,8 @@ import Footer from "@/components/layout/Footer";
 import AnimationProviders from "@/components/ui/AnimationProviders";
 import IntersectionAnimator from "@/components/ui/IntersectionAnimator";
 import NavbarScrollHandler from "@/components/layout/NavbarScrollHandler";
+import JsonLd from "@/components/seo/JsonLd";
+import { organizationSchema, webSiteSchema } from "@/lib/schema";
 
 const ibmPlexSerif = IBM_Plex_Serif({
   variable: "--font-ibm-plex-serif",
@@ -27,9 +29,20 @@ const ibmPlexSans = IBM_Plex_Sans({
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL(
+    process.env.NEXT_PUBLIC_SERVER_URL ?? "https://austerra.com.au"
+  ),
   title: "Austerra Group",
   description:
     "Grounded in Science. Built for the Field. Australian environmental, occupational hygiene, and geotechnical engineering consulting.",
+  openGraph: {
+    siteName: "Austerra Group",
+    locale: "en_AU",
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+  },
 };
 
 export default function RootLayout({
@@ -43,6 +56,8 @@ export default function RootLayout({
       className={`${ibmPlexSerif.variable} ${ibmPlexMono.variable} ${ibmPlexSans.variable}`}
     >
       <body>
+        <JsonLd data={organizationSchema()} />
+        <JsonLd data={webSiteSchema()} />
         <a className="skip-link" href="#main-content">
           Skip to main content
         </a>

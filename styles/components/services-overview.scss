@@ -4,24 +4,33 @@
   border-bottom: 2px solid var(--color-ink);
 
   &__discipline {
-    display: grid;
-    grid-template-columns: 0.4fr 1fr;
     border-bottom: 1px solid var(--color-rule);
 
     &:last-child { border-bottom: none; }
+
+    @media (min-width: $bp-tablet) {
+      display: grid;
+      grid-template-columns: 0.4fr 1fr;
+    }
   }
 
   &__discipline-sidebar {
-    padding: $spacing-section-y $spacing-page-x;
-    border-right: 2px solid var(--color-ink);
+    padding: $spacing-section-y $spacing-mobile-x;
+    border-bottom: 2px solid var(--color-ink);
     display: flex;
     flex-direction: column;
     justify-content: space-between;
+
+    @media (min-width: $bp-tablet) {
+      padding: $spacing-section-y $spacing-page-x;
+      border-right: 2px solid var(--color-ink);
+      border-bottom: none;
+    }
   }
 
   &__discipline-number {
     font-family: $font-mono;
-    font-size:  0.78rem;
+    font-size: 0.78rem;
     letter-spacing: 0.15em;
     text-transform: uppercase;
     color: var(--color-ink-light);
@@ -31,16 +40,20 @@
 
   &__discipline-title {
     font-family: $font-serif;
-    font-size: 2rem;
+    font-size: 1.6rem;
     font-weight: 600;
     color: var(--color-ink);
     line-height: 1.2;
     margin-bottom: 1rem;
+
+    @media (min-width: $bp-tablet) {
+      font-size: 2rem;
+    }
   }
 
   &__discipline-link {
     font-family: $font-mono;
-    font-size:  0.8rem;
+    font-size: 0.8rem;
     letter-spacing: 0.1em;
     text-transform: uppercase;
     color: var(--color-olive);
@@ -54,22 +67,30 @@
   }
 
   &__discipline-body {
-    padding: $spacing-section-y $spacing-page-x;
+    padding: $spacing-section-y $spacing-mobile-x;
+
+    @media (min-width: $bp-tablet) {
+      padding: $spacing-section-y $spacing-page-x;
+    }
   }
 
   &__discipline-desc {
     font-family: $font-sans;
-    font-size:  1.05rem;
+    font-size: 1rem;
     font-weight: 400;
     line-height: 1.85;
     color: var(--color-ink-mid);
     margin-bottom: 1.5rem;
     max-width: 620px;
+
+    @media (min-width: $bp-tablet) {
+      font-size: 1.05rem;
+    }
   }
 
   &__services-label {
     font-family: $font-mono;
-    font-size:  0.8rem;
+    font-size: 0.8rem;
     letter-spacing: 0.15em;
     text-transform: uppercase;
     color: var(--color-ink-light);
@@ -80,13 +101,17 @@
   &__services-list {
     list-style: none;
     display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 0 2rem;
+    grid-template-columns: 1fr;
+
+    @media (min-width: $bp-mobile) {
+      grid-template-columns: 1fr 1fr;
+      gap: 0 2rem;
+    }
   }
 
   &__service-item {
     font-family: $font-sans;
-    font-size:  0.98rem;
+    font-size: 0.98rem;
     font-weight: 400;
     color: var(--color-ink-mid);
     padding: 0.35rem 0;

@@ -1,14 +1,23 @@
 @use "../variables" as *;
 
 .contact-layout {
-  display: grid;
-  grid-template-columns: 0.9fr 1.1fr;
   border-bottom: 2px solid var(--color-ink);
+
+  @media (min-width: $bp-tablet) {
+    display: grid;
+    grid-template-columns: 0.9fr 1.1fr;
+  }
 }
 
 .contact-details {
-  padding: $spacing-section-y $spacing-page-x;
-  border-right: 2px solid var(--color-ink);
+  padding: $spacing-section-y $spacing-mobile-x;
+  border-bottom: 2px solid var(--color-ink);
+
+  @media (min-width: $bp-tablet) {
+    padding: $spacing-section-y $spacing-page-x;
+    border-right: 2px solid var(--color-ink);
+    border-bottom: none;
+  }
 
   &__label {
     margin-bottom: 1.2rem;
@@ -16,11 +25,15 @@
 
   &__heading {
     font-family: $font-serif;
-    font-size: 2rem;
+    font-size: 1.75rem;
     font-weight: 600;
     color: var(--color-ink);
     margin-bottom: 1.5rem;
     line-height: 1.3;
+
+    @media (min-width: $bp-tablet) {
+      font-size: 2rem;
+    }
 
     em {
       font-style: italic;
@@ -83,8 +96,12 @@
 }
 
 .contact-form {
-  padding: $spacing-section-y $spacing-page-x;
+  padding: $spacing-section-y $spacing-mobile-x;
   background: #ffffff;
+
+  @media (min-width: $bp-tablet) {
+    padding: $spacing-section-y $spacing-page-x;
+  }
 
   &__label {
     margin-bottom: 1.5rem;
@@ -96,12 +113,16 @@
     gap: 1.2rem;
   }
 
-  // 1px hairline separator between paired fields
+  // 1px hairline separator between paired fields — stacks to single col on mobile
   &__row {
     display: grid;
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: 1fr;
     gap: 1px;
     background: rgba(0, 0, 0, 0.1);
+
+    @media (min-width: $bp-tablet) {
+      grid-template-columns: 1fr 1fr;
+    }
   }
 
   &__field {
@@ -233,15 +254,5 @@
     letter-spacing: 0.08em;
     color: var(--color-red);
     margin-top: 0.3rem;
-  }
-}
-
-@media (max-width: $bp-tablet) {
-  .contact-layout {
-    grid-template-columns: 1fr;
-  }
-  .contact-details {
-    border-right: none;
-    border-bottom: 2px solid var(--color-ink);
   }
 }

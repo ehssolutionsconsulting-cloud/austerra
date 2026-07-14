@@ -5,10 +5,18 @@
 
   &__inner {
     display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 1.4rem $spacing-page-x;
+    flex-direction: column;
+    gap: 0.8rem;
+    padding: 1.25rem $spacing-mobile-x;
     border-top: 1px solid rgba(255, 255, 255, 0.15);
+
+    @media (min-width: $bp-tablet) {
+      flex-direction: row;
+      justify-content: space-between;
+      align-items: center;
+      gap: 0;
+      padding: 1.4rem $spacing-page-x;
+    }
   }
 
   &__brand-name {
@@ -32,15 +40,23 @@
   }
 
   &__meta {
-    text-align: right;
+    text-align: left;
+
+    @media (min-width: $bp-tablet) {
+      text-align: right;
+    }
   }
 
   &__legal-links {
     display: flex;
     gap: 1.5rem;
-    justify-content: flex-end;
+    justify-content: flex-start;
     list-style: none;
     margin-bottom: 0.5rem;
+
+    @media (min-width: $bp-tablet) {
+      justify-content: flex-end;
+    }
   }
 
   &__legal-link {

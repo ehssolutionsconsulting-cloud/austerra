@@ -1,19 +1,28 @@
 @use '../variables' as *;
 
 .legal {
-  display: grid;
-  grid-template-columns: 0.35fr 1fr;
   border-bottom: 2px solid var(--color-ink);
 
+  @media (min-width: $bp-tablet) {
+    display: grid;
+    grid-template-columns: 0.35fr 1fr;
+  }
+
   &__sidebar {
-    padding: $spacing-section-y $spacing-page-x;
-    border-right: 2px solid var(--color-ink);
+    padding: $spacing-section-y $spacing-mobile-x;
+    border-bottom: 2px solid var(--color-ink);
     background: var(--color-paper-dark);
+
+    @media (min-width: $bp-tablet) {
+      padding: $spacing-section-y $spacing-page-x;
+      border-right: 2px solid var(--color-ink);
+      border-bottom: none;
+    }
   }
 
   &__toc-label {
     font-family: $font-mono;
-    font-size:  0.8rem;
+    font-size: 0.8rem;
     letter-spacing: 0.15em;
     text-transform: uppercase;
     color: var(--color-ink-light);
@@ -31,7 +40,7 @@
 
   &__toc-link {
     font-family: $font-mono;
-    font-size:  0.82rem;
+    font-size: 0.82rem;
     letter-spacing: 0.06em;
     color: var(--color-ink-mid);
     text-decoration: none;
@@ -42,7 +51,11 @@
   }
 
   &__content {
-    padding: $spacing-section-y $spacing-page-x;
+    padding: $spacing-section-y $spacing-mobile-x;
+
+    @media (min-width: $bp-tablet) {
+      padding: $spacing-section-y $spacing-page-x;
+    }
   }
 
   &__section {
@@ -53,7 +66,7 @@
 
   &__section-title {
     font-family: $font-serif;
-    font-size:  1.3rem;
+    font-size: 1.3rem;
     font-weight: 600;
     color: var(--color-ink);
     margin-bottom: 0.8rem;
@@ -63,7 +76,7 @@
 
   &__section-body {
     font-family: $font-sans;
-    font-size:  1rem;
+    font-size: 1rem;
     font-weight: 400;
     line-height: 1.85;
     color: var(--color-ink-mid);
