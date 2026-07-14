@@ -1,5 +1,5 @@
 import { ImageResponse } from 'next/og'
-import { getInsights, getInsightBySlug } from '@/lib/payload'
+import { getInsightBySlug } from '@/lib/payload'
 import { getCategoryColor, truncate } from '@/lib/og-utils'
 
 export const size = { width: 1200, height: 630 }
@@ -7,11 +7,6 @@ export const contentType = 'image/png'
 
 interface Props {
   params: Promise<{ slug: string }>
-}
-
-export async function generateStaticParams() {
-  const insights = await getInsights()
-  return insights.map((i) => ({ slug: i.slug }))
 }
 
 export async function generateImageMetadata({ params }: Props) {
