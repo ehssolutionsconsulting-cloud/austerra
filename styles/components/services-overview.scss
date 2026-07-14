@@ -1,12 +1,14 @@
-@use '../variables' as *;
+@use "../variables" as *;
 
 .services-overview {
   border-bottom: 2px solid var(--color-ink);
 
   &__discipline {
-    border-bottom: 1px solid var(--color-rule);
+    border-bottom: 2px solid var(--color-rule);
 
-    &:last-child { border-bottom: none; }
+    &:last-child {
+      border-bottom: none;
+    }
 
     @media (min-width: $bp-tablet) {
       display: grid;
@@ -63,7 +65,10 @@
     display: inline-block;
     align-self: flex-start;
 
-    &:hover { color: var(--color-olive-light); border-bottom-color: var(--color-olive-light); }
+    &:hover {
+      color: var(--color-olive-light);
+      border-bottom-color: var(--color-olive-light);
+    }
   }
 
   &__discipline-body {
@@ -127,8 +132,14 @@
     height: 2px;
     width: 100%;
 
-    &--01 { background: var(--color-red); }
-    &--02 { background: var(--color-olive); }
-    &--03 { background: var(--color-stone); }
+    &--01 {
+      background: var(--color-red);
+    }
+    &--02 {
+      background: var(--color-olive);
+    }
+    &--03 {
+      background: var(--color-stone);
+    }
   }
 }
