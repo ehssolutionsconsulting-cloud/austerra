@@ -2,7 +2,6 @@ import { ImageResponse } from 'next/og'
 import { getProjectBySlug, getProjects } from '@/lib/payload'
 import { getDisciplineColor, truncate } from '@/lib/og-utils'
 
-export const runtime = 'edge'
 export const size = { width: 1200, height: 630 }
 export const contentType = 'image/png'
 
