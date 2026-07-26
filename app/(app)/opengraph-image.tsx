@@ -32,7 +32,7 @@ export default function Image() {
           <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start' }}>
             <span
               style={{
-                color: '#b5a882',
+                color: '#ffffff',
                 fontSize: '18px',
                 fontFamily: 'monospace',
                 letterSpacing: '0.08em',
@@ -41,10 +41,10 @@ export default function Image() {
               // AUSTERRA GROUP
             </span>
             <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-end' }}>
-              <span style={{ color: '#8a8a7a', fontSize: '13px', fontFamily: 'monospace', letterSpacing: '0.06em' }}>
+              <span style={{ color: 'rgba(255,255,255,0.55)', fontSize: '13px', fontFamily: 'monospace', letterSpacing: '0.06em' }}>
                 ENVIRONMENTAL · OCCUPATIONAL HYGIENE
               </span>
-              <span style={{ color: '#8a8a7a', fontSize: '13px', fontFamily: 'monospace', letterSpacing: '0.06em' }}>
+              <span style={{ color: 'rgba(255,255,255,0.55)', fontSize: '13px', fontFamily: 'monospace', letterSpacing: '0.06em' }}>
                 GEOTECHNICAL ENGINEERING
               </span>
             </div>
@@ -54,7 +54,7 @@ export default function Image() {
           <div style={{ display: 'flex', flexDirection: 'column' }}>
             <div
               style={{
-                color: '#f7f4ed',
+                color: '#ffffff',
                 fontSize: '68px',
                 fontFamily: 'serif',
                 fontWeight: 300,
@@ -65,7 +65,7 @@ export default function Image() {
             </div>
             <div
               style={{
-                color: '#f7f4ed',
+                color: '#ffffff',
                 fontSize: '68px',
                 fontFamily: 'serif',
                 fontWeight: 300,
@@ -76,7 +76,7 @@ export default function Image() {
             </div>
             <div
               style={{
-                color: '#8a8a7a',
+                color: 'rgba(255,255,255,0.55)',
                 fontSize: '22px',
                 fontFamily: 'sans-serif',
                 fontWeight: 300,
@@ -98,7 +98,7 @@ export default function Image() {
           >
             <span
               style={{
-                color: '#b5a882',
+                color: 'rgba(255,255,255,0.35)',
                 fontSize: '16px',
                 fontFamily: 'monospace',
                 letterSpacing: '0.06em',

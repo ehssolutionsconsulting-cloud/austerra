@@ -53,7 +53,7 @@ export default async function Image({ params }: Props) {
           <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start' }}>
             <span
               style={{
-                color: '#b5a882',
+                color: '#ffffff',
                 fontSize: '16px',
                 fontFamily: 'monospace',
                 letterSpacing: '0.08em',
@@ -79,7 +79,7 @@ export default async function Image({ params }: Props) {
           <div style={{ display: 'flex', flexDirection: 'column' }}>
             <div
               style={{
-                color: '#8a8a7a',
+                color: 'rgba(255,255,255,0.55)',
                 fontSize: '15px',
                 fontFamily: 'monospace',
                 letterSpacing: '0.1em',
@@ -90,7 +90,7 @@ export default async function Image({ params }: Props) {
             </div>
             <div
               style={{
-                color: '#f7f4ed',
+                color: '#ffffff',
                 fontSize: title.length > 40 ? '52px' : '64px',
                 fontFamily: 'serif',
                 fontWeight: 300,
@@ -102,7 +102,7 @@ export default async function Image({ params }: Props) {
             {meta ? (
               <div
                 style={{
-                  color: '#8a8a7a',
+                  color: 'rgba(255,255,255,0.55)',
                   fontSize: '20px',
                   fontFamily: 'sans-serif',
                   fontWeight: 300,
@@ -125,7 +125,7 @@ export default async function Image({ params }: Props) {
           >
             <span
               style={{
-                color: '#b5a882',
+                color: '#ffffff',
                 fontSize: '15px',
                 fontFamily: 'monospace',
                 letterSpacing: '0.06em',

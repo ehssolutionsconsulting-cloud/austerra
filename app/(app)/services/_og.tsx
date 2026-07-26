@@ -76,7 +76,7 @@ export async function serviceOG(slug: string): Promise<ImageResponse> {
           <div style={{ display: "flex", flexDirection: "column", gap: "20px" }}>
             <h1
               style={{
-                color: "#f7f4ed",
+                color: "#ffffff",
                 fontSize: "58px",
                 fontWeight: 700,
                 lineHeight: 1.08,
