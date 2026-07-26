@@ -30,7 +30,10 @@ const ibmPlexSans = IBM_Plex_Sans({
 
 export const metadata: Metadata = {
   metadataBase: new URL(
-    process.env.NEXT_PUBLIC_SERVER_URL ?? "https://austerra.com.au"
+    process.env.NEXT_PUBLIC_SERVER_URL ??
+      (process.env.VERCEL_URL
+        ? `https://${process.env.VERCEL_URL}`
+        : "https://austerra.com.au")
   ),
   title: "AUSTERRA CONSULTING",
   description:
