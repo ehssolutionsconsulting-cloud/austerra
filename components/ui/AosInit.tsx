@@ -12,7 +12,6 @@ export default function AosInit() {
       easing: "ease-out-cubic",
       once: true,
       offset: 60,
-      disable: "mobile",
     });
   }, []);
 
