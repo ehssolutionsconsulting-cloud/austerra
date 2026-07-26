@@ -7,7 +7,8 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 1.5rem 0;
+    padding-top: 1.5rem;
+    padding-bottom: 1.5rem;
     border-bottom: 1px solid var(--color-rule);
   }
 
@@ -55,6 +56,18 @@
       display: flex;
       flex-direction: column;
     }
+
+    // Mobile: stack buttons above swiper, right-aligned
+    @media (max-width: #{$bp-tablet - 1px}) {
+      flex-wrap: wrap;
+      padding: 1rem 0 0;
+      gap: 0.5rem;
+
+      .swiper {
+        order: 3;
+        flex-basis: 100%;
+      }
+    }
   }
 
   // ── Navigation buttons ────────────────────────────────────────
@@ -92,6 +105,18 @@
     }
 
     @media (prefers-reduced-motion: reduce) { transition: none; }
+
+    // Mobile: place buttons top-right above the swiper
+    @media (max-width: #{$bp-tablet - 1px}) {
+      &--prev {
+        order: 1;
+        margin-left: auto;
+      }
+
+      &--next {
+        order: 2;
+      }
+    }
   }
 
   // ── Card shell ───────────────────────────────────────────────
