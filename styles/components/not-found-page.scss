@@ -1,0 +1,121 @@
+@use "../variables" as *;
+
+.not-found {
+  padding: 8rem $spacing-page-x;
+  border-bottom: 2px solid var(--color-ink);
+  min-height: 60vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+
+  &__code {
+    font-family: $font-mono;
+    font-size: 9rem;
+    font-weight: 600;
+    color: var(--color-rule);
+    line-height: 1;
+    letter-spacing: -0.04em;
+    display: block;
+    margin-bottom: 0.25rem;
+
+    @media (max-width: $bp-tablet) {
+      font-size: 6rem;
+    }
+  }
+
+  &__label {
+    font-family: $font-mono;
+    font-size: 0.72rem;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--color-ink-light);
+    display: block;
+    margin-bottom: 3rem;
+  }
+
+  &__heading {
+    font-family: $font-serif;
+    font-size: 2.4rem;
+    font-weight: 600;
+    color: var(--color-ink);
+    line-height: 1.2;
+    margin-bottom: 1rem;
+    max-width: 22ch;
+
+    em {
+      font-style: italic;
+      color: var(--color-olive);
+    }
+
+    @media (max-width: $bp-tablet) {
+      font-size: 1.8rem;
+    }
+  }
+
+  &__body {
+    font-family: $font-sans;
+    font-size: 1rem;
+    line-height: 1.85;
+    color: var(--color-ink-mid);
+    max-width: 50ch;
+    margin-bottom: 3rem;
+  }
+
+  &__actions {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  &__btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.9rem 2rem;
+    font-family: $font-mono;
+    font-size: 0.78rem;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    text-decoration: none;
+    transition: background 0.15s, color 0.15s, border-color 0.15s;
+
+    &--primary {
+      background: var(--color-ink);
+      color: var(--color-paper);
+      border: 2px solid var(--color-ink);
+
+      &:hover {
+        background: var(--color-ink-mid);
+        border-color: var(--color-ink-mid);
+      }
+    }
+
+    &--outline {
+      background: transparent;
+      color: var(--color-link);
+      border: 2px solid var(--color-link);
+
+      &:hover {
+        color: var(--color-ink);
+        border-color: var(--color-ink);
+      }
+    }
+
+    &:focus-visible {
+      outline: 3px solid var(--color-link);
+      outline-offset: 3px;
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      transition: none;
+    }
+  }
+
+  @media (max-width: $bp-mobile) {
+    padding: 5rem $spacing-mobile-x;
+    &__actions { flex-direction: column; align-items: center; }
+  }
+}

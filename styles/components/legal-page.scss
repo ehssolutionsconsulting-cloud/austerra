@@ -47,7 +47,7 @@
     padding: 0.5rem 0;
     display: block;
 
-    &:hover { color: var(--color-olive); }
+    &:hover { color: var(--color-ink); }
   }
 
   &__content {
@@ -60,6 +60,7 @@
 
   &__section {
     margin-bottom: 2.5rem;
+    scroll-margin-top: calc(#{$nav-height} + 1.5rem);
 
     &:last-child { margin-bottom: 0; }
   }

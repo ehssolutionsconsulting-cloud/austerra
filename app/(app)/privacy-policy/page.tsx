@@ -3,7 +3,7 @@ import PageHeader from "@/components/ui/PageHeader";
 import "@/styles/components/legal-page.scss";
 
 export const metadata: Metadata = {
-  title: "Privacy Policy | Austerra Group",
+  title: "Privacy Policy | AUSTERRA CONSULTING",
 };
 
 const sections = [
@@ -30,7 +30,7 @@ We also collect non-personally identifiable information automatically when you v
     title: "Disclosure of Your Information",
     body: `We do not sell, trade, or otherwise transfer your personal information to outside parties. We may share information with trusted third parties who assist us in operating our business, provided those parties agree to keep this information confidential.
 
-We may disclose your information where required by law or to protect the rights, property, or safety of Austerra Group, our clients, or others.`,
+We may disclose your information where required by law or to protect the rights, property, or safety of AUSTERRA CONSULTING, our clients, or others.`,
   },
   {
     id: "retention",
@@ -45,7 +45,7 @@ We may disclose your information where required by law or to protect the rights,
   {
     id: "contact",
     title: "Contact",
-    body: `For privacy-related enquiries, contact our Privacy Officer at privacy@austerra.com.au or by post to: Austerra Group Pty Ltd, Level 12, 123 Eagle Street, Brisbane QLD 4000.
+    body: `For privacy-related enquiries, contact our Privacy Officer at privacy@austerra.com.au or by post to: AUSTERRA CONSULTING Pty Ltd, Level 12, 123 Eagle Street, Brisbane QLD 4000.
 
 This policy was last updated May 2026.`,
   },
@@ -59,7 +59,7 @@ export default function PrivacyPolicyPage() {
       <PageHeader
         eyebrow="Legal"
         title="Privacy Policy"
-        body="Austerra Group Pty Ltd ABN 12 345 678 901 — effective May 2026."
+        body="AUSTERRA CONSULTING Pty Ltd ABN 12 345 678 901 — effective May 2026."
       />
 
       <div className="legal">

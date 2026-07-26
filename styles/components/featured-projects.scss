@@ -7,7 +7,7 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 1.5rem $spacing-page-x;
+    padding: 1.5rem 0;
     border-bottom: 1px solid var(--color-rule);
   }
 
@@ -16,13 +16,13 @@
     font-size: 0.8rem;
     letter-spacing: 0.1em;
     text-transform: uppercase;
-    color: var(--color-olive);
+    color: var(--color-link);
     text-decoration: none;
 
-    &:hover { color: var(--color-olive-light); }
+    &:hover { color: var(--color-ink); }
 
     &:focus-visible {
-      outline: 3px solid var(--color-olive);
+      outline: 3px solid var(--color-link);
       outline-offset: 3px;
     }
   }
@@ -30,12 +30,18 @@
   // ── Grid: big left, two stacked right ───────────────────────
   &__grid {
     display: grid;
-    grid-template-columns: 1.4fr 1fr;
-    grid-template-rows: 1fr 1fr;
-    min-height: 580px;
+    grid-template-columns: 1fr;
+    grid-template-rows: auto;
+    min-height: auto;
     gap: 1px;
     background: var(--color-rule);
     list-style: none;
+
+    @media (min-width: $bp-tablet) {
+      grid-template-columns: 1.4fr 1fr;
+      grid-template-rows: 1fr 1fr;
+      min-height: 580px;
+    }
   }
 
   // ── Base card ────────────────────────────────────────────────
@@ -49,7 +55,13 @@
   // ── Featured card — full-bleed image, text overlaid ─────────
   &__card--featured {
     position: relative;
-    grid-row: span 2;
+    grid-row: auto;
+    min-height: 420px;
+
+    @media (min-width: $bp-tablet) {
+      grid-row: span 2;
+      min-height: auto;
+    }
 
     // Stretch image to fill entire card
     .featured-projects__card-image {
@@ -85,14 +97,17 @@
     }
 
     .featured-projects__card-title {
-      font-size: 2rem;
+      font-size: 1.7rem;
       color: var(--color-paper);
       margin-bottom: 1rem;
+
+      @media (min-width: $bp-tablet) { font-size: 2rem; }
     }
 
     .featured-projects__card-link {
       color: var(--color-paper);
       &:hover { color: rgba(255, 255, 255, 0.75); }
+      &:focus-visible { outline-color: var(--color-paper); }
     }
 
     .featured-projects__card-id,
@@ -115,10 +130,12 @@
   // ── Image block (regular cards) ──────────────────────────────
   &__card-image {
     position: relative;
-    height: 160px;
+    height: 180px;
     flex-shrink: 0;
     overflow: hidden;
     background: var(--color-paper-dark);
+
+    @media (min-width: $bp-tablet) { height: 160px; }
   }
 
   &__card-img {
@@ -131,8 +148,10 @@
     display: flex;
     flex-direction: column;
     flex: 1;
-    padding: 1.5rem $spacing-page-x;
+    padding: 1.5rem $spacing-mobile-x;
     border-top: 1px solid var(--color-rule);
+
+    @media (min-width: $bp-tablet) { padding: 1.5rem $spacing-page-x; }
   }
 
   &__card-meta {
@@ -173,10 +192,10 @@
     color: inherit;
     text-decoration: none;
 
-    &:hover { color: var(--color-olive); }
+    &:hover { color: var(--color-link); }
 
     &:focus-visible {
-      outline: 3px solid var(--color-olive);
+      outline: 3px solid var(--color-link);
       outline-offset: 3px;
     }
   }
@@ -222,25 +241,5 @@
     color: var(--color-ink-light);
   }
 
-  // ── Responsive ───────────────────────────────────────────────
-  @media (max-width: $bp-tablet) {
-    &__grid {
-      grid-template-columns: 1fr;
-      grid-template-rows: auto;
-      min-height: auto;
-    }
-
-    &__card--featured {
-      grid-row: auto;
-      min-height: 420px;
-
-      .featured-projects__card-title {
-        font-size: 1.7rem;
-      }
-    }
-
-    &__card-image {
-      height: 180px;
-    }
-  }
 }
+

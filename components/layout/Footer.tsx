@@ -4,10 +4,10 @@ import "@/styles/components/footer.scss";
 export default function Footer() {
   return (
     <footer className="footer">
-      <div className="footer__inner">
+      <div className="footer__inner container">
         <div className="footer__brand">
-          <span className="footer__brand-name">AUSTERRA GROUP</span>
-          <span className="footer__brand-tagline">Environmental · Geotechnical · OccHyg</span>
+          <span className="footer__brand-name">AUSTERRA CONSULTING</span>
+          <span className="footer__brand-tagline">Environmental · Geotechnical · Occupational Hygiene</span>
         </div>
 
         <div className="footer__meta">
@@ -24,7 +24,7 @@ export default function Footer() {
             </li>
           </ul>
           <p className="footer__copyright">
-            © {new Date().getFullYear()} Austerra Group Pty Ltd. All rights reserved.
+            © {new Date().getFullYear()} AUSTERRA CONSULTING Pty Ltd. All rights reserved.
           </p>
         </div>
       </div>

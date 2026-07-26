@@ -1,31 +1,31 @@
 // Design tokens — CSS custom properties (runtime) + SCSS variables (build-time)
 
-// Colors — palette: #E3F8FF ice · #003478 navy · #99B2DD steel · black · white
-$color-ink:         #003478;  // navy — dark sections, headings
-$color-ink-mid:     #000000;  // black — body text
-$color-ink-light:   #003478;  // navy — secondary labels (11.3:1 on ice bg, WCAG AA ✓)
-$color-paper:       #E3F8FF;  // ice blue — page background
-$color-paper-dark:  #ffffff;  // white — card / elevated panel background
-$color-rule:        #99B2DD;  // steel blue — 1px decorative borders
-$color-red:         #99B2DD;  // steel blue — discipline 01 accent border
-$color-olive:       #003478;  // navy — CTA buttons, links, focus ring
-$color-olive-light: #000000;  // black — hover state (darker on hover)
-$color-pencil:      #99B2DD;  // steel blue — text / logo on dark navy bg (5.9:1 ✓)
-$color-stone:       #000000;  // black — discipline 03 accent border
+// Colors — palette: #003478 navy · #E3F8FF ice · #87ceeb sky · #99B2DD steel
+$color-ink: #111d5e; // blue — navbar bg, dark sections, headings
+$color-ink-mid: #000000; // black — body text
+$color-ink-light: #003478; // navy — secondary labels (11.3:1 on ice bg, WCAG AA ✓)
+$color-paper: #e3f8ff; // ice blue — page background
+$color-paper-dark: #ffffff; // white — card / elevated panel background
+$color-rule: #99b2dd; // steel blue — 1px decorative borders
+$color-red: #99b2dd; // steel blue — discipline 01 accent border
+$color-olive: #87ceeb; // sky blue — primary accent: CTA buttons, links, focus ring
+$color-olive-light: #5bb8e6; // sky blue deeper — hover state
+$color-pencil: #99b2dd; // steel blue — text / logo on dark navy bg
+$color-stone: #000000; // black — discipline 03 accent border
 
 // Typography — reference CSS custom properties so Next.js self-hosted fonts are used
 $font-serif: var(--font-serif-stack);
-$font-mono:  var(--font-mono-stack);
-$font-sans:  var(--font-sans-stack);
+$font-mono: var(--font-mono-stack);
+$font-sans: var(--font-sans-stack);
 
 // Spacing
-$spacing-mobile-x:  1.25rem;  // side padding on small screens
-$spacing-page-x:    2.5rem;
+$spacing-mobile-x: 1.25rem; // side padding on small screens
+$spacing-page-x: 2.5rem;
 $spacing-section-y: 3rem;
-$spacing-card:      2rem;
-$nav-height:        56px;
+$spacing-card: 2rem;
+$nav-height: 56px;
 
 // Breakpoints
-$bp-mobile:  480px;
-$bp-tablet:  768px;
+$bp-mobile: 480px;
+$bp-tablet: 768px;
 $bp-desktop: 1024px;

@@ -9,8 +9,8 @@
   border: 1px solid currentColor;
   display: inline-block;
 
-  &--environmental { color: var(--color-red); }
-  &--hygiene       { color: var(--color-olive); }
+  &--environmental { color: var(--color-link); }
+  &--hygiene       { color: var(--color-link); }
   &--geotechnical  { color: var(--color-stone); }
   &--general       { color: var(--color-ink-light); }
 }

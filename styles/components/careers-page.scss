@@ -30,7 +30,7 @@
   &__card {
     background: var(--color-paper-dark);
     padding: $spacing-card;
-    border-top: 2px solid var(--color-olive);
+    border-top: 2px solid var(--color-link);
     list-style: none;
   }
 
@@ -39,7 +39,7 @@
     font-size: 0.82rem;
     letter-spacing: 0.15em;
     text-transform: uppercase;
-    color: var(--color-olive);
+    color: var(--color-link);
     margin-bottom: 0.8rem;
     display: block;
   }

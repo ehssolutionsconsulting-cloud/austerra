@@ -1,4 +1,4 @@
-@use '../variables' as *;
+@use "../variables" as *;
 
 .hero {
   border-bottom: 2px solid var(--color-ink);
@@ -49,9 +49,9 @@
   }
 
   &__eyebrow-line {
-    width: 32px;
+    width: 20px;
     height: 2px;
-    background: var(--color-olive);
+    background: var(--color-link);
     flex-shrink: 0;
   }
 
@@ -60,7 +60,7 @@
     font-size: 0.88rem;
     letter-spacing: 0.18em;
     text-transform: uppercase;
-    color: var(--color-olive);
+    color: var(--color-link);
     font-weight: 500;
 
     @media (min-width: $bp-tablet) {
@@ -88,7 +88,7 @@
 
     em {
       font-style: italic;
-      color: var(--color-olive);
+      color: var(--color-link);
     }
   }
 
@@ -172,7 +172,7 @@
     inset: 0;
 
     &::after {
-      content: '';
+      content: "";
       position: absolute;
       inset: 0;
       background: linear-gradient(

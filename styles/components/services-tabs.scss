@@ -1,0 +1,158 @@
+@use "../variables" as *;
+
+.services-tabs {
+  border-bottom: 2px solid var(--color-ink);
+
+  // ── Tab bar ──────────────────────────────────────────────────
+  &__bar {
+    display: flex;
+    background: var(--color-ink);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    overflow-x: auto;
+    scrollbar-width: none;
+    &::-webkit-scrollbar { display: none; }
+  }
+
+  &__tab {
+    padding: 1.1rem 1.8rem;
+    background: none;
+    border: none;
+    border-bottom: 3px solid transparent;
+    cursor: pointer;
+    font-family: $font-mono;
+    font-size: 0.82rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: rgba(255, 255, 255, 0.45);
+    white-space: nowrap;
+    transition: color 0.15s ease, border-color 0.15s ease;
+
+    &:hover { color: var(--color-paper); }
+
+    &--active {
+      color: var(--color-paper);
+      border-bottom-color: var(--color-olive);
+    }
+
+    &:focus-visible {
+      outline: 3px solid var(--color-olive);
+      outline-offset: -3px;
+    }
+
+    @media (prefers-reduced-motion: reduce) { transition: none; }
+  }
+
+  // ── Panel ────────────────────────────────────────────────────
+  &__panel {
+    background: var(--color-paper);
+  }
+
+  &__empty {
+    font-family: $font-sans;
+    font-size: 1rem;
+    color: var(--color-ink-mid);
+    text-align: center;
+    padding: 4rem $spacing-page-x;
+  }
+
+  // ── Bento card grid ──────────────────────────────────────────
+  &__cards-grid {
+    list-style: none;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2px;
+    background: var(--color-rule);
+
+    // 1 item (filtered discipline view) → full width
+    > li:only-child {
+      grid-column: 1 / -1;
+    }
+
+    // 3 items bento: item 1 = 2-col hero, item 3 = full-width landscape
+    > li:nth-child(1):nth-last-child(3) { grid-column: span 2; }
+    > li:nth-child(3):nth-last-child(1) { grid-column: 1 / -1; }
+
+    // Tablet: hero full-width, cards 2 & 3 share the two columns
+    @media (max-width: $bp-desktop) {
+      grid-template-columns: repeat(2, 1fr);
+
+      > li:nth-child(1):nth-last-child(3) { grid-column: 1 / -1; }
+      > li:nth-child(3):nth-last-child(1) { grid-column: auto; }
+    }
+
+    @media (max-width: $bp-mobile) {
+      grid-template-columns: 1fr;
+      > li { grid-column: auto; }
+    }
+  }
+
+  &__card-item {
+    display: flex;
+    flex-direction: column;
+
+    .service-cards__card {
+      flex: 1;
+      height: auto;
+    }
+
+    // Uniform image height across all cards in this context
+    .service-cards__card-image {
+      height: 300px;
+    }
+  }
+
+  // Hero card (1st of 3) — larger title only, image uses uniform 300px
+  &__card-item:nth-child(1):nth-last-child(3) {
+    .service-cards__card-title { font-size: 2.2rem; }
+
+    @media (max-width: $bp-desktop) {
+      .service-cards__card-title { font-size: 1.75rem; }
+    }
+  }
+
+  // Landscape card (3rd of 3) — CSS grid: image left, content + link stacked right
+  &__card-item:nth-child(3):nth-last-child(1) {
+    .service-cards__card {
+      display: grid;
+      grid-template-columns: 42% 1fr;
+      grid-template-rows: 1fr auto;
+      min-height: 300px;
+    }
+    .service-cards__card-image {
+      grid-column: 1;
+      grid-row: 1 / span 2;
+      height: 100%; // overrides the 300px general rule — fills full card height
+      width: 100%;
+    }
+    .service-cards__card-content {
+      grid-column: 2;
+      grid-row: 1;
+    }
+    .service-cards__card-link {
+      grid-column: 2;
+      grid-row: 2;
+      align-self: end;
+    }
+
+    // Revert to standard vertical card on tablet and below
+    @media (max-width: $bp-desktop) {
+      .service-cards__card {
+        display: flex;
+        flex-direction: column;
+        min-height: unset;
+      }
+      .service-cards__card-image {
+        height: 300px; // explicit reset — overrides desktop height: 100%
+        width: 100%;
+      }
+      .service-cards__card-link {
+        align-self: auto; // reset from grid's align-self: end — was right-aligning in flex
+      }
+    }
+  }
+
+  // ── Mobile ───────────────────────────────────────────────────
+  @media (max-width: $bp-mobile) {
+    &__tab { padding: 0.9rem 1.2rem; font-size: 0.75rem; }
+  }
+}

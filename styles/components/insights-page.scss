@@ -232,12 +232,12 @@
         left: 0;
         right: 0;
         height: 2px;
-        background: var(--color-olive);
+        background: var(--color-link);
       }
     }
 
     &:focus-visible {
-      outline: 3px solid var(--color-olive);
+      outline: 3px solid var(--color-link);
       outline-offset: -3px;
     }
   }
@@ -335,7 +335,7 @@
     font-size: 0.72rem;
     letter-spacing: 0.15em;
     text-transform: uppercase;
-    color: var(--color-olive);
+    color: var(--color-link);
     display: block;
     margin-bottom: 0.8rem;
   }
@@ -358,7 +358,7 @@
       }
 
       &:focus-visible {
-        outline: 3px solid var(--color-olive);
+        outline: 3px solid var(--color-link);
         outline-offset: 3px;
       }
     }
@@ -399,7 +399,7 @@
     font-size: 0.75rem;
     letter-spacing: 0.1em;
     text-transform: uppercase;
-    color: var(--color-olive);
+    color: var(--color-link);
     text-decoration: none;
 
     &:hover {
@@ -407,7 +407,7 @@
     }
 
     &:focus-visible {
-      outline: 3px solid var(--color-olive);
+      outline: 3px solid var(--color-link);
       outline-offset: 3px;
     }
   }
@@ -495,6 +495,8 @@
 
     a {
       color: var(--color-paper);
+
+      &:focus-visible { outline-color: var(--color-olive); }
     }
   }
 
@@ -512,6 +514,8 @@
 
   .insight-card__link {
     color: var(--color-pencil);
+
+    &:focus-visible { outline-color: var(--color-olive); }
   }
 }
 
@@ -529,7 +533,7 @@
     font-size: 0.8rem;
     letter-spacing: 0.1em;
     text-transform: uppercase;
-    color: var(--color-olive);
+    color: var(--color-link);
     text-decoration: none;
 
     &:hover {
@@ -537,7 +541,7 @@
     }
 
     &:focus-visible {
-      outline: 3px solid var(--color-olive);
+      outline: 3px solid var(--color-link);
       outline-offset: 3px;
     }
   }
@@ -718,17 +722,17 @@
     font-size: 0.8rem;
     letter-spacing: 0.12em;
     text-transform: uppercase;
-    color: var(--color-olive);
+    color: var(--color-link);
     text-decoration: none;
-    border-bottom: 1px solid var(--color-olive);
+    border-bottom: 1px solid var(--color-link);
 
     &:hover {
-      color: var(--color-olive-light);
-      border-bottom-color: var(--color-olive-light);
+      color: var(--color-ink);
+      border-bottom-color: var(--color-ink);
     }
 
     &:focus-visible {
-      outline: 3px solid var(--color-olive);
+      outline: 3px solid var(--color-link);
       outline-offset: 3px;
     }
   }

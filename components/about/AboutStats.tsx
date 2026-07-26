@@ -12,15 +12,9 @@ interface Stat {
 
 const stats: Stat[] = [
   {
-    target: 200,
+    target: 10,
     suffix: "+",
-    label: "Projects Delivered",
-    sub: "Across environmental, OccHyg, and geotechnical disciplines",
-  },
-  {
-    target: 15,
-    suffix: "+",
-    label: "Years Field Experience",
+    label: "Years  Experience",
     sub: "Combined principal-level expertise across the firm",
   },
   {
@@ -28,12 +22,6 @@ const stats: Stat[] = [
     suffix: "",
     label: "Core Disciplines",
     sub: "Integrated under a single quality management system",
-  },
-  {
-    target: 2,
-    suffix: "",
-    label: "Office Locations",
-    sub: "Brisbane QLD and Perth WA",
   },
 ];
 
@@ -66,7 +54,7 @@ function CountUp({ target, suffix }: { target: number; suffix: string }) {
 
         requestAnimationFrame(tick);
       },
-      { threshold: 0.15 }
+      { threshold: 0.15 },
     );
 
     observer.observe(el);
@@ -82,16 +70,23 @@ function CountUp({ target, suffix }: { target: number; suffix: string }) {
 
 export default function AboutStats() {
   return (
-    <section className="about-stats" aria-label="Austerra Group by the numbers">
-      {stats.map((stat) => (
-        <div key={stat.label} className="about-stats__item">
-          <p className="about-stats__number">
-            <CountUp target={stat.target} suffix={stat.suffix} />
-          </p>
-          <p className="about-stats__label">{stat.label}</p>
-          <p className="about-stats__sub">{stat.sub}</p>
-        </div>
-      ))}
+    <section
+      className="about-stats"
+      aria-label="AUSTERRA CONSULTING by the numbers"
+    >
+      <div className="container">
+      <div className="about-stats__grid">
+        {stats.map((stat) => (
+          <div key={stat.label} className="about-stats__item">
+            <p className="about-stats__number">
+              <CountUp target={stat.target} suffix={stat.suffix} />
+            </p>
+            <p className="about-stats__label">{stat.label}</p>
+            <p className="about-stats__sub">{stat.sub}</p>
+          </div>
+        ))}
+      </div>
+      </div>
     </section>
   );
 }

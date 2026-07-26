@@ -24,7 +24,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const project = await getProjectBySlug(slug);
   if (!project) return {};
   return {
-    title: `${project.title} | Austerra Group`,
+    title: `${project.title} | AUSTERRA CONSULTING`,
     description: project.shortDescription,
     openGraph: {
       title: project.title,

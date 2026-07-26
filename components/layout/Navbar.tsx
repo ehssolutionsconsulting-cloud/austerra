@@ -6,10 +6,10 @@ import "@/styles/components/navbar.scss";
 export default function Navbar() {
   return (
     <nav className="navbar" aria-label="Main navigation">
-      <Link className="navbar__brand" href="/" aria-label="Austerra Group — home">
-        <span className="navbar__logo">AUSTERRA GROUP</span>
+      <Link className="navbar__brand" href="/" aria-label="AUSTERRA CONSULTING — home">
+        <span className="navbar__logo">AUSTERRA CONSULTING</span>
         <span className="navbar__tagline" aria-hidden="true">
-          Environmental · Geotechnical · OccHyg
+          Environmental · Geotechnical · Occupational Hygiene
         </span>
       </Link>
 

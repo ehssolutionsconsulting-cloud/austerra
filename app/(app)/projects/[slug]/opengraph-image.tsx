@@ -12,7 +12,7 @@ interface Props {
 export async function generateImageMetadata({ params }: Props) {
   const { slug } = await params
   const project = await getProjectBySlug(slug)
-  return [{ alt: project ? `${project.title} — Austerra Group` : 'Austerra Group Project', id: 1 }]
+  return [{ alt: project ? `${project.title} — AUSTERRA CONSULTING` : 'AUSTERRA CONSULTING Project', id: 1 }]
 }
 
 export default async function Image({ params }: Props) {

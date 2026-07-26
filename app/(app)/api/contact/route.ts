@@ -47,7 +47,7 @@ export async function POST(request: NextRequest) {
   const resend = new Resend(process.env.RESEND_API_KEY);
 
   const { error } = await resend.emails.send({
-    from: "Austerra Group Website <noreply@austerra.com.au>",
+    from: "AUSTERRA CONSULTING Website <noreply@austerra.com.au>",
     to: "info@austerra.com.au",
     replyTo: email,
     subject: `Website Enquiry — ${enquiryType} from ${firstName} ${lastName}`,

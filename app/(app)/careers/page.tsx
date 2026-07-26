@@ -9,9 +9,9 @@ import "@/styles/components/careers-page.scss";
 export const revalidate = 3600;
 
 export const metadata: Metadata = {
-  title: "Careers | Austerra Group",
+  title: "Careers | AUSTERRA CONSULTING",
   description:
-    "Join Austerra Group — a specialist Australian environmental and engineering consultancy. Current opportunities for scientists, hygienists, and geotechnical engineers.",
+    "Join AUSTERRA CONSULTING — a specialist Australian environmental and engineering consultancy. Current opportunities for scientists, hygienists, and geotechnical engineers.",
 };
 
 const whyJoin = [

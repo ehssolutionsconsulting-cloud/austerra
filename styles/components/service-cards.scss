@@ -7,8 +7,14 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 1.5rem $spacing-page-x;
+    padding: 1.5rem 0;
     border-bottom: 1px solid var(--color-rule);
+  }
+
+  &__header-actions {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
   }
 
   &__all-link {
@@ -16,25 +22,76 @@
     font-size: 0.8rem;
     letter-spacing: 0.1em;
     text-transform: uppercase;
-    color: var(--color-olive);
+    color: var(--color-link);
     text-decoration: none;
 
-    &:hover { color: var(--color-olive-light); }
+    &:hover { color: var(--color-ink); }
 
     &:focus-visible {
-      outline: 3px solid var(--color-olive);
+      outline: 3px solid var(--color-link);
       outline-offset: 3px;
     }
   }
 
-  &__grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 1px;
-    background: var(--color-rule);
-    list-style: none;
+  // ── Slider wrapper (flex row: btn · swiper · btn) ────────────
+  &__slider-wrap {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 1.5rem 1.25rem;
+    background: var(--color-paper-dark);
 
-    &--two-col { grid-template-columns: repeat(2, 1fr); }
+    .swiper {
+      flex: 1;
+      min-width: 0;
+      background: var(--color-rule);
+    }
+
+    .swiper-wrapper { align-items: stretch; }
+
+    .swiper-slide {
+      background: var(--color-ink);
+      height: auto !important;
+      display: flex;
+      flex-direction: column;
+    }
+  }
+
+  // ── Navigation buttons ────────────────────────────────────────
+  &__nav-btn {
+    flex-shrink: 0;
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    background: var(--color-ink);
+    color: var(--color-paper);
+    border: none;
+    font-family: $font-mono;
+    font-size: 1.1rem;
+    line-height: 1;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background 0.15s ease, color 0.15s ease;
+
+    &:hover {
+      background: var(--color-olive);
+      color: var(--color-ink);
+    }
+
+    &:focus-visible {
+      outline: 3px solid var(--color-link);
+      outline-offset: 3px;
+    }
+
+    &--disabled {
+      opacity: 0.3;
+      cursor: not-allowed;
+      pointer-events: none;
+    }
+
+    @media (prefers-reduced-motion: reduce) { transition: none; }
   }
 
   // ── Card shell ───────────────────────────────────────────────
@@ -42,6 +99,7 @@
     background: var(--color-ink);
     display: flex;
     flex-direction: column;
+    flex: 1;
 
     // Image zoom on card hover — upgraded to spring cubic
     &:hover .service-cards__card-img {
@@ -126,7 +184,10 @@
     line-height: 1.82;
     color: #c8c4ba;
     margin-bottom: 1.5rem;
-    flex: 1;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
   }
 
   &__card-services {
@@ -156,20 +217,23 @@
     }
   }
 
-  // ── Full-width CTA strip ─────────────────────────────────────
+  // ── CTA button ───────────────────────────────────────────────
   &__card-link {
     display: flex;
     align-items: center;
-    justify-content: space-between;
-    padding: 1.1rem $spacing-card;
-    border-top: 1px solid rgba(255, 255, 255, 0.08);
+    justify-content: center;
+    gap: 0.5rem;
+    margin: 0 $spacing-card $spacing-card;
+    padding: 0.85rem 1.5rem;
+    border: 2px solid var(--color-olive);
+    background: transparent;
     font-family: $font-mono;
     font-size: 0.78rem;
     letter-spacing: 0.14em;
     text-transform: uppercase;
-    color: var(--color-olive-light);
+    color: var(--color-olive);
     text-decoration: none;
-    transition: background 0.18s ease, color 0.18s ease;
+    transition: background 0.18s ease, color 0.18s ease, border-color 0.18s ease;
 
     &::after {
       content: '→';
@@ -181,21 +245,35 @@
     }
 
     &:hover {
-      background: rgba(255, 255, 255, 0.05);
-      color: var(--color-paper);
+      background: var(--color-olive);
+      color: var(--color-ink);
+      border-color: var(--color-olive);
+
+      &::after { transform: translateX(4px); }
     }
 
     &:focus-visible {
       outline: 3px solid var(--color-olive);
-      outline-offset: -3px;
+      outline-offset: 3px;
     }
 
     @media (prefers-reduced-motion: reduce) { transition: none; }
   }
 
-  // ── Responsive ───────────────────────────────────────────────
-  @media (max-width: $bp-tablet) {
-    &__grid { grid-template-columns: 1fr; }
-    &__card-image { height: 240px; }
+  // ── Grid (non-slider context) ────────────────────────────────
+  &__grid {
+    list-style: none;
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 2px;
+    background: var(--color-rule);
+
+    &--two-col {
+      @media (min-width: $bp-tablet) {
+        grid-template-columns: 1fr 1fr;
+      }
+    }
   }
+
 }
+

@@ -3,7 +3,7 @@ import PageHeader from "@/components/ui/PageHeader";
 import "@/styles/components/legal-page.scss";
 
 export const metadata: Metadata = {
-  title: "Terms of Use | Austerra Group",
+  title: "Terms of Use | AUSTERRA CONSULTING",
 };
 
 const sections = [
@@ -15,7 +15,7 @@ const sections = [
   {
     id: "use",
     title: "Permitted Use",
-    body: `This website is provided for informational purposes about Austerra Group's services. You may access and view content for personal, non-commercial purposes. You must not:
+    body: `This website is provided for informational purposes about AUSTERRA CONSULTING's services. You may access and view content for personal, non-commercial purposes. You must not:
 
 - Reproduce, copy, or redistribute our content without written permission
 - Use the website in any way that could damage, disable, or impair its operation
@@ -25,19 +25,19 @@ const sections = [
   {
     id: "ip",
     title: "Intellectual Property",
-    body: `All content on this website — including text, reports, graphics, and design — is the property of Austerra Group Pty Ltd and is protected by Australian and international copyright laws. Our reports, methodologies, and technical content are the proprietary work product of our firm.`,
+    body: `All content on this website — including text, reports, graphics, and design — is the property of AUSTERRA CONSULTING Pty Ltd and is protected by Australian and international copyright laws. Our reports, methodologies, and technical content are the proprietary work product of our firm.`,
   },
   {
     id: "disclaimer",
     title: "Disclaimer",
-    body: `The information on this website is provided for general informational purposes only. It does not constitute professional advice and should not be relied upon as such. Austerra Group makes no representations or warranties regarding the accuracy or completeness of information on this website.
+    body: `The information on this website is provided for general informational purposes only. It does not constitute professional advice and should not be relied upon as such. AUSTERRA CONSULTING makes no representations or warranties regarding the accuracy or completeness of information on this website.
 
 Project-specific advice should be sought directly from our qualified professionals.`,
   },
   {
     id: "liability",
     title: "Limitation of Liability",
-    body: `To the maximum extent permitted by law, Austerra Group is not liable for any direct, indirect, incidental, or consequential damages arising from your use of this website or reliance on information it contains.`,
+    body: `To the maximum extent permitted by law, AUSTERRA CONSULTING is not liable for any direct, indirect, incidental, or consequential damages arising from your use of this website or reliance on information it contains.`,
   },
   {
     id: "governing",
@@ -56,7 +56,7 @@ export default function TermsOfUsePage() {
       <PageHeader
         eyebrow="Legal"
         title="Terms of Use"
-        body="Austerra Group Pty Ltd ABN 12 345 678 901 — effective May 2026."
+        body="AUSTERRA CONSULTING Pty Ltd ABN 12 345 678 901 — effective May 2026."
       />
 
       <div className="legal">

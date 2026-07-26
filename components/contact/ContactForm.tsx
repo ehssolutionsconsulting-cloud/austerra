@@ -1,7 +1,6 @@
 "use client";
 
 import { useState } from "react";
-import SectionLabel from "@/components/ui/SectionLabel";
 import "@/styles/components/contact-page.scss";
 
 interface FormState {
@@ -32,9 +31,7 @@ const enquiryTypes = [
 
 export default function ContactForm() {
   const [form, setForm] = useState<FormState>(initialState);
-  const [status, setStatus] = useState<
-    "idle" | "submitting" | "success" | "error"
-  >("idle");
+  const [status, setStatus] = useState<"idle" | "submitting" | "success" | "error">("idle");
   const [errors, setErrors] = useState<Partial<FormState>>({});
 
   function validate(): boolean {
@@ -69,9 +66,7 @@ export default function ContactForm() {
   }
 
   function handleChange(
-    e: React.ChangeEvent<
-      HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement
-    >,
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
   ) {
     const { name, value } = e.target;
     setForm((prev) => ({ ...prev, [name]: value }));
@@ -84,8 +79,13 @@ export default function ContactForm() {
     return (
       <div className="contact-form">
         <div className="contact-form__success" role="alert">
-          Enquiry received — a principal will be in touch within one business
-          day.
+          <span className="contact-form__success-marker">{"// Received"}</span>
+          <h2 className="contact-form__success-heading">
+            Thank you for your enquiry.
+          </h2>
+          <p className="contact-form__success-body">
+            A principal will be in touch within one business day.
+          </p>
         </div>
       </div>
     );
@@ -93,10 +93,6 @@ export default function ContactForm() {
 
   return (
     <div className="contact-form">
-      <div className="contact-form__label">
-        <SectionLabel accent>Send an Enquiry</SectionLabel>
-      </div>
-
       <form
         className="contact-form__form"
         onSubmit={handleSubmit}
@@ -115,18 +111,12 @@ export default function ContactForm() {
               type="text"
               autoComplete="given-name"
               aria-required="true"
-              aria-describedby={
-                errors.firstName ? "firstName-error" : undefined
-              }
+              aria-describedby={errors.firstName ? "firstName-error" : undefined}
               value={form.firstName}
               onChange={handleChange}
             />
             {errors.firstName && (
-              <span
-                className="contact-form__error-msg"
-                id="firstName-error"
-                role="alert"
-              >
+              <span className="contact-form__error-msg" id="firstName-error" role="alert">
                 {errors.firstName}
               </span>
             )}
@@ -148,11 +138,7 @@ export default function ContactForm() {
               onChange={handleChange}
             />
             {errors.lastName && (
-              <span
-                className="contact-form__error-msg"
-                id="lastName-error"
-                role="alert"
-              >
+              <span className="contact-form__error-msg" id="lastName-error" role="alert">
                 {errors.lastName}
               </span>
             )}
@@ -176,11 +162,7 @@ export default function ContactForm() {
               onChange={handleChange}
             />
             {errors.email && (
-              <span
-                className="contact-form__error-msg"
-                id="email-error"
-                role="alert"
-              >
+              <span className="contact-form__error-msg" id="email-error" role="alert">
                 {errors.email}
               </span>
             )}
@@ -202,38 +184,37 @@ export default function ContactForm() {
           </div>
         </div>
 
-        <div className="contact-form__field">
-          <label className="contact-form__field-label" htmlFor="enquiryType">
+        <fieldset
+          className="contact-form__fieldset"
+          aria-required="true"
+          aria-describedby={errors.enquiryType ? "enquiryType-error" : undefined}
+        >
+          <legend className="contact-form__field-label">
             Enquiry Type <span aria-label="required">*</span>
-          </label>
-          <select
-            className="contact-form__select"
-            id="enquiryType"
-            name="enquiryType"
-            aria-required="true"
-            aria-describedby={
-              errors.enquiryType ? "enquiryType-error" : undefined
-            }
-            value={form.enquiryType}
-            onChange={handleChange}
-          >
-            <option value="">Select a discipline</option>
-            {enquiryTypes.map((t) => (
-              <option key={t} value={t}>
-                {t}
-              </option>
+          </legend>
+          <div className="contact-form__chips">
+            {enquiryTypes.map((type) => (
+              <label
+                key={type}
+                className={`contact-form__chip${form.enquiryType === type ? " contact-form__chip--selected" : ""}`}
+              >
+                <input
+                  type="radio"
+                  name="enquiryType"
+                  value={type}
+                  checked={form.enquiryType === type}
+                  onChange={handleChange}
+                />
+                {type}
+              </label>
             ))}
-          </select>
+          </div>
           {errors.enquiryType && (
-            <span
-              className="contact-form__error-msg"
-              id="enquiryType-error"
-              role="alert"
-            >
+            <span className="contact-form__error-msg" id="enquiryType-error" role="alert">
               {errors.enquiryType}
             </span>
           )}
-        </div>
+        </fieldset>
 
         <div className="contact-form__field">
           <label className="contact-form__field-label" htmlFor="message">
@@ -250,20 +231,16 @@ export default function ContactForm() {
             onChange={handleChange}
           />
           {errors.message && (
-            <span
-              className="contact-form__error-msg"
-              id="message-error"
-              role="alert"
-            >
+            <span className="contact-form__error-msg" id="message-error" role="alert">
               {errors.message}
             </span>
           )}
         </div>
 
         {status === "error" && (
-          <div role="alert" className="contact-form__error-msg">
+          <p role="alert" className="contact-form__submit-error">
             Something went wrong. Please try again or email us directly.
-          </div>
+          </p>
         )}
 
         <button

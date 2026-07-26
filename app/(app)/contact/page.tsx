@@ -5,16 +5,16 @@ import ContactForm from "@/components/contact/ContactForm";
 import "@/styles/components/contact-page.scss";
 
 export const metadata: Metadata = {
-  title: "Contact | Austerra Group",
+  title: "Contact | AUSTERRA CONSULTING",
   description:
-    "Get in touch with Austerra Group. Offices in Brisbane and Perth. Enquiries responded to within one business day.",
+    "Get in touch with AUSTERRA CONSULTING. Offices in Brisbane and Perth. Enquiries responded to within one business day.",
 };
 
 export default function ContactPage() {
   return (
     <>
       <PageHeader
-        eyebrow="Contact Austerra Group"
+        eyebrow="Contact AUSTERRA CONSULTING"
         title={<>Let&apos;s talk about <em>your project.</em></>}
         body="We respond to all project enquiries within one business day. Your enquiry goes directly to a principal — not a sales team."
       />

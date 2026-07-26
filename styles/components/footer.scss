@@ -6,39 +6,63 @@
   &__inner {
     display: flex;
     flex-direction: column;
-    gap: 0.8rem;
-    padding: 1.25rem $spacing-mobile-x;
+    gap: 0;
+    padding-top: 2.5rem;
+    padding-bottom: 2.5rem;
     border-top: 1px solid rgba(255, 255, 255, 0.15);
 
     @media (min-width: $bp-tablet) {
       flex-direction: row;
       justify-content: space-between;
       align-items: center;
-      gap: 0;
-      padding: 1.4rem $spacing-page-x;
+      padding-top: 2rem;
+      padding-bottom: 2rem;
+    }
+  }
+
+  // ── Brand block ──────────────────────────────────────────────
+  &__brand {
+    padding-bottom: 1.5rem;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    margin-bottom: 1.5rem;
+
+    @media (min-width: $bp-tablet) {
+      padding-bottom: 0;
+      border-bottom: none;
+      margin-bottom: 0;
     }
   }
 
   &__brand-name {
     font-family: $font-mono;
-    font-size: 1.15rem;
+    font-size: 1.1rem;
     font-weight: 600;
     color: #ffffff;
     letter-spacing: 0.05em;
     display: block;
+    margin-bottom: 0.3rem;
+
+    @media (min-width: $bp-tablet) {
+      font-size: 1.15rem;
+    }
   }
 
   &__brand-tagline {
     font-family: $font-mono;
-    font-size: 0.82rem;
+    font-size: 0.75rem;
     font-weight: 400;
     color: var(--color-pencil);
-    letter-spacing: 0.12em;
+    letter-spacing: 0.1em;
     text-transform: uppercase;
     display: block;
-    margin-top: 4px;
+
+    @media (min-width: $bp-tablet) {
+      font-size: 0.82rem;
+      letter-spacing: 0.12em;
+    }
   }
 
+  // ── Meta block (links + copyright) ───────────────────────────
   &__meta {
     text-align: left;
 
@@ -49,35 +73,48 @@
 
   &__legal-links {
     display: flex;
-    gap: 1.5rem;
+    gap: 1.25rem;
+    flex-wrap: wrap;
     justify-content: flex-start;
     list-style: none;
-    margin-bottom: 0.5rem;
+    margin-bottom: 0.6rem;
 
     @media (min-width: $bp-tablet) {
+      gap: 1.5rem;
       justify-content: flex-end;
     }
   }
 
   &__legal-link {
     font-family: $font-mono;
-    font-size: 0.85rem;
+    font-size: 0.82rem;
     font-weight: 500;
-    color: rgba(255, 255, 255, 0.75);
+    color: rgba(255, 255, 255, 0.7);
     text-decoration: none;
     letter-spacing: 0.1em;
     text-transform: uppercase;
+    transition: color 0.15s ease;
 
-    &:hover {
-      color: #ffffff;
+    &:hover { color: #ffffff; }
+
+    &:focus-visible {
+      outline: 3px solid var(--color-pencil);
+      outline-offset: 3px;
     }
+
+    @media (prefers-reduced-motion: reduce) { transition: none; }
   }
 
   &__copyright {
     font-family: $font-mono;
-    font-size: 0.8rem;
+    font-size: 0.75rem;
     font-weight: 400;
-    color: rgba(255, 255, 255, 0.6);
-    letter-spacing: 0.08em;
+    color: rgba(255, 255, 255, 0.4);
+    letter-spacing: 0.06em;
+    line-height: 1.5;
+
+    @media (min-width: $bp-tablet) {
+      font-size: 0.8rem;
+    }
   }
 }

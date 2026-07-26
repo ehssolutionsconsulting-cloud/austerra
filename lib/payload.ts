@@ -187,12 +187,12 @@ function normalizeService(doc: Record<string, unknown>): CmsService {
   }
 }
 
-export const getServices = cache(async (): Promise<CmsService[]> => {
+export const getServices = cache(async (opts?: { limit?: number }): Promise<CmsService[]> => {
   const payload = await client()
   const result = await payload.find({
     collection: 'services',
     depth: 1,
-    limit: 100,
+    limit: opts?.limit ?? 100,
     sort: 'disciplineNumber',
   })
   return result.docs.map(doc => normalizeService(doc as unknown as Record<string, unknown>))

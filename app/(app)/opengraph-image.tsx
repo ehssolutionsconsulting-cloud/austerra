@@ -1,7 +1,7 @@
 import { ImageResponse } from 'next/og'
 
 export const runtime = 'edge'
-export const alt = 'Austerra Group — Australian environmental, occupational hygiene and geotechnical engineering consulting'
+export const alt = 'AUSTERRA CONSULTING — Australian environmental, occupational hygiene and geotechnical engineering consulting'
 export const size = { width: 1200, height: 630 }
 export const contentType = 'image/png'
 

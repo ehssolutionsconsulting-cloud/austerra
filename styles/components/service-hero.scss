@@ -1,23 +1,29 @@
-@use '../variables' as *;
+@use "../variables" as *;
 
 .service-hero {
   --_accent: var(--color-rule);
 
   display: grid;
-  grid-template-columns: 3fr 2fr;
-  min-height: 65vh;
+  grid-template-columns: 1fr 1fr;
+  min-height: 70vh;
   background: var(--color-ink);
   border-bottom: 2px solid var(--color-ink);
 
-  &--01 { --_accent: var(--color-red); }
-  &--02 { --_accent: var(--color-olive); }
-  &--03 { --_accent: var(--color-stone); }
+  &--01 {
+    --_accent: var(--color-red);
+  }
+  &--02 {
+    --_accent: var(--color-olive);
+  }
+  &--03 {
+    --_accent: var(--color-stone);
+  }
 
   &__content {
-    padding: 5rem $spacing-page-x 4rem;
+    padding: 5rem $spacing-page-x;
     display: flex;
     flex-direction: column;
-    justify-content: flex-end;
+    justify-content: center;
   }
 
   &__eyebrow {
@@ -31,7 +37,7 @@
     width: 24px;
     height: 1px;
     flex-shrink: 0;
-    background: var(--_accent);
+    background: var(--color-pencil);
   }
 
   &__eyebrow-text {
@@ -42,16 +48,20 @@
     color: var(--color-red); // default (01)
   }
 
-  &--02 &__eyebrow-text { color: var(--color-olive-light); }
-  &--03 &__eyebrow-text { color: var(--color-pencil); }
+  &--02 &__eyebrow-text {
+    color: var(--color-olive-light);
+  }
+  &--03 &__eyebrow-text {
+    color: var(--color-pencil);
+  }
 
   &__title {
     font-family: $font-serif;
-    font-size: 4rem;
+    font-size: 4.5rem;
     font-weight: 600;
     color: var(--color-paper);
-    line-height: 1.12;
-    margin-bottom: 1.2rem;
+    line-height: 1.1;
+    margin-bottom: 1.4rem;
 
     em {
       font-style: italic;
@@ -64,8 +74,8 @@
     font-size: 1.05rem;
     font-weight: 400;
     line-height: 1.75;
-    color: rgba(255, 255, 255, 0.55);
-    max-width: 520px;
+    color: rgba(255, 255, 255, 0.65);
+    max-width: 480px;
   }
 
   &__image-wrap {
@@ -94,11 +104,17 @@
       border-top: 3px solid var(--_accent);
     }
 
-    &__title { font-size: 3rem; }
+    &__title {
+      font-size: 3.2rem;
+    }
   }
 
   @media (max-width: $bp-mobile) {
-    &__image-wrap { height: 220px; }
-    &__title { font-size: 2.4rem; }
+    &__image-wrap {
+      height: 220px;
+    }
+    &__title {
+      font-size: 2.6rem;
+    }
   }
 }

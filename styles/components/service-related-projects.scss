@@ -16,10 +16,10 @@
     font-size:  0.84rem;
     letter-spacing: 0.08em;
     text-transform: uppercase;
-    color: var(--color-olive);
+    color: var(--color-link);
     text-decoration: none;
 
-    &:hover { color: var(--color-olive-light); }
+    &:hover { color: var(--color-ink); }
   }
 
   &__grid {

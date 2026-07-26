@@ -31,9 +31,11 @@
   &__inner {
     width: 100%;
     max-width: 700px;
-    padding: 6rem $spacing-page-x 4.5rem;
+    padding: 4rem $spacing-mobile-x 3rem;
     position: relative;
     z-index: 1;
+
+    @media (min-width: $bp-tablet) { padding: 6rem $spacing-page-x 4.5rem; }
   }
 
   &__eyebrow {
@@ -47,7 +49,7 @@
 
   &__heading {
     font-family: $font-serif;
-    font-size: 3.5rem;
+    font-size: 2rem;
     font-weight: 600;
     line-height: 1.15;
     color: var(--color-paper);
@@ -57,6 +59,9 @@
       font-style: italic;
       color: var(--color-olive-light);
     }
+
+    @media (min-width: $bp-mobile) { font-size: 2.6rem; }
+    @media (min-width: $bp-tablet) { font-size: 3.5rem; }
   }
 
   &__body {
@@ -74,6 +79,10 @@
     gap: 1rem;
     justify-content: center;
     flex-wrap: wrap;
+    flex-direction: column;
+    align-items: center;
+
+    @media (min-width: $bp-mobile) { flex-direction: row; }
   }
 
   &__btn {
@@ -91,12 +100,13 @@
 
     &--primary {
       background: var(--color-olive);
-      color: var(--color-paper);
+      color: var(--color-ink);
       border: 2px solid var(--color-olive);
 
       &:hover {
         background: var(--color-olive-light);
         border-color: var(--color-olive-light);
+        color: var(--color-ink);
       }
     }
 
@@ -121,13 +131,15 @@
     width: 100%;
     position: relative;
     z-index: 1;
-    padding: 1.25rem $spacing-page-x;
+    padding: 1.25rem $spacing-mobile-x;
     border-top: 1px solid rgba(255, 255, 255, 0.08);
     display: flex;
     align-items: center;
     justify-content: center;
     gap: 1rem;
     flex-wrap: wrap;
+
+    @media (min-width: $bp-tablet) { padding: 1.25rem $spacing-page-x; }
   }
 
   &__meta-item {
@@ -142,13 +154,5 @@
     color: rgba(255, 255, 255, 0.15);
   }
 
-  @media (max-width: $bp-tablet) {
-    &__heading { font-size: 2.6rem; }
-    &__inner { padding: 4rem $spacing-page-x 3rem; }
-  }
-
-  @media (max-width: $bp-mobile) {
-    &__heading { font-size: 2rem; }
-    &__actions { flex-direction: column; align-items: center; }
-  }
 }
+

@@ -3,7 +3,7 @@ import { IBM_Plex_Serif, IBM_Plex_Mono, IBM_Plex_Sans } from "next/font/google";
 import "@/styles/globals.scss";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
-import AnimationProviders from "@/components/ui/AnimationProviders";
+import AnimationProvidersWrapper from "@/components/ui/AnimationProvidersWrapper";
 import IntersectionAnimator from "@/components/ui/IntersectionAnimator";
 import NavbarScrollHandler from "@/components/layout/NavbarScrollHandler";
 import JsonLd from "@/components/seo/JsonLd";
@@ -32,11 +32,11 @@ export const metadata: Metadata = {
   metadataBase: new URL(
     process.env.NEXT_PUBLIC_SERVER_URL ?? "https://austerra.com.au"
   ),
-  title: "Austerra Group",
+  title: "AUSTERRA CONSULTING",
   description:
     "Grounded in Science. Built for the Field. Australian environmental, occupational hygiene, and geotechnical engineering consulting.",
   openGraph: {
-    siteName: "Austerra Group",
+    siteName: "AUSTERRA CONSULTING",
     locale: "en_AU",
     type: "website",
   },
@@ -63,7 +63,7 @@ export default function RootLayout({
         </a>
         <Navbar />
         <NavbarScrollHandler />
-        <AnimationProviders />
+        <AnimationProvidersWrapper />
         <IntersectionAnimator />
         <main id="main-content" tabIndex={-1}>
           {children}

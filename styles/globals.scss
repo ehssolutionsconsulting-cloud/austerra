@@ -12,6 +12,9 @@
   --color-olive-light: #{$color-olive-light};
   --color-pencil:      #{$color-pencil};
   --color-stone:       #{$color-stone};
+  // Semantic tokens — WCAG 2.1 AA compliant on light backgrounds
+  --color-link:        #{$color-ink-light}; // #003478 — 10.9:1 on paper bg
+  --color-error:       #b91c1c;             // 5.47:1 on paper bg
 
   --font-serif-stack: var(--font-ibm-plex-serif, 'IBM Plex Serif'), serif;
   --font-mono-stack:  var(--font-ibm-plex-mono, 'IBM Plex Mono'), monospace;
@@ -44,16 +47,24 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
-// Focus ring — navy on light bg, steel blue on dark sections
+// Focus ring — dark link color on light bg, lighter tones on dark sections
 :focus-visible {
-  outline: 3px solid var(--color-olive);
+  outline: 3px solid var(--color-link);
   outline-offset: 3px;
 }
 
 .navbar :focus-visible,
 .page-header :focus-visible,
-.footer :focus-visible {
+.footer :focus-visible,
+.about-cta :focus-visible,
+.cta-section :focus-visible {
   outline-color: var(--color-pencil);
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  html {
+    scroll-behavior: smooth;
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -111,7 +122,7 @@ body {
   position: absolute;
   top: -100%;
   left: 0;
-  background: var(--color-olive);
+  background: var(--color-ink);
   color: var(--color-paper);
   font-family: $font-mono;
   font-size: 0.85rem;
@@ -122,4 +133,21 @@ body {
   z-index: 1000;
 
   &:focus { top: 0; }
+}
+
+// ── Anchor scroll offset (accounts for sticky navbar) ────────────────────────
+[id] {
+  scroll-margin-top: calc(#{$nav-height} + 1rem);
+}
+
+// ── Global layout container ───────────────────────────────────────────────────
+.container {
+  width: 100%;
+  padding-left: $spacing-mobile-x;
+  padding-right: $spacing-mobile-x;
+
+  @media (min-width: $bp-tablet) {
+    padding-left: $spacing-page-x;
+    padding-right: $spacing-page-x;
+  }
 }

@@ -12,13 +12,13 @@ interface OtherDisciplinesProps {
 
 export default async function OtherDisciplines({ currentSlug }: OtherDisciplinesProps) {
   const allServices = await getServices();
-  const others = allServices.filter((s) => s.slug !== currentSlug);
+  const others = allServices.filter((s) => s.slug !== currentSlug).slice(0, 2);
 
   return (
     <section className="other-disciplines" aria-labelledby="other-disciplines-heading">
       <div className="other-disciplines__header">
         <h2 id="other-disciplines-heading">
-          <SectionLabel>Other Disciplines</SectionLabel>
+          <SectionLabel>Other Services</SectionLabel>
         </h2>
       </div>
 
@@ -39,7 +39,7 @@ export default async function OtherDisciplines({ currentSlug }: OtherDisciplines
               <div className="service-cards__card-image">
                 <Image
                   src={imageSrc}
-                  alt={`${service.title} discipline`}
+                  alt={`${service.title} service`}
                   fill
                   className="service-cards__card-img"
                   sizes="(max-width: 768px) 100vw, 50vw"
@@ -47,9 +47,6 @@ export default async function OtherDisciplines({ currentSlug }: OtherDisciplines
               </div>
 
               <div className="service-cards__card-content">
-                <p className="service-cards__card-number" aria-hidden="true">
-                  Discipline {num}
-                </p>
                 <h3 className="service-cards__card-title">{service.title}</h3>
                 <p className="service-cards__card-body">{service.shortDescription}</p>
                 <ul

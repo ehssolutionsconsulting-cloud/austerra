@@ -19,6 +19,14 @@ export const Service: CollectionConfig = {
       unique: true,
       admin: {
         position: 'sidebar',
+        description: 'URL path segment — lowercase letters, numbers, and hyphens only. No spaces or capitals.',
+      },
+      validate: (value: string | null | undefined) => {
+        if (!value) return 'Slug is required'
+        if (!/^[a-z0-9-]+$/.test(value)) {
+          return 'Slug must be lowercase with hyphens only — e.g. "occupational-hygiene" not "Occupational Hygiene"'
+        }
+        return true
       },
     },
     {

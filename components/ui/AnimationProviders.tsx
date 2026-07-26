@@ -1,9 +1,7 @@
 "use client";
 
-import dynamic from "next/dynamic";
-
-const GsapAnimator = dynamic(() => import("./GsapAnimator"), { ssr: false });
-const AosInit = dynamic(() => import("./AosInit"), { ssr: false });
+import GsapAnimator from "./GsapAnimator";
+import AosInit from "./AosInit";
 
 export default function AnimationProviders() {
   return (

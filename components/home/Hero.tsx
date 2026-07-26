@@ -1,6 +1,5 @@
 import Image from "next/image";
 import Button from "@/components/ui/Button";
-import { CERTIFICATIONS } from "@/lib/constants";
 import "@/styles/components/hero.scss";
 
 export default function Hero() {
@@ -23,9 +22,7 @@ export default function Hero() {
               </span>
             </span>
             <span className="hero__heading-line-wrap">
-              <span className="hero__heading-line">
-                Built for the Field.
-              </span>
+              <span className="hero__heading-line">Built for the Field.</span>
             </span>
           </h1>
 
@@ -39,19 +36,11 @@ export default function Hero() {
             <Button href="/services" variant="primary">
               Our Services
             </Button>
-            <Button href="/projects" variant="outline">
-              View Projects
+            <Button href="/contact" variant="outline">
+              Contact Us
             </Button>
           </div>
         </div>
-
-        <ul className="hero__certs" aria-label="Certifications">
-          {CERTIFICATIONS.slice(0, 3).map((cert) => (
-            <li key={cert.name} className="hero__cert">
-              {cert.name}
-            </li>
-          ))}
-        </ul>
       </div>
 
       {/* Right column */}

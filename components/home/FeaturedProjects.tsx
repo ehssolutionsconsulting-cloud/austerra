@@ -11,7 +11,7 @@ export default async function FeaturedProjects() {
 
   return (
     <section className="featured-projects" aria-labelledby="projects-heading">
-      <div className="featured-projects__header">
+      <div className="featured-projects__header container">
         <h2 id="projects-heading">
           <SectionLabel>Featured Projects</SectionLabel>
         </h2>

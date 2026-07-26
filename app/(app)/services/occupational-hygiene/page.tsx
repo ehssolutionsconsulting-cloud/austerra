@@ -1,22 +1,20 @@
 import type { Metadata } from "next";
 import ServiceHero from "@/components/services/ServiceHero";
-import DisciplineNav from "@/components/services/DisciplineNav";
 import ServiceDetail from "@/components/services/ServiceDetail";
-import ServiceRelatedProjects from "@/components/services/ServiceRelatedProjects";
 import OtherDisciplines from "@/components/services/OtherDisciplines";
 import ServiceFaq, { type FaqItem } from "@/components/services/ServiceFaq";
 import JsonLd from "@/components/seo/JsonLd";
-import { getServiceBySlug, getProjects } from "@/lib/payload";
+import { getServiceBySlug } from "@/lib/payload";
 import { serviceSchema, faqSchema, breadcrumbSchema } from "@/lib/schema";
 
 export const revalidate = 3600;
 
 export const metadata: Metadata = {
-  title: "Occupational Hygiene | Austerra Group",
+  title: "Occupational Hygiene | AUSTERRA CONSULTING",
   description:
     "Workplace exposure assessments, hazardous materials surveys, and health and safety auditing across mining, construction, and industrial environments.",
   openGraph: {
-    title: "Occupational Hygiene | Austerra Group",
+    title: "Occupational Hygiene | AUSTERRA CONSULTING",
     description:
       "Workplace exposure assessments, hazardous materials surveys, and health and safety auditing across mining, construction, and industrial environments.",
     type: "website",
@@ -47,10 +45,7 @@ const FAQS: FaqItem[] = [
 ];
 
 export default async function OccupationalHygienePage() {
-  const [service, relatedProjects] = await Promise.all([
-    getServiceBySlug("occupational-hygiene"),
-    getProjects({ discipline: "hygiene", limit: 3 }),
-  ]);
+  const service = await getServiceBySlug("occupational-hygiene");
 
   const subServices = service?.subServices ?? [
     "Workplace Exposure Assessment",
@@ -81,16 +76,14 @@ export default async function OccupationalHygienePage() {
       />
       <ServiceHero
         disciplineNumber="02"
-        eyebrow="Discipline 02 — Occupational Hygiene"
+        eyebrow="Occupational Hygiene"
         title={<>Occupational <em>Hygiene</em></>}
         body="Protecting your workforce through evidence-based monitoring, assessment, and risk management."
         image="/images/services/occupational-hygiene.jpg"
         imageAlt="Occupational hygienist conducting workplace exposure assessment"
       />
-      <DisciplineNav activeSlug="occupational-hygiene" />
       {service && <ServiceDetail service={service} />}
       <ServiceFaq faqs={FAQS} />
-      <ServiceRelatedProjects projects={relatedProjects} />
       <OtherDisciplines currentSlug="occupational-hygiene" />
     </>
   );

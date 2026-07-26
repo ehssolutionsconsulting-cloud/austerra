@@ -6,9 +6,7 @@ import { usePathname } from "next/navigation";
 
 const navLinks = [
   { label: "Services", href: "/services" },
-  { label: "Projects", href: "/projects" },
   { label: "About", href: "/about" },
-  { label: "Insights", href: "/insights" },
 ];
 
 export default function NavMenu() {
@@ -19,6 +17,10 @@ export default function NavMenu() {
   const menuRef = useRef<HTMLDivElement>(null);
   const buttonRef = useRef<HTMLButtonElement>(null);
 
+  // Close on route change
+  useEffect(() => { setOpen(false); }, [pathname]);
+
+  // Keyboard: Escape closes, Tab traps focus inside drawer
   useEffect(() => {
     if (!open) return;
 
@@ -51,21 +53,26 @@ export default function NavMenu() {
     return () => document.removeEventListener("keydown", handleKey);
   }, [open]);
 
-  // Lock body scroll when menu is open
+  // Lock body scroll while drawer is open
   useEffect(() => {
     document.body.style.overflow = open ? "hidden" : "";
-    return () => {
-      document.body.style.overflow = "";
-    };
+    return () => { document.body.style.overflow = ""; };
   }, [open]);
+
+  const close = () => {
+    setOpen(false);
+    buttonRef.current?.focus();
+  };
 
   return (
     <>
+      {/* Hamburger toggle */}
       <button
         ref={buttonRef}
         className={`navbar__hamburger${open ? " navbar__hamburger--open" : ""}`}
         aria-label={open ? "Close menu" : "Open menu"}
         aria-controls="mobile-menu"
+        aria-expanded={open}
         onClick={() => setOpen((v) => !v)}
       >
         <span className="navbar__hamburger-bar" aria-hidden="true" />
@@ -73,11 +80,20 @@ export default function NavMenu() {
         <span className="navbar__hamburger-bar" aria-hidden="true" />
       </button>
 
+      {/* Backdrop — clicking closes drawer */}
+      <div
+        className={`navbar__backdrop${open ? " navbar__backdrop--open" : ""}`}
+        aria-hidden="true"
+        onClick={close}
+      />
+
+      {/* Slide-in drawer */}
       <div
         id="mobile-menu"
         ref={menuRef}
         className={`navbar__mobile-menu${open ? " navbar__mobile-menu--open" : ""}`}
         aria-label="Mobile navigation"
+        aria-hidden={!open}
       >
         <ul className="navbar__mobile-links" role="list">
           {navLinks.map((link) => (
@@ -86,7 +102,7 @@ export default function NavMenu() {
                 className={`navbar__mobile-link${isActive(link.href) ? " navbar__mobile-link--active" : ""}`}
                 href={link.href}
                 tabIndex={open ? 0 : -1}
-                onClick={() => setOpen(false)}
+                onClick={close}
                 aria-current={isActive(link.href) ? "page" : undefined}
               >
                 {link.label}
@@ -98,7 +114,7 @@ export default function NavMenu() {
               className="navbar__mobile-link navbar__mobile-link--cta"
               href="/contact"
               tabIndex={open ? 0 : -1}
-              onClick={() => setOpen(false)}
+              onClick={close}
             >
               Contact Us
             </Link>

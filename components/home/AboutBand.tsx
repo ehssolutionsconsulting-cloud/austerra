@@ -6,26 +6,14 @@ const differentiators = [
   {
     number: "01",
     heading: "Science-Led",
-    desc: "Field data over templates, every time.",
-    body: "Every report is built on site observations, lab results, and peer-reviewed methodology — not desk assumptions.",
+    desc: "Evidence-based, field-validated.",
+    body: "Every assessment is grounded in site data, laboratory analysis, and current Australian standards — not desk assumptions.",
   },
   {
     number: "02",
-    heading: "Integrated",
-    desc: "Three disciplines, one accountable team.",
-    body: "Environmental, hygiene, and geotechnical under one roof — no gaps, no hand-offs, faster delivery.",
-  },
-  {
-    number: "03",
-    heading: "Regulatory",
-    desc: "Approvals on the first submission.",
-    body: "We understand the assessment frameworks before we pick up a pen. Our submissions are written to get through.",
-  },
-  {
-    number: "04",
-    heading: "Field-First",
-    desc: "On-site with your team, not desk-bound.",
-    body: "Our consultants embed on project sites. What we observe shapes what we recommend — not the other way around.",
+    heading: "Driven by Outcomes",
+    desc: "Practical results, not paperwork.",
+    body: "We work alongside your team to deliver clear, defensible recommendations that move your project forward.",
   },
 ];
 
@@ -38,19 +26,22 @@ export default function AboutBand() {
         </div>
 
         <h2 id="about-heading" className="about-band__heading">
-          Built by Scientists.
+          Built by Experience.
           <br />
           <em>Trusted by Industry.</em>
         </h2>
 
         <blockquote className="about-band__quote">
-          <p>&ldquo;The best science happens in the field, not at a desk.&rdquo;</p>
+          <p>
+            &ldquo;The best science happens in the field with experience.&rdquo;
+          </p>
         </blockquote>
 
         <p className="about-band__body">
-          Our team of environmental scientists, occupational hygienists, and geotechnical engineers
-          partners with clients in infrastructure, mining, and construction — delivering outcomes
-          that hold up to scrutiny, regulation, and the field itself.
+          Our team of environmental scientists, occupational hygienists, and
+          geotechnical engineers partners with clients in infrastructure,
+          mining, and construction — delivering outcomes that hold up to
+          scrutiny, regulation, and the field itself.
         </p>
 
         <Link className="about-band__btn" href="/about">

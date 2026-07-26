@@ -2,20 +2,30 @@
 
 .about-hero {
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: 1fr;
   border-bottom: 2px solid var(--color-ink);
-  min-height: 560px;
-  background: var(--color-paper); // shows through clip-path gap
+  background: var(--color-paper);
+
+  @media (min-width: $bp-tablet) {
+    grid-template-columns: 1fr 1fr;
+    min-height: 560px;
+  }
 
   // ── Left panel ────────────────────────────────────────────────
   &__left {
     background: var(--color-paper);
-    padding: 5rem $spacing-page-x 4rem;
+    padding: 3rem $spacing-mobile-x 2.5rem;
     display: flex;
     flex-direction: column;
     justify-content: center;
     position: relative;
     z-index: 1;
+    order: 1;
+
+    @media (min-width: $bp-tablet) {
+      padding: 5rem $spacing-page-x 4rem;
+      order: 0;
+    }
   }
 
   &__eyebrow {
@@ -23,13 +33,13 @@
     font-size: 0.78rem;
     letter-spacing: 0.22em;
     text-transform: uppercase;
-    color: var(--color-red);
+    color: var(--color-link);
     margin-bottom: 1.8rem;
   }
 
   &__heading {
     font-family: $font-serif;
-    font-size: 3.6rem;
+    font-size: 2rem;
     font-weight: 600;
     line-height: 1.15;
     color: var(--color-ink);
@@ -37,8 +47,11 @@
 
     em {
       font-style: italic;
-      color: var(--color-olive);
+      color: var(--color-link);
     }
+
+    @media (min-width: $bp-mobile) { font-size: 2.4rem; }
+    @media (min-width: $bp-tablet) { font-size: 3.6rem; }
   }
 
   // Cycling typewriter — 3 words, each visible ~2.5s, total 9s loop
@@ -57,7 +70,7 @@
     font-size: 0.85rem;
     letter-spacing: 0.18em;
     text-transform: uppercase;
-    color: var(--color-olive);
+    color: var(--color-link);
     opacity: 0;
     animation: disciplineCycle 9s ease-in-out infinite;
 
@@ -90,8 +103,18 @@
     position: relative;
     overflow: hidden;
     background: var(--color-ink);
-    // Diagonal slash — clips the top-left corner of the right panel
-    clip-path: polygon(3.5rem 0, 100% 0, 100% 100%, 0 100%);
+    clip-path: none;
+    height: 240px;
+    order: 2;
+
+    @media (min-width: $bp-mobile) { height: 300px; }
+
+    @media (min-width: $bp-tablet) {
+      height: auto;
+      order: 0;
+      // Diagonal slash — clips the top-left corner of the right panel
+      clip-path: polygon(3.5rem 0, 100% 0, 100% 100%, 0 100%);
+    }
   }
 
   &__image-wrap {
@@ -116,30 +139,8 @@
     object-position: center;
   }
 
-  // ── Responsive ────────────────────────────────────────────────
-  @media (max-width: $bp-tablet) {
-    grid-template-columns: 1fr;
-    min-height: auto;
-
-    &__left {
-      padding: 3.5rem $spacing-page-x 3rem;
-      order: 2;
-    }
-
-    &__heading { font-size: 2.4rem; }
-
-    &__right {
-      height: 300px;
-      clip-path: none;
-      order: 1;
-    }
-  }
-
-  @media (max-width: $bp-mobile) {
-    &__heading { font-size: 1.9rem; }
-    &__right   { height: 240px; }
-  }
 }
+
 
 @keyframes disciplineCycle {
   0%   { opacity: 0; transform: translateY(8px); }

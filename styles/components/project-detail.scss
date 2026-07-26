@@ -23,13 +23,13 @@
     font-size: 0.8rem;
     letter-spacing: 0.1em;
     text-transform: uppercase;
-    color: var(--color-olive);
+    color: var(--color-link);
     text-decoration: none;
 
-    &:hover { color: var(--color-olive-light); }
+    &:hover { color: var(--color-ink); }
 
     &:focus-visible {
-      outline: 3px solid var(--color-olive);
+      outline: 3px solid var(--color-link);
       outline-offset: 3px;
     }
   }
@@ -165,8 +165,8 @@
     border-bottom: 1px solid var(--color-rule);
   }
 
-  &--environmental &__section-label { border-bottom-color: var(--color-olive); }
-  &--hygiene       &__section-label { border-bottom-color: var(--color-red); }
+  &--environmental &__section-label { border-bottom-color: var(--color-link); }
+  &--hygiene       &__section-label { border-bottom-color: var(--color-link); }
   &--geotechnical  &__section-label { border-bottom-color: var(--color-stone); }
 
   &__description {
@@ -275,10 +275,10 @@
     font-size: 0.8rem;
     letter-spacing: 0.1em;
     text-transform: uppercase;
-    color: var(--color-olive);
+    color: var(--color-link);
     text-decoration: none;
 
-    &:hover { color: var(--color-olive-light); }
+    &:hover { color: var(--color-ink); }
   }
 
   &__grid {

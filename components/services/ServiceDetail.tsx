@@ -28,7 +28,7 @@ export default function ServiceDetail({ service }: ServiceDetailProps) {
     >
       <div className="service-detail__main" data-aos="fade-right">
         <div className="service-detail__label">
-          <SectionLabel>About This Discipline</SectionLabel>
+          <SectionLabel>About This Service</SectionLabel>
         </div>
 
         <h2 id="service-detail-heading" className="service-detail__heading">
@@ -96,7 +96,7 @@ export default function ServiceDetail({ service }: ServiceDetailProps) {
           ))}
         </ul>
         <Link className="service-detail__sidebar-cta" href="/contact">
-          Enquire about this discipline
+          Enquire about this service
           <span aria-hidden="true"> →</span>
         </Link>
       </div>

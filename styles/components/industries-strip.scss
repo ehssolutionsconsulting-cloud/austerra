@@ -8,7 +8,7 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding: 1rem $spacing-page-x;
+    padding: 1rem 0;
     border-bottom: 1px solid rgba(255, 255, 255, 0.08);
 
     // Override SectionLabel color for dark background
@@ -19,7 +19,7 @@
 
   &__grid {
     display: grid;
-    grid-template-columns: repeat(6, 1fr);
+    grid-template-columns: repeat(2, 1fr);
     list-style: none;
   }
 
@@ -30,12 +30,13 @@
     gap: 0.85rem;
     padding: 2.25rem 1rem;
     border-right: 1px solid rgba(255, 255, 255, 0.08);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
     cursor: default;
     transition: background 0.18s ease;
 
-    &:last-child {
-      border-right: none;
-    }
+    &:nth-child(even) { border-right: none; }
+    &:nth-child(5),
+    &:nth-child(6)    { border-bottom: none; }
 
     &:hover {
       background: rgba(255, 255, 255, 0.05);
@@ -96,45 +97,37 @@
     }
   }
 
-  // Responsive: 3-col on tablet, 2-col on mobile
-  @media (max-width: $bp-tablet) {
-    &__grid {
-      grid-template-columns: repeat(3, 1fr);
-    }
+  // 3-col at mobile breakpoint
+  @media (min-width: $bp-mobile) {
+    &__grid { grid-template-columns: repeat(3, 1fr); }
 
     &__card {
+      border-right: 1px solid rgba(255, 255, 255, 0.08);
       border-bottom: 1px solid rgba(255, 255, 255, 0.08);
 
-      &:nth-child(3) {
-        border-right: none;
-      }
+      &:nth-child(even) { border-right: 1px solid rgba(255, 255, 255, 0.08); }
+      &:nth-child(3)    { border-right: none; }
 
       &:nth-child(4),
       &:nth-child(5),
-      &:nth-child(6) {
-        border-bottom: none;
-      }
+      &:nth-child(6) { border-bottom: none; }
     }
   }
 
-  @media (max-width: $bp-mobile) {
-    &__grid {
-      grid-template-columns: repeat(2, 1fr);
-    }
+  // 6-col at tablet+
+  @media (min-width: $bp-tablet) {
+    &__grid { grid-template-columns: repeat(6, 1fr); }
 
     &__card {
-      &:nth-child(3) {
-        border-right: 1px solid rgba(255, 255, 255, 0.08);
-      }
+      border-bottom: none;
+      border-right: 1px solid rgba(255, 255, 255, 0.08);
 
-      &:nth-child(even) {
-        border-right: none;
-      }
-
+      &:nth-child(3) { border-right: 1px solid rgba(255, 255, 255, 0.08); }
+      &:nth-child(4),
       &:nth-child(5),
-      &:nth-child(6) {
-        border-bottom: none;
-      }
+      &:nth-child(6) { border-bottom: none; }
+      &:last-child   { border-right: none; }
     }
   }
 }
+

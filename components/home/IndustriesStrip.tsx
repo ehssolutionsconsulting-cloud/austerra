@@ -64,7 +64,7 @@ const sectors = [
 export default function IndustriesStrip() {
   return (
     <section className="industries-strip" aria-label="Sectors we serve">
-      <div className="industries-strip__header">
+      <div className="industries-strip__header container">
         <SectionLabel>Sectors We Serve</SectionLabel>
         <Link className="industries-strip__cta" href="/services" aria-label="View all services">
           View All Services →

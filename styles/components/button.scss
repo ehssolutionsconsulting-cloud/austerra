@@ -1,4 +1,4 @@
-@use '../variables' as *;
+@use "../variables" as *;
 
 .button {
   font-family: $font-mono;
@@ -6,17 +6,21 @@
   font-weight: 500;
   letter-spacing: 0.12em;
   text-transform: uppercase;
-  padding: 0.8rem 1.7rem;
+  padding: 0.6rem 1.4rem;
   text-decoration: none;
   display: inline-block;
   cursor: pointer;
   border: 2px solid var(--color-ink);
-  transition: background 0.15s ease, color 0.15s ease;
+  transition:
+    background 0.15s ease,
+    color 0.15s ease;
 
   @media (prefers-reduced-motion: reduce) {
     transition: none;
   }
-
+  @media (min-width: $bp-tablet) {
+    padding: 0.8rem 1.7rem;
+  }
   &--primary {
     background: var(--color-ink);
     color: var(--color-paper);

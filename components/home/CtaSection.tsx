@@ -1,6 +1,5 @@
 import { Fragment } from "react";
 import Link from "next/link";
-import { CERTIFICATIONS } from "@/lib/constants";
 import "@/styles/components/cta-section.scss";
 
 export default function CtaSection() {
@@ -29,24 +28,7 @@ export default function CtaSection() {
           >
             Contact Us
           </Link>
-          <Link
-            className="cta-section__btn cta-section__btn--ghost"
-            href="/projects"
-          >
-            View Our Work
-          </Link>
         </div>
-      </div>
-
-      <div className="cta-section__meta" aria-hidden="true">
-        {CERTIFICATIONS.map((cert, i) => (
-          <Fragment key={cert.name}>
-            <span className="cta-section__meta-item">{cert.name}</span>
-            {i < CERTIFICATIONS.length - 1 && (
-              <span className="cta-section__meta-sep">·</span>
-            )}
-          </Fragment>
-        ))}
       </div>
     </section>
   );
