@@ -8,6 +8,7 @@ const nextConfig: NextConfig = {
       { protocol: "https", hostname: "austerra.vercel.app" },
       { protocol: "https", hostname: "austerra.com.au" },
       { protocol: "http",  hostname: "localhost" },
+      { protocol: "https", hostname: "*.public.blob.vercel-storage.com" },
     ],
   },
   async redirects() {

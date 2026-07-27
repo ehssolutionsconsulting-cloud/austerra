@@ -12,6 +12,7 @@
     "@payloadcms/db-vercel-postgres": "^3.84.1",
     "@payloadcms/next": "^3.84.1",
     "@payloadcms/richtext-lexical": "^3.84.1",
+    "@payloadcms/storage-vercel-blob": "^3.84.1",
     "aos": "^2.3.4",
     "graphql": "^16.14.0",
     "gsap": "^3.15.0",
