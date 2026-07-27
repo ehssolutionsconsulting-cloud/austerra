@@ -71,15 +71,13 @@ export default function ServicesTabsClient({ services }: { services: CmsService[
                   className={`service-cards__card service-cards__card--0${service.disciplineNumber}`}
                 >
                   <div className="service-cards__card-image">
-                    {service.featuredImage && (
-                      <Image
-                        src={service.featuredImage}
-                        alt=""
-                        fill
-                        className="service-cards__card-img"
-                        sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
-                      />
-                    )}
+                    <Image
+                      src={service.featuredImage ?? `/images/services/${service.slug}.jpg`}
+                      alt=""
+                      fill
+                      className="service-cards__card-img"
+                      sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                    />
                   </div>
 
                   <div className="service-cards__card-content">

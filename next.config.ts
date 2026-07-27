@@ -3,6 +3,13 @@ import { withPayload } from "@payloadcms/next/withPayload";
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
+  images: {
+    remotePatterns: [
+      { protocol: "https", hostname: "austerra.vercel.app" },
+      { protocol: "https", hostname: "austerra.com.au" },
+      { protocol: "http",  hostname: "localhost" },
+    ],
+  },
   async redirects() {
     return [
       {
