@@ -48,7 +48,7 @@ export default function ServiceCardsSlider({ services }: { services: CmsService[
       >
         {services.map((service) => {
           const num = service.disciplineNumber.padStart(2, "0");
-          const imageSrc = service.featuredImage ?? `/images/services/${service.slug}.jpg`;
+          const imageSrc = service.featuredImage ?? `/images/services/${service.slug.toLowerCase()}.jpg`;
           const imageAlt = disciplineAlt[service.slug] ?? `${service.title} field work`;
 
           return (

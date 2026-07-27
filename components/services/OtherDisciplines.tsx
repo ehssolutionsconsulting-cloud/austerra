@@ -27,7 +27,7 @@ export default async function OtherDisciplines({ currentSlug }: OtherDisciplines
         role="list"
       >
         {others.map((service, i) => {
-          const imageSrc = service.featuredImage ?? `/images/services/${service.slug}.jpg`;
+          const imageSrc = service.featuredImage ?? `/images/services/${service.slug.toLowerCase()}.jpg`;
           const num = service.disciplineNumber.padStart(2, "0") as "01" | "02" | "03";
           return (
             <li
