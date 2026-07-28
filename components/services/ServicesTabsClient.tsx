@@ -73,9 +73,8 @@ export default function ServicesTabsClient({ services }: { services: CmsService[
                   <div className="service-cards__card-image">
                     <Image
                       src={
-                        service.featuredImage?.startsWith("http")
-                          ? service.featuredImage
-                          : `/images/services/${service.slug.toLowerCase()}.jpg`
+                        service.featuredImage
+                          ?? `/images/services/${service.slug.toLowerCase()}.jpg`
                       }
                       alt=""
                       fill
