@@ -79,7 +79,7 @@ export default async function EnvironmentalPage() {
         eyebrow="Environmental"
         title={<>Environmental <em>Services</em></>}
         body="Rigorous environmental consulting across Australia's infrastructure, energy, mining, and construction sectors."
-        image="/images/services/environmental.jpg"
+        image={service?.featuredImage ?? "/images/services/environmental.jpg"}
         imageAlt="Field team conducting environmental site assessment"
       />
       {service && <ServiceDetail service={service} />}

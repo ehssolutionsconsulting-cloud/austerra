@@ -170,7 +170,7 @@ export default async function ServiceSlugPage({ params }: Props) {
         eyebrow={config.eyebrow}
         title={config.title}
         body={config.body}
-        image={config.image}
+        image={service.featuredImage ?? config.image}
         imageAlt={config.imageAlt}
       />
       <ServiceDetail service={service} />

@@ -79,7 +79,7 @@ export default async function GeotechnicalPage() {
         eyebrow="Geotechnical"
         title={<>Geotechnical <em>Engineering</em></>}
         body="Ground conditions determine project feasibility, design parameters, and construction risk. We get them right."
-        image="/images/services/geotechnical.jpg"
+        image={service?.featuredImage ?? "/images/services/geotechnical.jpg"}
         imageAlt="Geotechnical engineer reviewing slope stability on site"
       />
       {service && <ServiceDetail service={service} />}

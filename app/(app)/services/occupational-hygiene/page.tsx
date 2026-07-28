@@ -79,7 +79,7 @@ export default async function OccupationalHygienePage() {
         eyebrow="Occupational Hygiene"
         title={<>Occupational <em>Hygiene</em></>}
         body="Protecting your workforce through evidence-based monitoring, assessment, and risk management."
-        image="/images/services/occupational-hygiene.jpg"
+        image={service?.featuredImage ?? "/images/services/occupational-hygiene.jpg"}
         imageAlt="Occupational hygienist conducting workplace exposure assessment"
       />
       {service && <ServiceDetail service={service} />}
